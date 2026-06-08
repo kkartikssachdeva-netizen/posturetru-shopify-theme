@@ -1,0 +1,111 @@
+<section id="PillarsSection" class="trust-pillars section-padding">
+  <div class="container">
+    <div class="section-header">
+      <h2>{{ section.settings.title | default: 'Engineered for Daily Desk Wellness' }}</h2>
+      <p>{{ section.settings.subtitle | default: 'Designed specifically to target WFH postural degradation and physical strain.' }}</p>
+    </div>
+    
+    <div class="grid grid-3">
+      <!-- Pillar 1 -->
+      <div class="pillar-card">
+        <div class="pillar-icon">
+          {% render 'icon-medical' %}
+        </div>
+        <h3>{{ section.settings.pillar_1_title | default: 'Medical-Grade Design' }}</h3>
+        <p>{{ section.settings.pillar_1_text | default: 'Engineered with 10 magnetic therapy nodes and smart vibration sensors. Used by ergonomic specialists worldwide.' }}</p>
+      </div>
+
+      <!-- Pillar 2 -->
+      <div class="pillar-card">
+        <div class="pillar-icon">
+          {% render 'icon-chart' %}
+        </div>
+        <h3>{{ section.settings.pillar_2_title | default: 'Proven Results' }}</h3>
+        <p>{{ section.settings.pillar_2_text | default: '68% of remote workers report back pain. PostureTru users report relief in as little as 3 days.' }}</p>
+      </div>
+
+      <!-- Pillar 3 -->
+      <div class="pillar-card">
+        <div class="pillar-icon">
+          {% render 'icon-star' %}
+        </div>
+        <h3>{{ section.settings.pillar_3_title | default: 'Premium Quality' }}</h3>
+        <p>{{ section.settings.pillar_3_text | default: 'Made with breathable medical-grade materials. Comfortable enough to wear all day, under clothing.' }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Trust Pillars",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Engineered for Daily Desk Wellness"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subheading",
+      "default": "Designed specifically to target WFH postural degradation."
+    },
+    {
+      "type": "header",
+      "content": "Pillar 1"
+    },
+    {
+      "type": "text",
+      "id": "pillar_1_title",
+      "label": "Pillar 1 Title",
+      "default": "Medical-Grade Design"
+    },
+    {
+      "type": "textarea",
+      "id": "pillar_1_text",
+      "label": "Pillar 1 Text",
+      "default": "Engineered with 10 magnetic therapy nodes and smart vibration sensors. Used by ergonomic specialists worldwide."
+    },
+    {
+      "type": "header",
+      "content": "Pillar 2"
+    },
+    {
+      "type": "text",
+      "id": "pillar_2_title",
+      "label": "Pillar 2 Title",
+      "default": "Proven Results"
+    },
+    {
+      "type": "textarea",
+      "id": "pillar_2_text",
+      "label": "Pillar 2 Text",
+      "default": "68% of remote workers report back pain. PostureTru users report relief in as little as 3 days."
+    },
+    {
+      "type": "header",
+      "content": "Pillar 3"
+    },
+    {
+      "type": "text",
+      "id": "pillar_3_title",
+      "label": "Pillar 3 Title",
+      "default": "Premium Quality"
+    },
+    {
+      "type": "textarea",
+      "id": "pillar_3_text",
+      "label": "Pillar 3 Text",
+      "default": "Made with breathable medical-grade materials. Comfortable enough to wear all day, under clothing."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust Pillars",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}

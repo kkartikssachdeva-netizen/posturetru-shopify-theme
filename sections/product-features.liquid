@@ -1,0 +1,99 @@
+<section class="product-features-section section-padding">
+  <div class="container">
+    <div class="section-header">
+      <h2>{{ section.settings.title | default: 'Features & Technology' }}</h2>
+      <p>{{ section.settings.subtitle | default: 'Engineered with cutting-edge comfort and feedback systems.' }}</p>
+    </div>
+    
+    <div class="features-list">
+      <!-- Feature 1 -->
+      <div class="feature-item">
+        <div class="feature-icon-wrapper">
+          <!-- Vibration Icon -->
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+            <circle cx="12" cy="12" r="4"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Smart Vibration Technology</h3>
+          <p>Gentle vibration alerts when you start to slouch, training your posture and back muscle memory in real-time.</p>
+        </div>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="feature-item">
+        <div class="feature-icon-wrapper">
+          <!-- Magnet Icon -->
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5"/>
+            <circle cx="12" cy="12" r="5"/>
+          </svg>
+        </div>
+        <div>
+          <h3>10 Therapeutic Magnets</h3>
+          <p>Promotes localized blood circulation and reduces muscle tension naturally around spine and lumbar zones.</p>
+        </div>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="feature-item">
+        <div class="feature-icon-wrapper">
+          <!-- Comfort Icon -->
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </div>
+        <div>
+          <h3>All-Day Comfort</h3>
+          <p>Breathable medical-grade neoprene and mesh materials. Fit comfortably under clothing without chafing or sweat build-up.</p>
+        </div>
+      </div>
+
+      <!-- Feature 4 -->
+      <div class="feature-item">
+        <div class="feature-icon-wrapper">
+          <!-- Straps Icon -->
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14h-2v-2h2zm0-4h-2V7h2z"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Adjustable Fit</h3>
+          <p>One size fits all design with adjustable Velcro straps. Accommodates 28" to 50" waistlines perfectly for both men and women.</p>
+        </div>
+      </div>
+
+      <!-- Feature 5 -->
+      <div class="feature-item">
+        <div class="feature-icon-wrapper">
+          {% render 'icon-truck' %}
+        </div>
+        <div>
+          <h3>Fast & Free Shipping</h3>
+          <p>Ships within 5-7 days directly to US, Canada, and Australia destinations with full tracking code updates.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Features",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Features & Technology"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subheading",
+      "default": "Engineered with cutting-edge comfort and feedback systems."
+    }
+  ]
+}
+{% endschema %}

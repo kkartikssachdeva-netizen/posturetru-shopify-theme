@@ -1,0 +1,95 @@
+<section class="section-padding">
+  <div class="container">
+    <div class="section-header">
+      <h2>{{ section.settings.title | default: 'Frequently Asked Questions' }}</h2>
+      <p>{{ section.settings.subtitle | default: 'Have questions? We have answers.' }}</p>
+    </div>
+    
+    <div class="faq-accordion-container">
+      <!-- Item 1 -->
+      <div class="accordion-item">
+        <button class="accordion-header" aria-expanded="false" aria-controls="faq-ans-1">
+          How long before I see results?
+          <span class="accordion-icon">+</span>
+        </button>
+        <div id="faq-ans-1" class="accordion-content" role="region">
+          <div class="accordion-content-inner">
+            Most users report noticeable posture improvement within 3-7 days. Optimal long-term results typically appear within 2-4 weeks as your back muscles adjust and develop strong muscle memory to proper alignment.
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="accordion-item">
+        <button class="accordion-header" aria-expanded="false" aria-controls="faq-ans-2">
+          Will it show under my clothes?
+          <span class="accordion-icon">+</span>
+        </button>
+        <div id="faq-ans-2" class="accordion-content" role="region">
+          <div class="accordion-content-inner">
+            No. PostureTru has a slim profile and is designed to fit under any shirt or sweater. The straps and back support lay flat, making it virtually invisible under normal clothing.
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="accordion-item">
+        <button class="accordion-header" aria-expanded="false" aria-controls="faq-ans-3">
+          Is it comfortable for all-day wear?
+          <span class="accordion-icon">+</span>
+        </button>
+        <div id="faq-ans-3" class="accordion-content" role="region">
+          <div class="accordion-content-inner">
+            Yes. It is made with breathable medical-grade neoprene and mesh with adjustable Velcro straps. The materials prevent sweat build-up and chafing under the arms. Many users report completely forgetting they are wearing it.
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="accordion-item">
+        <button class="accordion-header" aria-expanded="false" aria-controls="faq-ans-4">
+          How do I care for it?
+          <span class="accordion-icon">+</span>
+        </button>
+        <div id="faq-ans-4" class="accordion-content" role="region">
+          <div class="accordion-content-inner">
+            Simply slide out the smart electronic sensor module first, then hand wash the neoprene harness in warm water with mild soap. Air dry only. Do not machine wash or tumble dry to preserve fabric longevity.
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 5 -->
+      <div class="accordion-item">
+        <button class="accordion-header" aria-expanded="false" aria-controls="faq-ans-5">
+          What's your return policy?
+          <span class="accordion-icon">+</span>
+        </button>
+        <div id="faq-ans-5" class="accordion-content" role="region">
+          <div class="accordion-content-inner">
+            We stand by the quality of PostureTru with a 30-day money-back guarantee. If you are not satisfied with the comfort or results within 30 days of receipt, return it for a full refund—no questions asked.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQ Accordion",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subheading",
+      "default": "Have questions? We have answers."
+    }
+  ]
+}
+{% endschema %}

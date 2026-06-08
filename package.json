@@ -1,0 +1,21 @@
+{
+  "name": "posturetru-shopify-theme",
+  "version": "1.0.0",
+  "description": "Production-ready Shopify Custom Theme for PostureTru with local Express/liquidjs preview",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "liquidjs": "^10.12.0"
+  },
+  "keywords": [
+    "shopify",
+    "theme",
+    "liquid",
+    "dropshipping"
+  ],
+  "author": "Antigravity",
+  "license": "MIT"
+}

@@ -1,0 +1,85 @@
+<header>
+  <div class="container flex-between" style="width: 100%;">
+    <!-- Hamburger button for mobile menu -->
+    <button id="menuToggleBtn" class="menu-toggle" aria-label="Open Navigation Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+    
+    <!-- Logo -->
+    <a href="/" class="logo">
+      Posture<span class="logo-accent">Tru</span>
+    </a>
+    
+    <!-- Navigation Menu (Desktop) -->
+    <nav class="nav-menu" aria-label="Main Navigation">
+      <a href="/" class="nav-link {% if request.path == '/' %}active{% endif %}">Home</a>
+      <a href="/products/smart-posture-corrector-belt" class="nav-link {% if request.path contains '/products/' %}active{% endif %}">Shop</a>
+      <a href="/pages/about-us" class="nav-link {% if request.path contains '/about-us' %}active{% endif %}">About</a>
+      <a href="/pages/faq" class="nav-link {% if request.path contains '/faq' %}active{% endif %}">FAQ</a>
+      <a href="/pages/contact" class="nav-link {% if request.path contains '/contact' %}active{% endif %}">Contact</a>
+    </nav>
+    
+    <!-- Header Icons (Cart) -->
+    <div class="header-icons">
+      <button id="cartIconBtn" class="cart-icon-btn" aria-label="Open Shopping Cart">
+        {% render 'icon-cart' %}
+        <span id="cartBadgeCount" class="cart-badge" style="display: none;">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Navigation Drawer -->
+<div id="mobileNavDrawer" class="mobile-nav-drawer" aria-modal="true" role="dialog">
+  <div class="mobile-nav-header">
+    <a href="/" class="logo">
+      Posture<span class="logo-accent">Tru</span>
+    </a>
+    <button id="closeMenuBtn" class="close-drawer-btn" aria-label="Close Navigation Menu">&times;</button>
+  </div>
+  <nav class="mobile-nav-links" aria-label="Mobile Navigation">
+    <a href="/" class="mobile-nav-link {% if request.path == '/' %}active{% endif %}">Home</a>
+    <a href="/products/smart-posture-corrector-belt" class="mobile-nav-link {% if request.path contains '/products/' %}active{% endif %}">Shop</a>
+    <a href="/pages/about-us" class="mobile-nav-link {% if request.path contains '/about-us' %}active{% endif %}">About</a>
+    <a href="/pages/faq" class="mobile-nav-link {% if request.path contains '/faq' %}active{% endif %}">FAQ</a>
+    <a href="/pages/contact" class="mobile-nav-link {% if request.path contains '/contact' %}active{% endif %}">Contact</a>
+  </nav>
+</div>
+
+<!-- Cart Drawer Overlay -->
+<div id="cartOverlay" class="cart-drawer-overlay"></div>
+
+<!-- Cart Side Drawer -->
+<div id="cartDrawer" class="cart-drawer" aria-modal="true" role="dialog">
+  <div class="cart-drawer-header">
+    <h3>Shopping Cart</h3>
+    <button id="closeCartBtn" class="close-drawer-btn" aria-label="Close Shopping Cart">&times;</button>
+  </div>
+  
+  <div class="cart-drawer-body">
+    <div id="cartDrawerItems">
+      <!-- Items populated by JS -->
+    </div>
+  </div>
+  
+  <div class="cart-drawer-footer">
+    <div class="cart-subtotal-row">
+      <span>Subtotal</span>
+      <span id="cartSubtotalAmount">$0.00</span>
+    </div>
+    <p>Shipping and taxes calculated at checkout.</p>
+    <a href="/cart" class="btn btn-primary btn-full" style="margin-bottom: 12px;">View Cart</a>
+    <button class="btn btn-secondary btn-full" onclick="alert('Proceeding to Shopify secure checkout...')" style="margin: 0;">Checkout</button>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": []
+}
+{% endschema %}

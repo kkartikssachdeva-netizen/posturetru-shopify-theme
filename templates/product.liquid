@@ -1,0 +1,79 @@
+{% comment %}
+  PostureTru Single Product Page Template
+{% endcomment %}
+
+{% section 'product-template' %}
+{% section 'product-features' %}
+{% section 'product-benefits' %}
+{% section 'product-specs' %}
+{% section 'faq-accordion' %}
+{% section 'guarantees' %}
+
+<!-- Reviews Section (Visual Placement) -->
+<section id="ReviewsBlock" class="section-padding reviews-section" style="background-color: var(--color-bg);">
+  <div class="container">
+    <div class="reviews-header-block">
+      <div class="reviews-score">
+        <span class="reviews-score-num">4.9</span>
+        <div class="reviews-score-stars">
+          <div class="star-rating">
+            {% for i in (1..5) %}
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            {% endfor %}
+          </div>
+          <p>Based on 1,248 Verified Customer Reviews</p>
+        </div>
+      </div>
+      <div>
+        <button class="btn btn-outline" onclick="alert('Reviews integration is ready for Judge.me or Loox apps.')">Write a Review</button>
+      </div>
+    </div>
+    
+    <div class="reviews-list">
+      <!-- Review 1 -->
+      <div class="review-card">
+        <div class="review-card-meta">
+          <span class="reviewer-name">Sarah M. <span class="reviewer-verified">Verified Buyer</span></span>
+          <span class="review-date">2 weeks ago</span>
+        </div>
+        <div class="star-rating" style="margin-bottom: 8px; color: var(--color-accent);">
+          {% for i in (1..5) %}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          {% endfor %}
+        </div>
+        <h4 class="review-title">Best WFH purchase I have made!</h4>
+        <p class="review-body">I've been using PostureTru for 2 weeks and the difference is night and day. My back pain is gone, and I feel more energized at my desk. Highly recommended to anyone sitting all day!</p>
+      </div>
+
+      <!-- Review 2 -->
+      <div class="review-card">
+        <div class="review-card-meta">
+          <span class="reviewer-name">James T. <span class="reviewer-verified">Verified Buyer</span></span>
+          <span class="review-date">3 weeks ago</span>
+        </div>
+        <div class="star-rating" style="margin-bottom: 8px; color: var(--color-accent);">
+          {% for i in (1..5) %}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          {% endfor %}
+        </div>
+        <h4 class="review-title">The vibration reminders are genius</h4>
+        <p class="review-body">As a software developer, I slouch constantly. The light vibrations keep me honest and train my posture muscle memory naturally. Very comfortable neoprene backing too.</p>
+      </div>
+
+      <!-- Review 3 -->
+      <div class="review-card">
+        <div class="review-card-meta">
+          <span class="reviewer-name">Lisa K. <span class="reviewer-verified">Verified Buyer</span></span>
+          <span class="review-date">1 month ago</span>
+        </div>
+        <div class="star-rating" style="margin-bottom: 8px; color: var(--color-accent);">
+          {% for i in (1..5) %}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          {% endfor %}
+        </div>
+        <h4 class="review-title">Excellent quality and comfort</h4>
+        <p class="review-body">Quality is exceptional. The materials are comfortable, the fit is perfect, and it actually works. Completely invisible under my sweaters.</p>
+      </div>
+    </div>
+  </div>
+</section>

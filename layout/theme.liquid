@@ -1,0 +1,76 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#1B4965">
+    <link rel="canonical" href="{{ canonical_url }}">
+    
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {%- endif -%}
+
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+      {%- assign escaped_page_title = page_title | escape -%}
+      {%- unless escaped_page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+
+    {% render 'meta-tags' %}
+
+    <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+    
+    {{ content_for_header }}
+
+    <!-- Theme Custom Fonts & Stylesheet -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+
+    <style>
+      :root {
+        --color-primary: {{ settings.color_primary | default: '#1B4965' }};
+        --color-secondary: {{ settings.color_secondary | default: '#5FB878' }};
+        --color-accent: {{ settings.color_accent | default: '#D4A574' }};
+        --color-text-primary: {{ settings.color_text_primary | default: '#2C3E50' }};
+        --color-text-secondary: {{ settings.color_text_secondary | default: '#7F8C8D' }};
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Skip to content link for accessibility -->
+    <a class="skip-to-content-link" href="#MainContent" style="position: absolute; top: -100px; left: 0; background: var(--color-primary); color: #fff; padding: 8px; z-index: 10000; transition: top 0.2s;" onfocus="this.style.top='0'" onblur="this.style.top='-100px'">
+      Skip to content
+    </a>
+
+    <!-- Header Section -->
+    {% section 'header' %}
+
+    <!-- Main Content Area -->
+    <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+
+    <!-- Footer Section -->
+    {% section 'footer' %}
+    
+    <script>
+      window.shopUrl = '{{ request.origin }}';
+      window.routes = {
+        cart_add_url: '{{ routes.cart_add_url }}',
+        cart_change_url: '{{ routes.cart_change_url }}',
+        cart_update_url: '{{ routes.cart_update_url }}',
+        cart_url: '{{ routes.cart_url }}'
+      };
+    </script>
+  </body>
+</html>

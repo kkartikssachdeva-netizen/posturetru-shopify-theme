@@ -1,0 +1,93 @@
+<section class="hero">
+  <div class="container grid grid-2" style="align-items: center;">
+    <div class="hero-content">
+      <span class="hero-tagline">{{ section.settings.tagline | default: 'Stand Straight. Feel Better.' }}</span>
+      <h1 class="hero-title">{{ section.settings.title | default: 'Your Posture Shapes Your Life' }}</h1>
+      <p class="hero-subheading">{{ section.settings.subheading | default: 'Professional-grade posture correction for remote workers who refuse to compromise on health' }}</p>
+      <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+        <a href="{{ section.settings.cta_link | default: '/products/smart-posture-corrector-belt' }}" class="btn btn-primary">
+          {{ section.settings.cta_text | default: 'Shop PostureTru' }}
+        </a>
+        <a href="#PillarsSection" class="btn btn-outline">Learn More</a>
+      </div>
+    </div>
+    
+    <div class="hero-img-container">
+      <div class="hero-img-mockup">
+        <!-- SVG mockup representing posture corrector belt -->
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+          <!-- Background light glow -->
+          <circle cx="200" cy="200" r="160" fill="url(#heroGlow)" opacity="0.8"/>
+          <!-- Human figure diagram -->
+          <path d="M200,80 Q190,140 160,170 T150,260 L250,260 T240,170 Q210,140 200,80 Z" fill="#E8D8CD"/>
+          <circle cx="200" cy="80" r="30" fill="#E8D8CD"/>
+          <!-- Spine corrector outline -->
+          <path d="M165,180 L235,180 L225,240 L175,240 Z" fill="#1B4965" stroke="#fff" stroke-width="2"/>
+          <path d="M165,180 Q145,150 170,140 T200,165" fill="none" stroke="#1B4965" stroke-width="8" stroke-linecap="round"/>
+          <path d="M235,180 Q255,150 230,140 T200,165" fill="none" stroke="#1B4965" stroke-width="8" stroke-linecap="round"/>
+          <!-- Smart vibration module -->
+          <rect x="185" y="195" width="30" height="35" rx="5" fill="#D4A574" stroke="#fff" stroke-width="1.5"/>
+          <circle cx="200" cy="212" r="5" fill="#5FB878"/>
+          
+          <!-- Definitions for gradients -->
+          <defs>
+            <radialGradient id="heroGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#1B4965" stop-opacity="0.15"/>
+              <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+        </svg>
+      </div>
+      
+      <div class="hero-trust-badge">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5FB878" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span>Recommended by Ergonomists</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "Stand Straight. Feel Better."
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Your Posture Shapes Your Life"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Professional-grade posture correction for remote workers who refuse to compromise on health"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Text",
+      "default": "Shop PostureTru"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner",
+      "category": "Hero"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,83 @@
+<section class="product-preview section-padding" style="border-top: 1px solid var(--color-border);">
+  <div class="container grid grid-2" style="align-items: center;">
+    <!-- Image Column -->
+    <div class="product-preview-img-container">
+      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100%" height="100%" fill="#F8FAF9" rx="16"/>
+        <!-- Human body representation in green wellness colors -->
+        <circle cx="200" cy="100" r="28" fill="#E8D8CD"/>
+        <path d="M200,128 Q180,180 150,210 T140,300 L260,300 T250,210 Q220,180 200,128 Z" fill="#E8D8CD"/>
+        <!-- Spine alignment curve in gold -->
+        <path d="M200,140 Q215,200 200,280" fill="none" stroke="#D4A574" stroke-width="4" stroke-dasharray="6,6"/>
+        <!-- Corrector Belt active rendering -->
+        <path d="M155,190 L245,190 L235,255 L165,255 Z" fill="#1B4965" stroke="#FFFFFF" stroke-width="2"/>
+        <!-- Back straps -->
+        <path d="M155,190 Q135,160 160,150 T200,175" fill="none" stroke="#1B4965" stroke-width="6"/>
+        <path d="M245,190 Q265,160 240,150 T200,175" fill="none" stroke="#1B4965" stroke-width="6"/>
+        <!-- Vibration ripple vectors representing correction trigger -->
+        <circle cx="200" cy="222" r="10" fill="none" stroke="#5FB878" stroke-width="1.5" opacity="0.8">
+          <animate attributeName="r" values="5;20;5" dur="3s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="200" cy="222" r="4" fill="#5FB878"/>
+      </svg>
+    </div>
+    
+    <!-- Text Column -->
+    <div class="product-preview-content">
+      <h2>{{ section.settings.title | default: 'The Smart Posture Corrector' }}</h2>
+      <p class="product-preview-text">
+        {{ section.settings.description | default: "PostureTru isn't just a brace. It's your personal posture coach. Our smart magnetic posture belt combines the power of magnets with intelligent sensors to actively improve your body's muscle memory." }}
+      </p>
+      
+      <ul class="product-preview-list">
+        <li>10 therapeutic magnets for blood circulation</li>
+        <li>Real-time vibration alerts when you slouch</li>
+        <li>Adjustable sizing for men and women</li>
+        <li>Invisible under clothing</li>
+      </ul>
+      
+      <div style="margin-top: 10px;">
+        <a href="{{ section.settings.cta_link | default: '/products/smart-posture-corrector-belt' }}" class="btn btn-primary">
+          {{ section.settings.cta_text | default: 'Shop Now' }}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Preview",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "The Smart Posture Corrector"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "PostureTru isn't just a brace. It's your personal posture coach. Our smart magnetic posture belt combines the power of magnets with intelligent sensors to actively improve your body's muscle memory."
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Preview",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

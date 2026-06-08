@@ -1,0 +1,63 @@
+<footer style="margin-top: auto;">
+  <div class="footer-top">
+    <div class="container grid grid-3">
+      <!-- Col 1: About Brand -->
+      <div class="footer-col">
+        <a href="/" class="logo" style="color: var(--color-white); margin-bottom: 20px; display: inline-block;">
+          Posture<span style="color: var(--color-accent);">Tru</span>
+        </a>
+        <p>{{ section.settings.about_text | default: 'PostureTru is the smart posture corrector designed for remote workers. Stand straight. Feel better.' }}</p>
+        <span style="font-size: 14px; opacity: 0.7; display: block; margin-top: 10px;">Domain: posturetru.com</span>
+      </div>
+
+      <!-- Col 2: Navigation Links -->
+      <div class="footer-col">
+        <h4>Useful Links</h4>
+        <ul>
+          <li><a href="/pages/about-us">About Us</a></li>
+          <li><a href="/pages/faq">FAQ</a></li>
+          <li><a href="/pages/contact">Contact</a></li>
+          <li><a href="/pages/shipping-policy" onclick="event.preventDefault(); alert('FREE shipping to US, Canada, & Australia (5-7 day standard delivery).')">Shipping Policy</a></li>
+          <li><a href="/pages/privacy-policy" onclick="event.preventDefault(); alert('Your privacy is fully protected under SSL secure protocols.')">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Contacts & Newsletter -->
+      <div class="footer-col">
+        <h4>24/7 Customer Support</h4>
+        <p style="margin-bottom: 12px;"><strong>Email:</strong> support@posturetru.com</p>
+        <p><strong>Hours:</strong> 24/7 Support Desk</p>
+        
+        <form class="newsletter-form" style="margin-top: 24px;">
+          <input type="email" class="newsletter-input" placeholder="Your email address" required aria-label="Newsletter email">
+          <button type="submit" class="newsletter-btn" aria-label="Subscribe to newsletter">Join</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container footer-bottom-flex">
+      <span>&copy; {{ 'now' | date: "%Y" | default: "2026" }} PostureTru. All rights reserved.</span>
+      <div class="footer-legal-links">
+        <a href="/pages/terms-of-service" onclick="event.preventDefault(); alert('Terms of Service govern usage of PostureTru services.')">Terms of Service</a>
+        <span style="opacity: 0.3;">|</span>
+        <a href="/pages/privacy-policy" onclick="event.preventDefault(); alert('Privacy Policy details user data protections.')">Privacy Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "about_text",
+      "label": "About Text",
+      "default": "PostureTru is the smart posture corrector designed for remote workers. Stand straight. Feel better."
+    }
+  ]
+}
+{% endschema %}

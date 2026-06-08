@@ -1,0 +1,66 @@
+{% comment %}
+  PostureTru Shopping Cart Page Template
+{% endcomment %}
+
+<section class="section-padding">
+  <div class="container">
+    <h1 style="font-size: 40px; margin-bottom: 40px; border-bottom: 1px solid var(--color-border); padding-bottom: 20px;">Your Cart</h1>
+    
+    <!-- Empty Cart Screen -->
+    <div id="cartPageEmpty" style="display: none; text-align: center; padding: 60px 0;">
+      <svg width="64" height="64" fill="none" stroke="var(--color-text-secondary)" stroke-width="1.5" viewBox="0 0 24 24" style="margin-bottom: 24px;">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+      </svg>
+      <h2>Your cart is currently empty.</h2>
+      <p style="color: var(--color-text-secondary); margin-bottom: 30px; margin-top: 10px;">Before checking out, you must add some products to your shopping cart.</p>
+      <a href="/products/smart-posture-corrector-belt" class="btn btn-primary">Continue Shopping</a>
+    </div>
+
+    <!-- Active Cart Layout -->
+    <div id="cartPageLayout" class="cart-page-layout">
+      <!-- Cart Table Column -->
+      <form action="/cart" method="post" novalidate>
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th>Product Details</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th style="text-align: right;">Total</th>
+            </tr>
+          </thead>
+          <tbody id="cartPageItems">
+            <!-- Dynamic items populated by theme.js from localStorage -->
+          </tbody>
+        </table>
+      </form>
+      
+      <!-- Cart Summary Card -->
+      <div class="cart-summary-card">
+        <h3>Order Summary</h3>
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="cartPageSubtotal">$0.00</span>
+        </div>
+        <div class="summary-row">
+          <span>Shipping</span>
+          <span style="color: var(--color-secondary); font-weight: 600;">FREE</span>
+        </div>
+        <div class="summary-row summary-total">
+          <span>Estimated Total</span>
+          <span id="cartPageTotal">$0.00</span>
+        </div>
+        <p style="font-size: 13px; color: var(--color-text-secondary); margin-bottom: 24px; text-align: center;">
+          Taxes and shipping calculated at checkout.
+        </p>
+        <button class="btn btn-secondary btn-full" onclick="alert('Redirecting to secure Shopify Payments checkout...')" style="margin-bottom: 12px;">
+          Proceed to Checkout
+        </button>
+        <a href="/products/smart-posture-corrector-belt" class="btn btn-outline btn-full" style="text-align: center;">
+          Continue Shopping
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>

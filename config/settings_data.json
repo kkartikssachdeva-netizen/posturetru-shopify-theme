@@ -1,0 +1,23 @@
+{
+  "current": {
+    "color_primary": "#1B4965",
+    "color_secondary": "#5FB878",
+    "color_accent": "#D4A574",
+    "color_bg": "#FFFFFF",
+    "color_text_primary": "#2C3E50",
+    "color_text_secondary": "#7F8C8D",
+    "social_facebook_link": "https://facebook.com/posturetru",
+    "social_instagram_link": "https://instagram.com/posturetru",
+    "social_twitter_link": "https://twitter.com/posturetru"
+  },
+  "presets": {
+    "Default": {
+      "color_primary": "#1B4965",
+      "color_secondary": "#5FB878",
+      "color_accent": "#D4A574",
+      "color_bg": "#FFFFFF",
+      "color_text_primary": "#2C3E50",
+      "color_text_secondary": "#7F8C8D"
+    }
+  }
+}

@@ -1,0 +1,113 @@
+<section class="about-hero">
+  <div class="container">
+    <h1 style="font-size: 48px; margin-bottom: 16px;">{{ page.title | default: 'Get in Touch' }}</h1>
+    <p style="font-size: 18px; color: var(--color-text-secondary); max-width: 600px; margin: 0 auto;">
+      We'd love to hear from you. Questions? Feedback? We're here to help.
+    </p>
+  </div>
+</section>
+
+<section class="section-padding">
+  <div class="container contact-layout">
+    <!-- Contact Info Block -->
+    <div class="contact-info-block">
+      <h3>Contact Information</h3>
+      <p>Have questions about sizing, delivery zones, or how the smart sensor works? Reach out to our dedicated support desk.</p>
+      
+      <div class="contact-methods">
+        <!-- Method 1 -->
+        <div class="contact-method-item">
+          <div class="contact-method-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </div>
+          <div class="contact-method-details">
+            <h4>Customer Support Email</h4>
+            <p>support@posturetru.com</p>
+          </div>
+        </div>
+
+        <!-- Method 2 -->
+        <div class="contact-method-item">
+          <div class="contact-method-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <div class="contact-method-details">
+            <h4>Response Time Guarantee</h4>
+            <p>We typically respond within 24 hours during business days.</p>
+          </div>
+        </div>
+
+        <!-- Method 3 -->
+        <div class="contact-method-item">
+          <div class="contact-method-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+          </div>
+          <div class="contact-method-details">
+            <h4>Quick Answer Tip</h4>
+            <p>Have a quick question? Check our <a href="/pages/faq" style="text-decoration: underline; color: var(--color-primary); font-weight:600;">FAQ page</a> first—it might have the answer you need instantly.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Contact Form Card -->
+    <div class="contact-form-card">
+      <!-- Success Message Wrapper -->
+      <div id="contactFormSuccess" class="form-success-msg">
+        <h4 style="color: var(--color-secondary); margin-bottom: 8px;">Message Sent Successfully!</h4>
+        <p style="font-size: 14px; color: var(--color-text-primary);">Thank you for contacting PostureTru. Our support team will get back to you shortly.</p>
+      </div>
+
+      {%- form 'contact', id: 'contactForm' -%}
+        {%- if form.posted_successfully? -%}
+          <div class="form-success-msg" style="display: block;">
+            Thank you for contacting PostureTru. We will reply within 24 hours.
+          </div>
+        {%- endif -%}
+
+        <div class="form-group">
+          <label for="ContactFormName">Full Name</label>
+          <input type="text" id="ContactFormName" name="contact[name]" class="form-control" placeholder="John Doe" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="ContactFormEmail">Email Address</label>
+          <input type="email" id="ContactFormEmail" name="contact[email]" class="form-control" placeholder="john@example.com" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="ContactFormSubject">Subject Concern</label>
+          <select id="ContactFormSubject" name="contact[subject]" class="form-control" required style="-webkit-appearance: none; background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2224%22 height=%2224%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%237F8C8D%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><polyline points=%226 9 12 15 18 9%22></polyline></svg>'); background-repeat: no-repeat; background-position: right 16px center; background-size: 16px;">
+            <option value="Question about product">Question about product</option>
+            <option value="Sizing help">Sizing help</option>
+            <option value="After-sale support">After-sale support</option>
+            <option value="Feedback">Feedback</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        
+        <div class="form-group" style="margin-bottom: 30px;">
+          <label for="ContactFormMessage">Your Message</label>
+          <textarea id="ContactFormMessage" name="contact[body]" class="form-control" placeholder="How can we assist you?" required></textarea>
+        </div>
+        
+        <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+      {%- endform -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Contact Details",
+  "settings": []
+}
+{% endschema %}

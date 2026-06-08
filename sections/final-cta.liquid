@@ -1,0 +1,55 @@
+<section class="final-cta section-padding">
+  <div class="container">
+    <h2>{{ section.settings.title | default: 'Stop Sacrificing Your Health for Your Desk Job' }}</h2>
+    <p>{{ section.settings.copy | default: 'Thousands of remote workers have already made the switch to PostureTru. Your back deserves better. Join the PostureTru community and experience the difference.' }}</p>
+    <div>
+      <a href="{{ section.settings.cta_link | default: '/products/smart-posture-corrector-belt' }}" class="btn final-cta-btn">
+        {{ section.settings.cta_text | default: 'Get PostureTru Today' }}
+      </a>
+    </div>
+    <span class="final-cta-subtext">{{ section.settings.sub_text | default: '30-day satisfaction guarantee. Free shipping on all orders.' }}</span>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Final CTA",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Stop Sacrificing Your Health for Your Desk Job"
+    },
+    {
+      "type": "textarea",
+      "id": "copy",
+      "label": "Description",
+      "default": "Thousands of remote workers have already made the switch to PostureTru. Your back deserves better. Join the PostureTru community and experience the difference."
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Text",
+      "default": "Get PostureTru Today"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Link"
+    },
+    {
+      "type": "text",
+      "id": "sub_text",
+      "label": "Subheading Subtext",
+      "default": "30-day satisfaction guarantee. Free shipping on all orders."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Final CTA",
+      "category": "Hero"
+    }
+  ]
+}
+{% endschema %}
