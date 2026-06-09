@@ -1,0 +1,272 @@
+{% if section.settings.enable_bar %}
+<div id="announcementBar" class="announcement-bar" role="region" aria-live="polite">
+  <!-- Animated background particles -->
+  <div class="announcement-particles">
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+  </div>
+
+  <!-- Content container -->
+  <div class="announcement-content">
+    <a href="/pages/shop" class="announcement-message" id="announcementMessage">
+      🔥 Only 15 Black Units Left . Grab Yours Before They're Gone
+    </a>
+    <button class="announcement-close" id="announcementClose" aria-label="Close announcement">×</button>
+  </div>
+</div>
+
+<style>
+  .announcement-bar {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    width: 100%;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #1B4965, #0D6E6E);
+    animation: gradientShift 8s ease infinite;
+    backdrop-filter: blur(10px);
+  }
+
+  @keyframes gradientShift {
+    0% {
+      background: linear-gradient(135deg, #1B4965, #0D6E6E);
+    }
+    50% {
+      background: linear-gradient(135deg, #0D6E6E, #1B4965);
+    }
+    100% {
+      background: linear-gradient(135deg, #1B4965, #0D6E6E);
+    }
+  }
+
+  .announcement-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    animation: float linear infinite;
+  }
+
+  .particle:nth-child(1) {
+    left: 10%;
+    animation-duration: 8s;
+    animation-delay: 0s;
+  }
+
+  .particle:nth-child(2) {
+    left: 20%;
+    animation-duration: 10s;
+    animation-delay: 2s;
+  }
+
+  .particle:nth-child(3) {
+    left: 30%;
+    animation-duration: 12s;
+    animation-delay: 4s;
+  }
+
+  .particle:nth-child(4) {
+    left: 60%;
+    animation-duration: 14s;
+    animation-delay: 1s;
+  }
+
+  .particle:nth-child(5) {
+    left: 80%;
+    animation-duration: 11s;
+    animation-delay: 3s;
+  }
+
+  @keyframes float {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    to {
+      transform: translateY(-100vh);
+      opacity: 0;
+    }
+  }
+
+  .announcement-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 40px;
+  }
+
+  .announcement-message {
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+    animation: fadeInOut 4s ease-in-out infinite;
+    cursor: pointer;
+    padding: 0 40px 0 0;
+  }
+
+  .announcement-message:hover {
+    opacity: 0.9;
+    text-decoration: underline;
+  }
+
+  @keyframes fadeInOut {
+    0% {
+      opacity: 0;
+    }
+    5% {
+      opacity: 1;
+    }
+    33.33% {
+      opacity: 1;
+    }
+    38.33% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .announcement-close {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 24px;
+    font-weight: 300;
+    cursor: pointer;
+    padding: 4px 8px;
+    transition: opacity 0.2s ease;
+    z-index: 2;
+  }
+
+  .announcement-close:hover {
+    opacity: 0.7;
+  }
+
+  .announcement-close:active {
+    transform: translateY(-50%) scale(0.95);
+  }
+
+  /* Mobile responsive */
+  @media (max-width: 768px) {
+    .announcement-bar {
+      padding: 10px 16px;
+    }
+
+    .announcement-message {
+      font-size: 12px;
+      padding: 0 36px 0 0;
+    }
+
+    .announcement-close {
+      right: 12px;
+      font-size: 20px;
+    }
+
+    .announcement-content {
+      min-height: 36px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .announcement-bar {
+      padding: 8px 12px;
+    }
+
+    .announcement-message {
+      font-size: 11px;
+      padding: 0 32px 0 0;
+    }
+
+    .announcement-close {
+      right: 8px;
+      font-size: 18px;
+      padding: 2px 6px;
+    }
+
+    .announcement-content {
+      min-height: 32px;
+    }
+  }
+
+  /* Hidden state */
+  .announcement-bar.hidden {
+    display: none;
+  }
+</style>
+
+<script>
+  (function() {
+    const messages = [
+      "🔥 Only 15 Black Units Left . Grab Yours Before They're Gone",
+      "⚡ 50% OFF Today Only . Free Shipping to US, Canada & Australia",
+      "💎 30 Day Money Back Guarantee"
+    ];
+
+    const bar = document.getElementById('announcementBar');
+    const messageEl = document.getElementById('announcementMessage');
+    const closeBtn = document.getElementById('announcementClose');
+
+    // Check localStorage for closed state
+    if (localStorage.getItem('announcementBarClosed') === 'true') {
+      bar.classList.add('hidden');
+    }
+
+    // Close button functionality
+    closeBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      bar.classList.add('hidden');
+      localStorage.setItem('announcementBarClosed', 'true');
+    });
+
+    // Rotate messages every 4 seconds
+    let currentIndex = 0;
+    setInterval(function() {
+      currentIndex = (currentIndex + 1) % messages.length;
+      messageEl.textContent = messages[currentIndex];
+      messageEl.href = '/pages/shop';
+    }, 4000);
+  })();
+</script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_bar",
+      "label": "Enable announcement bar",
+      "default": true
+    }
+  ]
+}
+{% endschema %}
