@@ -77,9 +77,11 @@
       </div>
       
       <div class="product-pricing">
-        <span class="price-current">$39.99</span>
-        <span class="price-compare">$79.99</span>
-        <span class="badge badge-success">Save $40.00</span>
+        <span class="price-current">{{ product.price | money }}</span>
+{% if product.compare_at_price > product.price %}
+<span class="price-compare">{{ product.compare_at_price | money }}</span>
+<span class="badge badge-success">Save {{ product.compare_at_price | minus: product.price | money }}</span>
+{% endif %}
       </div>
       
       <p class="product-short-description">
@@ -104,9 +106,13 @@
             <button id="qtyPlus" class="qty-btn" aria-label="Increase Quantity">+</button>
           </div>
           
-          <button id="addToCartBtn" class="btn btn-secondary btn-full" style="flex: 1; margin:0;">
-            Add to Cart
-          </button>
+          <form action="/cart/add" method="post">
+  <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+  <input type="hidden" name="quantity" value="1">
+  <button type="submit" class="btn btn-secondary btn-full" style="flex: 1; margin:0;">
+    Add to Cart
+  </button>
+</form>
         </div>
         
         <div class="shipping-promo-box">
