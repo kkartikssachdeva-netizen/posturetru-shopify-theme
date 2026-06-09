@@ -19,4 +19,52 @@
       <div class="posture-trigger" data-frame="https://cdn.shopify.com/s/files/1/0839/9274/0080/files/frame1_slouched.jpg?v=1780984466" style="height:50vh;"></div>
       <div class="posture-trigger" data-frame="https://cdn.shopify.com/s/files/1/0839/9274/0080/files/frame2_aware.jpg?v=1780984466" style="height:50vh;"></div>
       <div class="posture-trigger" data-frame="https://cdn.shopify.com/s/files/1/0839/9274/0080/files/frame3_correcting.jpg?v=1780984466" style="height:50vh;"></div>
-      <div class="posture-trigger" data-frame="
+      <div class="posture-trigger" data-frame="https://cdn.shopify.com/s/files/1/0839/9274/0080/files/frame4_upright.jpg?v=1780984466" style="height:50vh;"></div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function() {
+  // Preload all images immediately so no loading delay
+  var urls = [
+    'https://cdn.shopify.com/s/files/1/0839/9274/0080/files/frame1_slouched.jpg?v=1780984466',
+    'https://cdn.shopify.com/s/files/1/0839/9274/0080/files/frame2_aware.jpg?v=1780984466',
+    'https://cdn.shopify.com/s/files/1/0839/9274/0080/files/frame3_correcting.jpg?v=1780984466',
+    'https://cdn.shopify.com/s/files/1/0839/9274/0080/files/frame4_upright.jpg?v=1780984466'
+  ];
+  urls.forEach(function(url) { var i = new Image(); i.src = url; });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var triggers = document.querySelectorAll('.posture-trigger');
+    var frameImg = document.getElementById('postureFrame');
+    var current = '';
+
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var newSrc = entry.target.dataset.frame;
+          if (newSrc !== current) {
+            current = newSrc;
+            frameImg.style.opacity = '0';
+            setTimeout(function() {
+              frameImg.src = newSrc;
+              frameImg.style.opacity = '1';
+            }, 100);
+          }
+        }
+      });
+    }, { threshold: 0.5 });
+
+    triggers.forEach(function(t) { observer.observe(t); });
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Posture Scroll Animation",
+  "settings": []
+}
+{% endschema %}
