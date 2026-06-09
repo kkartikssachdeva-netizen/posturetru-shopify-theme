@@ -1,46 +1,22 @@
 <section style="background:#F8FAF9; padding:60px 0;">
-  <div style="max-width:600px; margin:0 auto; padding:0 24px;">
+  <div style="max-width:1100px; margin:0 auto; padding:0 24px; display:flex; gap:60px; align-items:flex-start;">
     
-    <div style="position:sticky; top:80px;">
-      <div style="border-radius:20px; overflow:hidden; box-shadow:0 20px 60px rgba(27,73,101,0.15); position:relative;">
-        <img id="postureFrame" src="https://cdn.shopify.com/s/files/1/0839/9274/0080/files/frame1_slouched.jpg?v=1780984466" alt="PostureTru in action" style="width:100%; display:block; transition:opacity 0.15s ease;">
+    <!-- Sticky image - left side -->
+    <div style="flex:1; position:sticky; top:100px; min-width:280px;">
+      <div style="border-radius:20px; overflow:hidden; box-shadow:0 20px 60px rgba(27,73,101,0.15);">
+        <img id="postureFrame" 
+          src="https://cdn.shopify.com/s/files/1/0839/9274/0080/files/frame1_slouched.jpg?v=1780984466" 
+          alt="PostureTru in action" 
+          style="width:100%; display:block; transition:opacity 0.2s ease;">
+        <img class="posture-preload" src="https://cdn.shopify.com/s/files/1/0839/9274/0080/files/frame2_aware.jpg?v=1780984466" style="display:none;">
+        <img class="posture-preload" src="https://cdn.shopify.com/s/files/1/0839/9274/0080/files/frame3_correcting.jpg?v=1780984466" style="display:none;">
+        <img class="posture-preload" src="https://cdn.shopify.com/s/files/1/0839/9274/0080/files/frame4_upright.jpg?v=1780984466" style="display:none;">
       </div>
     </div>
 
-    <div style="height:30vh;"></div>
-    <div class="posture-trigger" data-frame="https://cdn.shopify.com/s/files/1/0839/9274/0080/files/frame1_slouched.jpg?v=1780984466" style="height:25vh;"></div>
-    <div class="posture-trigger" data-frame="https://cdn.shopify.com/s/files/1/0839/9274/0080/files/frame2_aware.jpg?v=1780984466" style="height:25vh;"></div>
-    <div class="posture-trigger" data-frame="https://cdn.shopify.com/s/files/1/0839/9274/0080/files/frame3_correcting.jpg?v=1780984466" style="height:25vh;"></div>
-    <div class="posture-trigger" data-frame="https://cdn.shopify.com/s/files/1/0839/9274/0080/files/frame4_upright.jpg?v=1780984466" style="height:25vh;"></div>
-    <div style="height:30vh;"></div>
-
-  </div>
-</section>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const triggers = document.querySelectorAll('.posture-trigger');
-  const frameImg = document.getElementById('postureFrame');
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        frameImg.style.opacity = '0';
-        setTimeout(() => {
-          frameImg.src = entry.target.dataset.frame;
-          frameImg.style.opacity = '1';
-        }, 80);
-      }
-    });
-  }, { threshold: 0.3 });
-
-  triggers.forEach(t => observer.observe(t));
-});
-</script>
-
-{% schema %}
-{
-  "name": "Posture Scroll Animation",
-  "settings": []
-}
-{% endschema %}
+    <!-- Scroll triggers - right side, user scrolls freely -->
+    <div style="flex:1; min-width:280px;">
+      <div class="posture-trigger" data-frame="https://cdn.shopify.com/s/files/1/0839/9274/0080/files/frame1_slouched.jpg?v=1780984466" style="height:50vh;"></div>
+      <div class="posture-trigger" data-frame="https://cdn.shopify.com/s/files/1/0839/9274/0080/files/frame2_aware.jpg?v=1780984466" style="height:50vh;"></div>
+      <div class="posture-trigger" data-frame="https://cdn.shopify.com/s/files/1/0839/9274/0080/files/frame3_correcting.jpg?v=1780984466" style="height:50vh;"></div>
+      <div class="posture-trigger" data-frame="
