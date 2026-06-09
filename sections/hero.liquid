@@ -128,9 +128,9 @@
 
     function update() {
       var rect     = hero.getBoundingClientRect();
-      var progress = Math.min(Math.max(-rect.top / (hero.offsetHeight * 0.55), 0), 1);
+      var progress = Math.min(Math.max(-rect.top / 60, 0), 1);
 
-      if (progress >= 0.35 && state !== 'after') {
+      if (progress >= 0.1 && state !== 'after') {
         /* Transition to frame 4 */
         state = 'after';
         frame1.style.opacity   = '0';
