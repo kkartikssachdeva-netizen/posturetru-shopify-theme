@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "current": {
     "color_primary": "#1B4965",
@@ -8,7 +17,69 @@
     "color_text_secondary": "#7F8C8D",
     "social_facebook_link": "https://facebook.com/posturetru",
     "social_instagram_link": "https://instagram.com/posturetru",
-    "social_twitter_link": "https://twitter.com/posturetru"
+    "social_twitter_link": "https://twitter.com/posturetru",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {}
+      },
+      "hero": {
+        "type": "hero",
+        "settings": {
+          "tagline": "Stand Straight. Feel Better.",
+          "title": "Your Posture Shapes Your Life",
+          "subheading": "Professional-grade posture correction for remote workers who refuse to compromise on health",
+          "cta_text": "Shop PostureTru",
+          "cta_link": "shopify://pages/smart-posture-corrector-the-future-of-posture-training"
+        }
+      },
+      "trust-pillars": {
+        "type": "trust-pillars",
+        "settings": {
+          "title": "Engineered for Daily Desk Wellness",
+          "subtitle": "Designed specifically to target WFH postural degradation.",
+          "pillar_1_title": "Medical-Grade Design",
+          "pillar_1_text": "Engineered with 10 magnetic therapy nodes and smart vibration sensors. Used by ergonomic specialists worldwide.",
+          "pillar_2_title": "Proven Results",
+          "pillar_2_text": "68% of remote workers report back pain. PostureTru users report relief in as little as 3 days.",
+          "pillar_3_title": "Premium Quality",
+          "pillar_3_text": "Made with breathable medical-grade materials. Comfortable enough to wear all day, under clothing."
+        }
+      },
+      "product-preview": {
+        "type": "product-preview",
+        "settings": {
+          "title": "The Smart Posture Corrector",
+          "description": "PostureTru isn't just a brace. It's your personal posture coach. Our smart magnetic posture belt combines the power of magnets with intelligent sensors to actively improve your body's muscle memory.",
+          "cta_text": "Shop Now",
+          "cta_link": "shopify://pages/smart-posture-corrector-the-future-of-posture-training"
+        }
+      },
+      "testimonials": {
+        "type": "testimonials",
+        "settings": {
+          "title": "Trusted by Remote Workers",
+          "rating_label": "4.9/5 stars based on 1,200+ reviews"
+        }
+      },
+      "final-cta": {
+        "type": "final-cta",
+        "settings": {
+          "title": "Stop Sacrificing Your Health for Your Desk Job",
+          "copy": "Thousands of remote workers have already made the switch to PostureTru. Your back deserves better. Join the PostureTru community and experience the difference.",
+          "cta_text": "Get PostureTru Today",
+          "cta_link": "shopify://pages/smart-posture-corrector-the-future-of-posture-training",
+          "sub_text": "30-day satisfaction guarantee. Free shipping on all orders."
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "about_text": "PostureTru is the smart posture corrector designed for remote workers. Stand straight. Feel better."
+        }
+      }
+    },
+    "content_for_index": []
   },
   "presets": {
     "Default": {
