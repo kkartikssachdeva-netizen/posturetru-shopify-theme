@@ -1,28 +1,28 @@
-<section class="product-preview section-padding" style="border-top: 1px solid var(--color-border);">
+<section class="product-preview section-padding" id="productPreviewSection" style="border-top: 1px solid var(--color-border);">
   <div class="container grid grid-2" style="align-items: center;">
-    <!-- Image Column -->
-    <div class="product-preview-img-container">
-      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-        <rect width="100%" height="100%" fill="#F8FAF9" rx="16"/>
-        <!-- Human body representation in green wellness colors -->
-        <circle cx="200" cy="100" r="28" fill="#E8D8CD"/>
-        <path d="M200,128 Q180,180 150,210 T140,300 L260,300 T250,210 Q220,180 200,128 Z" fill="#E8D8CD"/>
-        <!-- Spine alignment curve in gold -->
-        <path d="M200,140 Q215,200 200,280" fill="none" stroke="#D4A574" stroke-width="4" stroke-dasharray="6,6"/>
-        <!-- Corrector Belt active rendering -->
-        <path d="M155,190 L245,190 L235,255 L165,255 Z" fill="#1B4965" stroke="#FFFFFF" stroke-width="2"/>
-        <!-- Back straps -->
-        <path d="M155,190 Q135,160 160,150 T200,175" fill="none" stroke="#1B4965" stroke-width="6"/>
-        <path d="M245,190 Q265,160 240,150 T200,175" fill="none" stroke="#1B4965" stroke-width="6"/>
-        <!-- Vibration ripple vectors representing correction trigger -->
-        <circle cx="200" cy="222" r="10" fill="none" stroke="#5FB878" stroke-width="1.5" opacity="0.8">
-          <animate attributeName="r" values="5;20;5" dur="3s" repeatCount="indefinite"/>
-        </circle>
-        <circle cx="200" cy="222" r="4" fill="#5FB878"/>
-      </svg>
+
+    <!-- Image Column: scroll-driven transition -->
+    <div class="product-preview-img-container" style="position:relative; border-radius:20px; overflow:hidden; box-shadow:0 20px 60px rgba(27,73,101,0.15);">
+
+      <!-- Frame 1 -->
+      <img
+        id="ppFrame1"
+        src="https://cdn.shopify.com/s/files/1/0839/9274/0080/files/frame1_slouched.jpg?v=1780984466"
+        alt="PostureTru posture corrector"
+        loading="eager"
+        style="width:100%; height:auto; display:block; position:relative; z-index:2; transition:opacity 0.7s ease, transform 0.8s ease; transform:scale(1);">
+
+      <!-- Frame 4 -->
+      <img
+        id="ppFrame4"
+        src="https://cdn.shopify.com/s/files/1/0839/9274/0080/files/frame4_upright.jpg?v=1780984466"
+        alt="PostureTru posture corrected"
+        loading="lazy"
+        style="width:100%; height:100%; display:block; position:absolute; top:0; left:0; z-index:1; opacity:0; transition:opacity 0.7s ease, transform 0.8s ease; transform:scale(1.03); object-fit:cover;">
+
     </div>
-    
-    <!-- Text Column -->
+
+    <!-- Text Column (unchanged) -->
     <div class="product-preview-content">
       <h2>{{ section.settings.title | default: 'The Smart Posture Corrector' }}</h2>
       <p class="product-preview-text">
@@ -37,13 +37,57 @@
       </ul>
       
       <div style="margin-top: 10px;">
-        <a href="{{ section.settings.cta_link | default: '/products/smart-posture-corrector-belt' }}" class="btn btn-primary">
+        <a href="{{ section.settings.cta_link | default: '/pages/shop' }}" class="btn btn-primary">
           {{ section.settings.cta_text | default: 'Shop Now' }}
         </a>
       </div>
     </div>
+
   </div>
 </section>
+
+<script>
+(function () {
+  var pre = new Image();
+  pre.src = 'https://cdn.shopify.com/s/files/1/0839/9274/0080/files/frame4_upright.jpg?v=1780984466';
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var section = document.getElementById('productPreviewSection');
+    var f1 = document.getElementById('ppFrame1');
+    var f4 = document.getElementById('ppFrame4');
+    var state = 'before';
+    var ticking = false;
+
+    function update() {
+      var rect = section.getBoundingClientRect();
+      var progress = Math.min(Math.max((-rect.top + window.innerHeight * 0.3) / (section.offsetHeight * 0.5), 0), 1);
+
+      if (progress >= 0.5 && state !== 'after') {
+        state = 'after';
+        f1.style.opacity = '0';
+        f1.style.transform = 'scale(1.03)';
+        f4.style.opacity = '1';
+        f4.style.transform = 'scale(1)';
+        f4.style.zIndex = '2';
+        f1.style.zIndex = '1';
+      } else if (progress < 0.5 && state !== 'before') {
+        state = 'before';
+        f1.style.opacity = '1';
+        f1.style.transform = 'scale(1)';
+        f4.style.opacity = '0';
+        f4.style.transform = 'scale(1.03)';
+        f4.style.zIndex = '1';
+        f1.style.zIndex = '2';
+      }
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', function () {
+      if (!ticking) { requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
+  });
+})();
+</script>
 
 {% schema %}
 {
