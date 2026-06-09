@@ -5,7 +5,7 @@
   Removed: posture-scroll-animation section (merged here)
 {% endcomment %}
 
-<section class="hero" id="heroSection">
+<section class="hero" id="heroSection" style="margin-top:0; padding-top:0;">
   <div class="container grid grid-2" style="align-items: center;">
 
     <!-- LEFT: Text content (unchanged) -->
@@ -68,7 +68,7 @@
     width: 100%;
     height: auto;
     display: block;
-    object-fit: contain; /* Never crop */
+    object-fit: cover; /* Never crop */
     transition: opacity 0.7s ease, transform 0.8s ease;
   }
 
@@ -89,7 +89,7 @@
     transform: scale(1.04);
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
   }
 
   /* Mobile: stack image above text, centered, max width */
