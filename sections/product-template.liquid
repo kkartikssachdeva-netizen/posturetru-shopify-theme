@@ -77,11 +77,33 @@
       </div>
       
       <div class="product-pricing">
-        <span class="price-current">{{ product.price | money }}</span>
-{% if product.compare_at_price > product.price %}
-<span class="price-compare">{{ product.compare_at_price | money }}</span>
-<span class="badge badge-success">Save {{ product.compare_at_price | minus: product.price | money }}</span>
-{% endif %}
+        <span class="price-compare" style="
+          font-size: 22px;
+          color: #999;
+          text-decoration: line-through;
+          text-decoration-color: #E74C3C;
+          text-decoration-thickness: 2px;
+          margin-right: 12px;
+        ">$79.99</span>
+        
+        <span class="price-current" style="
+          font-size: 38px;
+          font-weight: 800;
+          color: #1B4965;
+          letter-spacing: -1px;
+        ">$39.99</span>
+        
+        <div style="margin-top: 8px;">
+          <span style="
+            background: #E74C3C;
+            color: white;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            letter-spacing: 0.05em;
+          ">50% OFF</span>
+        </div>
       </div>
       
       <p class="product-short-description">
