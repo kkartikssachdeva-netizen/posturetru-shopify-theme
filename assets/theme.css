@@ -839,6 +839,9 @@ footer {
   border-radius: var(--border-radius-md);
   border: 1px solid var(--color-border);
   margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
 .size-selector {
@@ -883,6 +886,7 @@ footer {
   gap: 15px;
   margin-bottom: 20px;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .quantity-selector {
@@ -1821,5 +1825,7 @@ textarea.form-control {
     margin-top: 10px;
   }
 }
+
+
 
 
