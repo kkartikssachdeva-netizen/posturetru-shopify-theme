@@ -1,66 +1,75 @@
 {% comment %}
-  PostureTru Shopping Cart Page Template
+  PostureTru Shopping Cart - Connected to Shopify cart
 {% endcomment %}
 
 <section class="section-padding">
   <div class="container">
-    <h1 style="font-size: 40px; margin-bottom: 40px; border-bottom: 1px solid var(--color-border); padding-bottom: 20px;">Your Cart</h1>
-    
-    <!-- Empty Cart Screen -->
-    <div id="cartPageEmpty" style="display: none; text-align: center; padding: 60px 0;">
-      <svg width="64" height="64" fill="none" stroke="var(--color-text-secondary)" stroke-width="1.5" viewBox="0 0 24 24" style="margin-bottom: 24px;">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
-      </svg>
-      <h2>Your cart is currently empty.</h2>
-      <p style="color: var(--color-text-secondary); margin-bottom: 30px; margin-top: 10px;">Before checking out, you must add some products to your shopping cart.</p>
-      <a href="/pages/shop" class="btn btn-primary">Continue Shopping</a>
-    </div>
+    <h1 style="font-size:40px; margin-bottom:40px; border-bottom:1px solid var(--color-border); padding-bottom:20px;">Your Cart</h1>
 
-    <!-- Active Cart Layout -->
-    <div id="cartPageLayout" class="cart-page-layout">
-      <!-- Cart Table Column -->
-      <form action="/cart" method="post" novalidate>
-        <table class="cart-table">
-          <thead>
-            <tr>
-              <th>Product Details</th>
-              <th>Price</th>
-              <th>Quantity</th>
-              <th style="text-align: right;">Total</th>
-            </tr>
-          </thead>
-          <tbody id="cartPageItems">
-            <!-- Dynamic items populated by theme.js from localStorage -->
-          </tbody>
-        </table>
-      </form>
-      
-      <!-- Cart Summary Card -->
-      <div class="cart-summary-card">
-        <h3>Order Summary</h3>
-        <div class="summary-row">
-          <span>Subtotal</span>
-          <span id="cartPageSubtotal">$0.00</span>
-        </div>
-        <div class="summary-row">
-          <span>Shipping</span>
-          <span style="color: var(--color-secondary); font-weight: 600;">FREE</span>
-        </div>
-        <div class="summary-row summary-total">
-          <span>Estimated Total</span>
-          <span id="cartPageTotal">$0.00</span>
-        </div>
-        <p style="font-size: 13px; color: var(--color-text-secondary); margin-bottom: 24px; text-align: center;">
-          Taxes and shipping calculated at checkout.
-        </p>
-        <button class="btn btn-secondary btn-full" onclick="window.location.href='/checkout'" style="margin-bottom: 12px;">
-          Proceed to Checkout
-        </button>
-        <a href="/pages/shop" class="btn btn-outline btn-full" style="text-align: center;">
-          Continue Shopping
-        </a>
+    {% if cart.item_count == 0 %}
+      <div style="text-align:center; padding:60px 0;">
+        <svg width="64" height="64" fill="none" stroke="var(--color-text-secondary)" stroke-width="1.5" viewBox="0 0 24 24" style="margin-bottom:24px;">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+        </svg>
+        <h2>Your cart is currently empty.</h2>
+        <p style="color:var(--color-text-secondary); margin-bottom:30px; margin-top:10px;">Add some products to your cart before checking out.</p>
+        <a href="/pages/shop" class="btn btn-primary">Continue Shopping</a>
       </div>
-    </div>
-
+    {% else %}
+      <div class="cart-page-layout">
+        <form action="/cart" method="post" novalidate>
+          <table class="cart-table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th style="text-align:right;">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in cart.items %}
+              <tr>
+                <td>
+                  <div class="cart-product-cell">
+                    <div class="cart-product-img">
+                      {% if item.image %}
+                        <img src="{{ item.image | img_url: '100x100' }}" alt="{{ item.title }}" style="width:80px; height:80px; object-fit:contain;">
+                      {% endif %}
+                    </div>
+                    <div class="cart-product-title">
+                      <h3>{{ item.product.title }}</h3>
+                      {% if item.variant.title != 'Default Title' %}
+                        <p>{{ item.variant.title }}</p>
+                      {% endif %}
+                      <a href="/cart/change?line={{ forloop.index }}&quantity=0" class="cart-remove-btn">Remove</a>
+                    </div>
+                  </div>
+                </td>
+                <td>{{ item.price | money }}</td>
+                <td>
+                  <div style="display:flex; align-items:center; border:1px solid var(--color-border); border-radius:4px; overflow:hidden; width:fit-content;">
+                    <a href="/cart/change?line={{ forloop.index }}&quantity={{ item.quantity | minus: 1 }}" style="padding:8px 12px; font-size:18px; font-weight:600; color:var(--color-text-primary);">-</a>
+                    <span style="padding:8px 16px; border-left:1px solid var(--color-border); border-right:1px solid var(--color-border);">{{ item.quantity }}</span>
+                    <a href="/cart/change?line={{ forloop.index }}&quantity={{ item.quantity | plus: 1 }}" style="padding:8px 12px; font-size:18px; font-weight:600; color:var(--color-text-primary);">+</a>
+                  </div>
+                </td>
+                <td style="text-align:right; font-weight:700;">{{ item.line_price | money }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </form>
+        <div class="cart-summary-card">
+          <h3>Order Summary</h3>
+          <div class="summary-row"><span>Subtotal</span><span>{{ cart.total_price | money }}</span></div>
+          <div class="summary-row"><span>Shipping</span><span style="color:var(--color-secondary); font-weight:600;">FREE</span></div>
+          <div class="summary-row summary-total"><span>Estimated Total</span><span>{{ cart.total_price | money }}</span></div>
+          <p style="font-size:13px; color:var(--color-text-secondary); margin-bottom:24px; text-align:center;">Taxes and shipping calculated at checkout.</p>
+          <a href="/checkout" class="btn btn-secondary btn-full" style="margin-bottom:12px; text-align:center; display:block;">Proceed to Checkout</a>
+          <a href="/pages/shop" class="btn btn-outline btn-full" style="text-align:center; display:block;">Continue Shopping</a>
+        </div>
+      </div>
+    {% endif %}
   </div>
 </section>
