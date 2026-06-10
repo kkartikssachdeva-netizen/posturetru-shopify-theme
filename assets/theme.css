@@ -882,6 +882,7 @@ footer {
   display: flex;
   gap: 15px;
   margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 
 .quantity-selector {
@@ -1820,4 +1821,5 @@ textarea.form-control {
     margin-top: 10px;
   }
 }
+
 
