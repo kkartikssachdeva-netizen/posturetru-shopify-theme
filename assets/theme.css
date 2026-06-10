@@ -690,8 +690,7 @@ footer {
 }
 
 .product-gallery {
-  position: sticky;
-  top: 100px;
+  position: relative;
 }
 
 .main-image-viewport {
