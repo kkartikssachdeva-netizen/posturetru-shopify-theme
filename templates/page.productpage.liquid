@@ -1,6 +1,5 @@
 {% assign product = all_products['smart-posture-corrector-for-adult-kids-back-vibration-reminder-anti-humpback-protect-eyesight-usb-posture-correction-device'] %}
 
-<!-- PRODUCT HERO -->
 <section class="section-padding">
   <div class="container product-template-grid">
 
@@ -21,7 +20,7 @@
     <!-- Info Column -->
     <div class="product-details">
       <span class="badge badge-sale" style="align-self:flex-start; margin-bottom:12px;">50% OFF TODAY</span>
-      <h1 class="product-title">{{ product.title }}</h1>
+      <h1 class="product-title">PostureTru Smart Posture Corrector</h1>
 
       <div class="product-meta-row">
         <div class="reviews-badge" onclick="document.getElementById('ReviewsBlock').scrollIntoView({behavior:'smooth'})">
@@ -45,13 +44,18 @@
         </div>
       </div>
 
-      <p class="product-short-description">PostureTru is not a generic posture brace. It's an intelligent, wearable posture trainer designed specifically for remote workers, office professionals, and anyone who spends hours sitting. Unlike passive braces, our Smart Vibration Posture Corrector detects slouching in real-time and gives you immediate vibration feedback.</p>
+      <p class="product-short-description">PostureTru isn't a brace. It doesn't force your shoulders back or restrict the way you move. It's a posture awareness trainer designed to work quietly in the background while you focus on what matters. Wear it during a coding session, a study block, a gaming marathon, or a long day at your desk. The moment you begin to slouch, PostureTru delivers a gentle vibration reminder. You sit up. The vibration stops. That's it. No complicated routines. No uncomfortable restrictions. Just a simple feedback loop that helps build better posture habits over time. Built for people who spend hours at a desk and want a smarter way to stay aware of their posture.</p>
 
       <!-- ATC Box -->
-      <form id="product-form"><input type="hidden" name="return_to" value="/cart">
+      <div class="atc-section">
+        <input type="hidden" id="variantId" value="49825941487856">
 
-        <!-- Variant Selector -->
-
+        <div class="quantity-row">
+          <div class="quantity-selector">
+            <button type="button" class="qty-btn" onclick="let q=document.getElementById('productQty'); if(q.value>1) q.value=parseInt(q.value)-1;">-</button>
+            <input type="number" id="productQty" class="qty-input" value="1" min="1">
+            <button type="button" class="qty-btn" onclick="let q=document.getElementById('productQty'); q.value=parseInt(q.value)+1;">+</button>
+          </div>
           <button type="button" onclick="addToCart()" class="btn btn-secondary btn-full" style="flex:1; margin:0;">Add to Cart</button>
         </div>
 
@@ -61,26 +65,10 @@
             <strong>FREE Tracked Shipping</strong> to US, Canada, and Australia. Standard delivery: 5-7 business days.
           </div>
         </div>
+      </div>
 
-      </form>
     </div>
   </div>
-<script>
-function addToCart() {
-  var variantId = document.getElementById("variantId").value;
-  var quantity = document.getElementById("productQty").value;
-  fetch("/cart/add.js", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ id: parseInt(variantId), quantity: parseInt(quantity) })
-  })
-  .then(function(res) {
-    if (res.ok) { window.location.href = "/cart";  }
-    else { res.json().then(function(d) { alert("Error: " + d.description); }); }
-  })
-  .catch(function() { alert("Something went wrong. Please try again."); });
-}
-</script>
 </section>
 
 {% section 'product-features' %}
@@ -88,7 +76,6 @@ function addToCart() {
 {% section 'product-specs' %}
 {% section 'guarantees' %}
 
-<!-- Reviews Section -->
 <section id="ReviewsBlock" class="section-padding reviews-section" style="background-color: var(--color-bg);">
   <div class="container">
     <div class="reviews-header-block">
@@ -134,21 +121,21 @@ function addToCart() {
       </div>
     </div>
   </div>
+</section>
+
 <script>
 function addToCart() {
-  var variantId = document.getElementById("variantId").value;
-  var quantity = document.getElementById("productQty").value;
-  fetch("/cart/add.js", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
+  var variantId = document.getElementById('variantId').value;
+  var quantity = document.getElementById('productQty').value;
+  fetch('/cart/add.js', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ id: parseInt(variantId), quantity: parseInt(quantity) })
   })
   .then(function(res) {
-    if (res.ok) { window.location.href = "/cart";  }
-    else { res.json().then(function(d) { alert("Error: " + d.description); }); }
+    if (res.ok) { window.location.href = '/cart'; }
+    else { res.json().then(function(d) { alert('Error: ' + d.description); }); }
   })
-  .catch(function() { alert("Something went wrong. Please try again."); });
+  .catch(function() { alert('Something went wrong. Please try again.'); });
 }
 </script>
-</section>
-
