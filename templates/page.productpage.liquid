@@ -7,7 +7,7 @@
     <!-- Gallery Column -->
     <div class="product-gallery">
       <div id="mainImageContainer" class="main-image-viewport">
-        <img id="mainImage" src="{{ product.featured_image | img_url: '800x800' }}" alt="{{ product.title }}" style="width:100%; border-radius:12px;">
+        <img id="mainImage" src="{{ product.featured_image | img_url: '800x800' }}" alt="{{ product.title }}" style="max-width:100%; max-height:400px; width:auto; height:auto; object-fit:contain; border-radius:12px;">
       </div>
       <div class="thumbnail-strip">
         {% for image in product.images %}
