@@ -48,7 +48,7 @@
       <p class="product-short-description">PostureTru is not a generic posture brace. It's an intelligent, wearable posture trainer designed specifically for remote workers, office professionals, and anyone who spends hours sitting. Unlike passive braces, our Smart Vibration Posture Corrector detects slouching in real-time and gives you immediate vibration feedback.</p>
 
       <!-- ATC Box -->
-      <form action="/cart/add" method="post" id="product-form"><input type="hidden" name="return_to" value="/cart">
+      <form id="product-form"><input type="hidden" name="return_to" value="/cart">
 
         <!-- Variant Selector -->
 <div style="margin-bottom:16px;">
@@ -73,7 +73,7 @@
             <input type="number" id="productQty" name="quantity" class="qty-input" value="1" min="1">
             <button type="button" class="qty-btn" onclick="let q=document.getElementById('productQty'); q.value=parseInt(q.value)+1;">+</button>
           </div>
-          <button type="submit" class="btn btn-secondary btn-full" style="flex:1; margin:0;">Add to Cart</button>
+          <button type="button" onclick="addToCart()" class="btn btn-secondary btn-full" style="flex:1; margin:0;">Add to Cart</button>
         </div>
 
         <div class="shipping-promo-box">
