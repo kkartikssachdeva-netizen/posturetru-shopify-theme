@@ -96,7 +96,7 @@ function addToCart() {
     body: JSON.stringify({ id: parseInt(variantId), quantity: parseInt(quantity) })
   })
   .then(function(res) {
-    if (res.ok) { window.location.href = "/cart"; }
+    if (res.ok) { window.location.href = "/cart";  }
     else { res.json().then(function(d) { alert("Error: " + d.description); }); }
   })
   .catch(function() { alert("Something went wrong. Please try again."); });
@@ -155,6 +155,20 @@ function addToCart() {
       </div>
     </div>
   </div>
-
+<script>
+function addToCart() {
+  var variantId = document.getElementById("variantId").value;
+  var quantity = document.getElementById("productQty").value;
+  fetch("/cart/add.js", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ id: parseInt(variantId), quantity: parseInt(quantity) })
+  })
+  .then(function(res) {
+    if (res.ok) { window.location.href = "/cart";  }
+    else { res.json().then(function(d) { alert("Error: " + d.description); }); }
+  })
+  .catch(function() { alert("Something went wrong. Please try again."); });
+}
+</script>
 </section>
-
