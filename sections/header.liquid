@@ -17,7 +17,7 @@
     <!-- Navigation Menu (Desktop) -->
     <nav class="nav-menu" aria-label="Main Navigation">
       <a href="/" class="nav-link {% if request.path == '/' %}active{% endif %}">Home</a>
-      <a href="https://posturetru.com/pages/smart-posture-corrector-the-future-of-posture-training" class="nav-link {% if request.path contains '/products/' %}active{% endif %}">Shop</a>
+      <a href="/products/posturetru" class="nav-link {% if request.path contains '/products/' %}active{% endif %}">Shop</a>
       <a href="/pages/about-us" class="nav-link {% if request.path contains '/about-us' %}active{% endif %}">About</a>
       <a href="/pages/faq" class="nav-link {% if request.path contains '/faq' %}active{% endif %}">FAQ</a>
       <a href="/pages/contact" class="nav-link {% if request.path contains '/contact' %}active{% endif %}">Contact</a>
@@ -43,7 +43,7 @@
   </div>
   <nav class="mobile-nav-links" aria-label="Mobile Navigation">
     <a href="/" class="mobile-nav-link {% if request.path == '/' %}active{% endif %}">Home</a>
-    <a href="https://posturetru.com/pages/smart-posture-corrector-the-future-of-posture-training" class="mobile-nav-link {% if request.path contains '/products/' %}active{% endif %}">Shop</a>
+    <a href="/products/posturetru" class="mobile-nav-link {% if request.path contains '/products/' %}active{% endif %}">Shop</a>
     <a href="/pages/about-us" class="mobile-nav-link {% if request.path contains '/about-us' %}active{% endif %}">About</a>
     <a href="/pages/faq" class="mobile-nav-link {% if request.path contains '/faq' %}active{% endif %}">FAQ</a>
     <a href="/pages/contact" class="mobile-nav-link {% if request.path contains '/contact' %}active{% endif %}">Contact</a>

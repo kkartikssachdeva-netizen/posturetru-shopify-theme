@@ -18,7 +18,7 @@
 
       <nav class="nav-menu" aria-label="Main Navigation">
         <a href="/" class="nav-link hero-nav-link {% if request.path == '/' %}active{% endif %}">Home</a>
-        <a href="https://posturetru.com/pages/smart-posture-corrector-the-future-of-posture-training" class="nav-link hero-nav-link">Shop</a>
+        <a href="/products/posturetru" class="nav-link hero-nav-link">Shop</a>
         <a href="/pages/about-us" class="nav-link hero-nav-link {% if request.path contains '/about-us' %}active{% endif %}">About</a>
         <a href="/pages/faq" class="nav-link hero-nav-link {% if request.path contains '/faq' %}active{% endif %}">FAQ</a>
         <a href="/pages/contact" class="nav-link hero-nav-link {% if request.path contains '/contact' %}active{% endif %}">Contact</a>
@@ -43,7 +43,7 @@
         <h1 class="hero-title">{{ section.settings.title | default: 'Your Posture Shapes Your Life' }}</h1>
         <p class="hero-subheading">{{ section.settings.subheading | default: 'Professional-grade posture correction for remote workers who refuse to compromise on health' }}</p>
         <div class="hero-cta-row">
-          <a href="{{ section.settings.cta_link | default: '/pages/shop' }}" class="btn btn-primary">
+          <a href="{{ section.settings.cta_link | default: '/products/posturetru' }}" class="btn btn-primary">
             {{ section.settings.cta_text | default: 'Shop PostureTru' }}
           </a>
         </div>
@@ -71,7 +71,7 @@
   </div>
   <nav class="mobile-nav-links" aria-label="Mobile Navigation">
     <a href="/" class="mobile-nav-link {% if request.path == '/' %}active{% endif %}">Home</a>
-    <a href="https://posturetru.com/pages/smart-posture-corrector-the-future-of-posture-training" class="mobile-nav-link">Shop</a>
+    <a href="/products/posturetru" class="mobile-nav-link">Shop</a>
     <a href="/pages/about-us" class="mobile-nav-link {% if request.path contains '/about-us' %}active{% endif %}">About</a>
     <a href="/pages/faq" class="mobile-nav-link {% if request.path contains '/faq' %}active{% endif %}">FAQ</a>
     <a href="/pages/contact" class="mobile-nav-link {% if request.path contains '/contact' %}active{% endif %}">Contact</a>

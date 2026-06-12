@@ -3,65 +3,28 @@
     <!-- Gallery Column -->
     <div class="product-gallery">
       <div id="mainImageContainer" class="main-image-viewport">
-        <!-- Main Product Angle SVG -->
-        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-          <rect width="100%" height="100%" fill="#F0F4F8"/>
-          <path d="M200,80 Q190,140 160,170 T150,260 L250,260 T240,170 Q210,140 200,80 Z" fill="#E8D8CD"/>
-          <circle cx="200" cy="80" r="30" fill="#E8D8CD"/>
-          <path d="M165,180 L235,180 L225,240 L175,240 Z" fill="#1B4965" stroke="#fff" stroke-width="2"/>
-          <path d="M165,180 Q145,150 170,140 T200,165" fill="none" stroke="#1B4965" stroke-width="8" stroke-linecap="round"/>
-          <path d="M235,180 Q255,150 230,140 T200,165" fill="none" stroke="#1B4965" stroke-width="8" stroke-linecap="round"/>
-          <rect x="185" y="195" width="30" height="35" rx="5" fill="#D4A574" stroke="#fff" stroke-width="1.5"/>
-          <circle cx="200" cy="212" r="5" fill="#5FB878"/>
-          <circle cx="178" cy="215" r="3" fill="#E74C3C"/><circle cx="178" cy="227" r="3" fill="#E74C3C"/><circle cx="222" cy="215" r="3" fill="#E74C3C"/><circle cx="222" cy="227" r="3" fill="#E74C3C"/>
-          <text x="200" y="320" font-family="Outfit" font-size="20" font-weight="bold" fill="#1B4965" text-anchor="middle">Front View</text>
-        </svg>
+        <img src="{{ product.featured_image | img_url: '800x800' }}"
+             alt="{{ product.title }}"
+             id="mainProductImage"
+             style="width:100%; height:100%; object-fit:contain; border-radius:12px;">
       </div>
       
       <!-- Thumbnail Strip -->
       <div class="thumbnail-strip">
-        <button class="thumb-button active" data-angle="main" aria-label="Product Image View 1">
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <rect width="100%" height="100%" fill="#F0F4F8"/>
-            <path d="M50,20 Q48,35 40,43 T38,65 L62,65 T60,43 Q52,35 50,20 Z" fill="#E8D8CD"/>
-            <circle cx="50" cy="20" r="8" fill="#E8D8CD"/>
-            <path d="M41,45 L59,45 L56,60 L44,60 Z" fill="#1B4965"/>
-          </svg>
+        {% for image in product.images limit:8 %}
+        <button class="thumb-button {% if forloop.first %}active{% endif %}"
+                data-image-url="{{ image | img_url: '800x800' }}"
+                aria-label="Product image {{ forloop.index }}">
+          <img src="{{ image | img_url: '200x200' }}" alt="{{ product.title }}">
         </button>
-        
-        <button class="thumb-button" data-angle="side" aria-label="Product Image View 2">
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <rect width="100%" height="100%" fill="#F0F4F8"/>
-            <path d="M45,20 Q51,37 44,65 L57,65 Q60,37 54,20 Z" fill="#E8D8CD"/>
-            <circle cx="50" cy="20" r="8" fill="#E8D8CD"/>
-            <path d="M44,46 C48,46 51,47 50,52" fill="none" stroke="#1B4965" stroke-width="2"/>
-          </svg>
-        </button>
-        
-        <button class="thumb-button" data-angle="onperson" aria-label="Product Image View 3">
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <rect width="100%" height="100%" fill="#F0F4F8"/>
-            <circle cx="50" cy="22" r="6" fill="#E8D8CD"/>
-            <path d="M50,28 L50,88" stroke="#5FB878" stroke-dasharray="2,2"/>
-            <path d="M41,45 L59,45 L56,60 L44,60 Z" fill="#1B4965"/>
-          </svg>
-        </button>
-        
-        <button class="thumb-button" data-angle="closeup" aria-label="Product Image View 4">
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <rect width="100%" height="100%" fill="#F0F4F8"/>
-            <circle cx="50" cy="50" r="10" fill="#1B4965"/>
-            <circle cx="25" cy="25" r="5" fill="#C0392B"/>
-            <circle cx="75" cy="25" r="5" fill="#C0392B"/>
-          </svg>
-        </button>
+        {% endfor %}
       </div>
     </div>
     
     <!-- Info Column -->
     <div class="product-details">
       <span class="badge badge-sale" style="align-self: flex-start; margin-bottom: 12px;">50% OFF TODAY</span>
-      <h1 class="product-title">{{ product.title | default: 'Smart Magnetic Posture Corrector Belt' }}</h1>
+      <h1 class="product-title">{{ product.title | default: 'PostureTru Smart Posture Corrector' }}</h1>
       
       <div class="product-meta-row">
         <div class="reviews-badge" onclick="document.getElementById('ReviewsBlock').scrollIntoView({behavior:'smooth'})">
@@ -73,7 +36,7 @@
           <span>4.9 (1,248 reviews)</span>
         </div>
         <span style="color: var(--color-border);">|</span>
-        <span style="font-size: 14px; font-weight: 500; color: var(--color-text-secondary);">SKU: POSTURE-001</span>
+        <span style="font-size: 14px; font-weight: 500; color: var(--color-text-secondary);">SKU: {{ product.variants.first.sku }}</span>
       </div>
       
       <div class="product-pricing">
@@ -84,15 +47,15 @@
           text-decoration-color: #E74C3C;
           text-decoration-thickness: 2px;
           margin-right: 12px;
-        ">$79.99</span>
-        
+        ">{{ product.compare_at_price | money }}</span>
+
         <span class="price-current" style="
           font-size: 38px;
           font-weight: 800;
           color: #1B4965;
           letter-spacing: -1px;
-        ">$39.99</span>
-        
+        ">{{ product.price | money }}</span>
+
         <div style="margin-top: 8px;">
           <span style="
             background: #E74C3C;
@@ -102,7 +65,7 @@
             padding: 4px 10px;
             border-radius: 20px;
             letter-spacing: 0.05em;
-          ">50% OFF</span>
+          ">You save {{ product.compare_at_price | minus: product.price | money }}!</span>
         </div>
       </div>
       
@@ -116,7 +79,7 @@
         <div class="size-selector">
           <span class="size-selector-label">Select Size</span>
           <div class="size-options">
-            <button class="size-option-btn active" data-size="Adjustable (One Size)">Adjustable (One Size: 28"-50")</button>
+            <button class="size-option-btn active" data-size="One Size">One Size</button>
           </div>
         </div>
         
@@ -148,6 +111,16 @@
   </div>
 </section>
 
+<script>
+  document.querySelectorAll('.thumb-button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.getElementById('mainProductImage').src = btn.dataset.imageUrl;
+      document.querySelectorAll('.thumb-button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+</script>
+
 {% schema %}
 {
   "name": "Product Details",
@@ -156,7 +129,7 @@
       "type": "textarea",
       "id": "short_description",
       "label": "Short Description",
-      "default": "PostureTru is not a generic posture brace. It's engineered specifically for remote workers who spend 8+ hours at a desk. Unlike old-fashioned braces that cut off circulation and cause discomfort, PostureTru combines magnetic therapy with smart vibration feedback to gently train your body to maintain perfect posture."
+      "default": "PostureTru isn't a brace. It uses a high-precision gyroscope chip to detect slouching in real time and delivers a gentle vibration reminder. You sit up. The vibration stops. Over time, your body learns to self-correct."
     }
   ]
 }
