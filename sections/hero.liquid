@@ -176,15 +176,19 @@
   .hero-img-mockup {
     padding: 0;
     background: none;
-    border-radius: 12px;
+    border-radius: 0;
   }
-  /* Override inline styles on the <img> for full-width cover */
+  /* Full-bleed edge-to-edge image — breaks out of container padding */
   .hero-img-mockup img {
-    width: 100% !important;
-    max-width: 100% !important;
-    height: 260px !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin-left: 50% !important;
+    transform: translateX(-50%);
+    min-height: 60vw !important;
+    height: auto !important;
     object-fit: cover;
-    border-radius: 12px !important;
+    border-radius: 0 !important;
+    display: block;
   }
   .hero-cta-row { justify-content: center; }
 }
