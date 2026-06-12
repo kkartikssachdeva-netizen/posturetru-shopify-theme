@@ -1,71 +1,179 @@
-<section class="hero" id="heroSection">
-  <div class="container grid grid-2" style="align-items: center;">
+<div class="hero-wrapper" id="heroWrapper">
 
-    <!-- LEFT: Text content -->
-    <div class="hero-content">
-      <span class="hero-tagline">{{ section.settings.tagline | default: 'Stand Straight. Feel Better.' }}</span>
-      <h1 class="hero-title">{{ section.settings.title | default: 'Your Posture Shapes Your Life' }}</h1>
-      <p class="hero-subheading">{{ section.settings.subheading | default: 'Professional-grade posture correction for remote workers who refuse to compromise on health' }}</p>
-      <div style="display:flex; gap:16px; align-items:center; flex-wrap:wrap;">
-        <a href="{{ section.settings.cta_link | default: '/pages/shop' }}" class="btn btn-primary">
-          {{ section.settings.cta_text | default: 'Shop PostureTru' }}
-        </a>
-        <a href="#PillarsSection" class="btn btn-outline">Learn More</a>
+  <!-- FLOATING HEADER -->
+  <header class="hero-header">
+    <div class="container flex-between" style="width: 100%;">
+
+      <button id="menuToggleBtn" class="menu-toggle" aria-label="Open Navigation Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <a href="/" class="logo hero-logo">
+        Posture<span class="logo-accent">Tru</span>
+      </a>
+
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <a href="/" class="nav-link hero-nav-link {% if request.path == '/' %}active{% endif %}">Home</a>
+        <a href="https://posturetru.com/pages/smart-posture-corrector-the-future-of-posture-training" class="nav-link hero-nav-link">Shop</a>
+        <a href="/pages/about-us" class="nav-link hero-nav-link {% if request.path contains '/about-us' %}active{% endif %}">About</a>
+        <a href="/pages/faq" class="nav-link hero-nav-link {% if request.path contains '/faq' %}active{% endif %}">FAQ</a>
+        <a href="/pages/contact" class="nav-link hero-nav-link {% if request.path contains '/contact' %}active{% endif %}">Contact</a>
+      </nav>
+
+      <div class="header-icons">
+        <button id="cartIconBtn" class="cart-icon-btn hero-cart-btn" aria-label="Open Shopping Cart">
+          {% render 'icon-cart' %}
+          <span id="cartBadgeCount" class="cart-badge" style="display: none;">0</span>
+        </button>
       </div>
-    </div>
 
-    <!-- RIGHT: Original SVG restored -->
-    <div class="hero-img-container">
-      <div class="hero-img-mockup">
-        <img
-          src="https://cdn.shopify.com/s/files/1/0839/9274/0080/files/Hero.jpg?v=1781111084"
-          alt="PostureTru Smart Posture Corrector"
-          style="width:100%; max-width:500px; height:auto; border-radius:16px; display:block;">
+    </div>
+  </header>
+
+  <!-- HERO CONTENT -->
+  <section class="hero-section" id="heroSection">
+    <div class="container hero-grid">
+
+      <div class="hero-content">
+        <span class="hero-tagline">{{ section.settings.tagline | default: 'Stand Straight. Feel Better.' }}</span>
+        <h1 class="hero-title">{{ section.settings.title | default: 'Your Posture Shapes Your Life' }}</h1>
+        <p class="hero-subheading">{{ section.settings.subheading | default: 'Professional-grade posture correction for remote workers who refuse to compromise on health' }}</p>
+        <div class="hero-cta-row">
+          <a href="{{ section.settings.cta_link | default: '/pages/shop' }}" class="btn btn-primary">
+            {{ section.settings.cta_text | default: 'Shop PostureTru' }}
+          </a>
+          <a href="#PillarsSection" class="btn btn-outline">Learn More</a>
+        </div>
       </div>
-    </div>
 
+      <div class="hero-img-container">
+        <div class="hero-img-mockup">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0839/9274/0080/files/Hero.jpg?v=1781111084"
+            alt="PostureTru Smart Posture Corrector"
+            style="width:100%; max-width:500px; height:auto; border-radius:16px; display:block;">
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+<!-- MOBILE NAV DRAWER -->
+<div id="mobileNavDrawer" class="mobile-nav-drawer" aria-modal="true" role="dialog">
+  <div class="mobile-nav-header">
+    <a href="/" class="logo">Posture<span class="logo-accent">Tru</span></a>
+    <button id="closeMenuBtn" class="close-drawer-btn" aria-label="Close Navigation Menu">&times;</button>
   </div>
-</section>
+  <nav class="mobile-nav-links" aria-label="Mobile Navigation">
+    <a href="/" class="mobile-nav-link {% if request.path == '/' %}active{% endif %}">Home</a>
+    <a href="https://posturetru.com/pages/smart-posture-corrector-the-future-of-posture-training" class="mobile-nav-link">Shop</a>
+    <a href="/pages/about-us" class="mobile-nav-link {% if request.path contains '/about-us' %}active{% endif %}">About</a>
+    <a href="/pages/faq" class="mobile-nav-link {% if request.path contains '/faq' %}active{% endif %}">FAQ</a>
+    <a href="/pages/contact" class="mobile-nav-link {% if request.path contains '/contact' %}active{% endif %}">Contact</a>
+  </nav>
+</div>
+
+<!-- CART OVERLAY + DRAWER -->
+<div id="cartOverlay" class="cart-drawer-overlay"></div>
+<div id="cartDrawer" class="cart-drawer" aria-modal="true" role="dialog">
+  <div class="cart-drawer-header">
+    <h3>Shopping Cart</h3>
+    <button id="closeCartBtn" class="close-drawer-btn" aria-label="Close Shopping Cart">&times;</button>
+  </div>
+  <div class="cart-drawer-body">
+    <div id="cartDrawerItems"></div>
+  </div>
+  <div class="cart-drawer-footer">
+    <div class="cart-subtotal-row">
+      <span>Subtotal</span>
+      <span id="cartSubtotalAmount">$0.00</span>
+    </div>
+    <p>Shipping and taxes calculated at checkout.</p>
+    <a href="/cart" class="btn btn-primary btn-full" style="margin-bottom: 12px;">View Cart</a>
+    <button class="btn btn-secondary btn-full" onclick="alert('Proceeding to Shopify secure checkout...')" style="margin: 0;">Checkout</button>
+  </div>
+</div>
+
+<style>
+.hero-wrapper {
+  position: relative;
+  background: linear-gradient(135deg, #F0F4F8 0%, #FFFFFF 100%);
+  overflow: hidden;
+}
+
+.hero-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height, 80px);
+  display: flex;
+  align-items: center;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.hero-logo { color: var(--color-primary); }
+.hero-nav-link { color: var(--color-text-primary); }
+.hero-cart-btn { color: var(--color-text-primary); }
+
+.hero-section {
+  padding-top: calc(var(--header-height, 80px) + 48px);
+  padding-bottom: 60px;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  width: 100%;
+}
+
+.hero-cta-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding-top: calc(var(--header-height, 80px) + 32px);
+    padding-bottom: 48px;
+    min-height: auto;
+  }
+  .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 32px;
+  }
+  .hero-cta-row { justify-content: center; }
+}
+</style>
 
 {% schema %}
 {
   "name": "Hero Banner",
   "settings": [
-    {
-      "type": "text",
-      "id": "tagline",
-      "label": "Tagline",
-      "default": "Stand Straight. Feel Better."
-    },
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Heading",
-      "default": "Your Posture Shapes Your Life"
-    },
-    {
-      "type": "textarea",
-      "id": "subheading",
-      "label": "Subheading",
-      "default": "Professional-grade posture correction for remote workers who refuse to compromise on health"
-    },
-    {
-      "type": "text",
-      "id": "cta_text",
-      "label": "CTA Text",
-      "default": "Shop PostureTru"
-    },
-    {
-      "type": "url",
-      "id": "cta_link",
-      "label": "CTA Link"
-    }
+    { "type": "text", "id": "tagline", "label": "Tagline", "default": "Stand Straight. Feel Better." },
+    { "type": "text", "id": "title", "label": "Heading", "default": "Your Posture Shapes Your Life" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Professional-grade posture correction for remote workers who refuse to compromise on health" },
+    { "type": "text", "id": "cta_text", "label": "CTA Text", "default": "Shop PostureTru" },
+    { "type": "url", "id": "cta_link", "label": "CTA Link" }
   ],
-  "presets": [
-    {
-      "name": "Hero Banner",
-      "category": "Hero"
-    }
-  ]
+  "presets": [{ "name": "Hero Banner", "category": "Hero" }]
 }
 {% endschema %}
