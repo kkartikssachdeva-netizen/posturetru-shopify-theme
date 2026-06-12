@@ -35,6 +35,23 @@
   </div>
 </section>
 
+<style>
+@media (max-width: 768px) {
+  .product-preview-img-container {
+    width: 100vw !important;
+    margin-left: calc(-50vw + 50%) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    min-height: 60vw !important;
+  }
+  .product-preview-img-container img {
+    border-radius: 0 !important;
+    height: 60vw !important;
+    min-height: 60vw !important;
+  }
+}
+</style>
+
 {% schema %}
 {
   "name": "Product Preview",
