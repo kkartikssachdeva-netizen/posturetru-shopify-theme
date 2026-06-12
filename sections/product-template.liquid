@@ -106,9 +106,9 @@
         </div>
       </div>
       
-      <p class="product-short-description">
-        {{ section.settings.short_description | default: "PostureTru is not a generic posture brace. It's engineered specifically for remote workers who spend 8+ hours at a desk. Unlike old-fashioned braces that cut off circulation and cause discomfort, PostureTru combines magnetic therapy with smart vibration feedback to gently train your body to maintain perfect posture." }}
-      </p>
+      <div class="product-short-description">
+        {{ product.description | default: section.settings.short_description }}
+      </div>
       
       <!-- Interactive ATC Box -->
       <div class="atc-section">
