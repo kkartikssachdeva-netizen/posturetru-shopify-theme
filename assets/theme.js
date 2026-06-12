@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
           </svg>
           <p>Your cart is empty</p>
-          <a href="/products/smart-posture-corrector-belt" class="btn btn-primary btn-sm" style="margin-top: 15px; padding: 10px 20px;">Shop Product</a>
+          <a href="/products/smart-posture-corrector-for-adult-kids-back-vibration-reminder-anti-humpback-protect-eyesight-usb-posture-correction-device" class="btn btn-primary btn-sm" style="margin-top: 15px; padding: 10px 20px;">Shop Product</a>
         </div>
       `;
       if (cartSubtotalEl) cartSubtotalEl.textContent = "$0.00";
