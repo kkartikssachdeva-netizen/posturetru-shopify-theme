@@ -1838,5 +1838,33 @@ textarea.form-control {
      b a c k d r o p - f i l t e r :   b l u r ( 1 2 p x )   ! i m p o r t a n t ; 
      - w e b k i t - b a c k d r o p - f i l t e r :   b l u r ( 1 2 p x )   ! i m p o r t a n t ; 
      b o r d e r - b o t t o m :   1 p x   s o l i d   r g b a ( 2 5 5 ,   2 5 5 ,   2 5 5 ,   0 . 4 )   ! i m p o r t a n t ; 
- }  
+ } 
  
+ 
+
+/* Hero merged header overrides */
+.hero-header {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  z-index: 50;
+  background: transparent !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+.hero-header .logo {
+  color: var(--color-primary) !important;
+}
+
+.hero-header .nav-link {
+  color: var(--color-text-primary) !important;
+}
+
+.hero-header .cart-icon-btn {
+  color: var(--color-text-primary) !important;
+}
