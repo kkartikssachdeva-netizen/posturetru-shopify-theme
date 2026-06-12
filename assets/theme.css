@@ -402,6 +402,10 @@ header {
   background-color: var(--color-bg-light);
 }
 
+.trust-pillars .section-header {
+  max-width: none;
+}
+
 .trust-pillars .section-header h2 {
   font-size: clamp(24px, 2.5vw, 32px);
 }
