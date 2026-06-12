@@ -343,6 +343,7 @@ header {
 }
 
 .hero-title {
+  font-size: clamp(24px, 2.5vw, 32px);
   margin-bottom: 24px;
 }
 
