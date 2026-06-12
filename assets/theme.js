@@ -4,37 +4,8 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // --- STATE MANAGEMENT ---
-  let cart = JSON.parse(localStorage.getItem('posturetru_cart')) || [];
-  
-  const productData = {
-    id: "POSTURE-001",
-    title: "Smart Magnetic Posture Corrector Belt",
-    price: 39.99,
-    compare_at_price: 79.99,
-    sku: "POSTURE-001",
-    image: `
-      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="background:#F0F4F8; border-radius:8px; width:100%; height:100%;">
-        <rect width="400" height="400" fill="#F0F4F8"/>
-        <!-- Neck and Head silhouette -->
-        <path d="M200,80 Q190,140 160,170 T150,260 L250,260 T240,170 Q210,140 200,80 Z" fill="#E8D8CD"/>
-        <circle cx="200" cy="80" r="30" fill="#E8D8CD"/>
-        <!-- Spine and Corrector belt outline -->
-        <path d="M165,180 L235,180 L225,240 L175,240 Z" fill="#1B4965" stroke="#fff" stroke-width="2"/>
-        <!-- Shoulder straps -->
-        <path d="M165,180 Q145,150 170,140 T200,165" fill="none" stroke="#1B4965" stroke-width="8" stroke-linecap="round"/>
-        <path d="M235,180 Q255,150 230,140 T200,165" fill="none" stroke="#1B4965" stroke-width="8" stroke-linecap="round"/>
-        <!-- Smart sensor badge -->
-        <rect x="185" y="195" width="30" height="35" rx="5" fill="#D4A574" stroke="#fff" stroke-width="1.5"/>
-        <circle cx="200" cy="212" r="5" fill="#5FB878"/>
-        <!-- Therapeutic magnets indicators -->
-        <circle cx="178" cy="215" r="3" fill="#E74C3C"/>
-        <circle cx="178" cy="227" r="3" fill="#E74C3C"/>
-        <circle cx="222" cy="215" r="3" fill="#E74C3C"/>
-        <circle cx="222" cy="227" r="3" fill="#E74C3C"/>
-      </svg>
-    `
-  };
+  // --- SHOPIFY CART API ---
+  const fetchCart = () => fetch('/cart.js').then(r => r.json());
 
   // --- SELECTORS ---
   const menuBtn = document.getElementById('menuToggleBtn');
@@ -90,197 +61,124 @@ document.addEventListener('DOMContentLoaded', () => {
   if (cartOverlay) cartOverlay.addEventListener('click', closeCart);
 
   // --- CART UTILITIES & ACTIONS ---
-  const saveCart = () => {
-    localStorage.setItem('posturetru_cart', JSON.stringify(cart));
+  const updateCartBadges = async () => {
+    try {
+      const shopifyCart = await fetchCart();
+      const totalQty = shopifyCart.item_count;
+      if (cartBadge) {
+        cartBadge.textContent = totalQty;
+        cartBadge.style.display = totalQty > 0 ? 'flex' : 'none';
+      }
+      if (cartBadgeMobile) {
+        cartBadgeMobile.textContent = totalQty;
+        cartBadgeMobile.style.display = totalQty > 0 ? 'flex' : 'none';
+      }
+    } catch(e) {}
+  };
+
+  const removeCartItem = async (key) => {
+    await fetch('/cart/change.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: key, quantity: 0 })
+    });
+    renderCartDrawer();
     updateCartBadges();
   };
 
-  const updateCartBadges = () => {
-    const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
-    if (cartBadge) {
-      cartBadge.textContent = totalQty;
-      cartBadge.style.display = totalQty > 0 ? 'flex' : 'none';
-    }
-    if (cartBadgeMobile) {
-      cartBadgeMobile.textContent = totalQty;
-      cartBadgeMobile.style.display = totalQty > 0 ? 'flex' : 'none';
-    }
-  };
-
-  const addItemToCart = (size, quantity) => {
-    const existingIndex = cart.findIndex(item => item.id === productData.id && item.size === size);
-    if (existingIndex > -1) {
-      cart[existingIndex].quantity += quantity;
-    } else {
-      cart.push({
-        id: productData.id,
-        title: productData.title,
-        price: productData.price,
-        size: size,
-        quantity: quantity
-      });
-    }
-    saveCart();
-    openCart();
-  };
-
-  const removeCartItem = (index) => {
-    cart.splice(index, 1);
-    saveCart();
+  const updateQuantity = async (key, qty) => {
+    if (qty < 0) qty = 0;
+    await fetch('/cart/change.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: key, quantity: qty })
+    });
     renderCartDrawer();
-    if (document.getElementById('cartPageItems')) {
-      renderCartPage();
-    }
+    updateCartBadges();
   };
 
-  const updateQuantity = (index, delta) => {
-    cart[index].quantity += delta;
-    if (cart[index].quantity <= 0) {
-      cart.splice(index, 1);
-    }
-    saveCart();
-    renderCartDrawer();
-    if (document.getElementById('cartPageItems')) {
-      renderCartPage();
-    }
-  };
-
-  const renderCartDrawer = () => {
+  const renderCartDrawer = async () => {
     if (!cartItemsContainer) return;
-    
-    if (cart.length === 0) {
-      cartItemsContainer.innerHTML = `
-        <div class="empty-cart-view">
-          <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
-          </svg>
-          <p>Your cart is empty</p>
-          <a href="https://posturetru.com/pages/smart-posture-corrector-the-future-of-posture-training" class="btn btn-primary btn-sm" style="margin-top: 15px; padding: 10px 20px;">Shop Product</a>
-        </div>
-      `;
-      if (cartSubtotalEl) cartSubtotalEl.textContent = "$0.00";
-      return;
-    }
-    
-    let subtotal = 0;
-    cartItemsContainer.innerHTML = '';
-    
-    cart.forEach((item, index) => {
-      subtotal += item.price * item.quantity;
-      const itemEl = document.createElement('div');
-      itemEl.className = 'cart-drawer-item';
-      itemEl.innerHTML = `
-        <div class="cart-item-img">
-          ${productData.image}
-        </div>
-        <div class="cart-item-info">
-          <h4>${item.title}</h4>
-          <p>Size: ${item.size}</p>
-          <div class="quantity-selector" style="height: 35px; width: 100px;">
-            <button class="qty-btn" style="width: 30px; height:33px;" data-index="${index}" data-action="minus">-</button>
-            <span style="flex: 1; text-align: center; font-size:14px; font-weight:600;">${item.quantity}</span>
-            <button class="qty-btn" style="width: 30px; height:33px;" data-index="${index}" data-action="plus">+</button>
+    try {
+      const shopifyCart = await fetchCart();
+
+      if (shopifyCart.item_count === 0) {
+        cartItemsContainer.innerHTML = `
+          <div class="empty-cart-view">
+            <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+            </svg>
+            <p>Your cart is empty</p>
+            <a href="https://posturetru.com/pages/smart-posture-corrector-the-future-of-posture-training" class="btn btn-primary btn-sm" style="margin-top: 15px; padding: 10px 20px;">Shop Product</a>
           </div>
-        </div>
-        <div style="text-align: right; display:flex; flex-direction:column; justify-content:space-between; height: 100%; align-items: flex-end;">
-          <span style="font-weight: 600; color: var(--color-primary); font-size:15px;">$${(item.price * item.quantity).toFixed(2)}</span>
-          <button class="cart-remove-btn" style="margin-top: 15px; padding:0; background:none; border:none; cursor:pointer;" data-index="${index}">Remove</button>
-        </div>
-      `;
-      cartItemsContainer.appendChild(itemEl);
-    });
-    
-    if (cartSubtotalEl) cartSubtotalEl.textContent = `$${subtotal.toFixed(2)}`;
-    
-    // Add Event Listeners
-    cartItemsContainer.querySelectorAll('.qty-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const idx = parseInt(e.target.dataset.index);
-        const action = e.target.dataset.action;
-        updateQuantity(idx, action === 'plus' ? 1 : -1);
+        `;
+        if (cartSubtotalEl) cartSubtotalEl.textContent = '$0.00';
+        return;
+      }
+
+      cartItemsContainer.innerHTML = '';
+      shopifyCart.items.forEach(item => {
+        const linePrice = (item.line_price / 100).toFixed(2);
+        const itemEl = document.createElement('div');
+        itemEl.className = 'cart-drawer-item';
+        itemEl.innerHTML = `
+          <div class="cart-item-img">
+            <img src="${item.image}" alt="${item.product_title}" style="width:64px;height:64px;object-fit:contain;border-radius:4px;">
+          </div>
+          <div class="cart-item-info">
+            <h4>${item.product_title}</h4>
+            ${item.variant_title !== 'Default Title' ? `<p>${item.variant_title}</p>` : ''}
+            <div class="quantity-selector" style="height:35px;width:100px;">
+              <button class="qty-btn" style="width:30px;height:33px;" data-key="${item.key}" data-qty="${item.quantity - 1}">-</button>
+              <span style="flex:1;text-align:center;font-size:14px;font-weight:600;">${item.quantity}</span>
+              <button class="qty-btn" style="width:30px;height:33px;" data-key="${item.key}" data-qty="${item.quantity + 1}">+</button>
+            </div>
+          </div>
+          <div style="text-align:right;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-end;">
+            <span style="font-weight:600;color:var(--color-primary);font-size:15px;">$${linePrice}</span>
+            <button class="cart-remove-btn" style="margin-top:15px;padding:0;background:none;border:none;cursor:pointer;" data-key="${item.key}">Remove</button>
+          </div>
+        `;
+        cartItemsContainer.appendChild(itemEl);
       });
-    });
-    
-    cartItemsContainer.querySelectorAll('.cart-remove-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const idx = parseInt(e.target.dataset.index);
-        removeCartItem(idx);
+
+      const subtotal = (shopifyCart.total_price / 100).toFixed(2);
+      if (cartSubtotalEl) cartSubtotalEl.textContent = `$${subtotal}`;
+
+      cartItemsContainer.querySelectorAll('.qty-btn').forEach(btn => {
+        btn.addEventListener('click', e => {
+          updateQuantity(e.target.dataset.key, parseInt(e.target.dataset.qty));
+        });
       });
-    });
+      cartItemsContainer.querySelectorAll('.cart-remove-btn').forEach(btn => {
+        btn.addEventListener('click', e => removeCartItem(e.target.dataset.key));
+      });
+    } catch(e) { console.error('Cart render error:', e); }
   };
 
-  // --- STANDALONE CART PAGE ---
-  const renderCartPage = () => {
-    const pageItemsContainer = document.getElementById('cartPageItems');
-    const pageSubtotalEl = document.getElementById('cartPageSubtotal');
-    const pageTotalEl = document.getElementById('cartPageTotal');
-    const cartPageLayout = document.getElementById('cartPageLayout');
-    const cartPageEmpty = document.getElementById('cartPageEmpty');
-    
-    if (!pageItemsContainer) return;
-    
-    if (cart.length === 0) {
-      if (cartPageLayout) cartPageLayout.style.display = 'none';
-      if (cartPageEmpty) cartPageEmpty.style.display = 'block';
-      return;
-    }
-    
-    if (cartPageLayout) cartPageLayout.style.display = 'grid';
-    if (cartPageEmpty) cartPageEmpty.style.display = 'none';
-    
-    let subtotal = 0;
-    pageItemsContainer.innerHTML = '';
-    
-    cart.forEach((item, index) => {
-      subtotal += item.price * item.quantity;
-      const row = document.createElement('tr');
-      row.innerHTML = `
-        <td class="cart-product-cell">
-          <div class="cart-product-img">
-            ${productData.image}
-          </div>
-          <div class="cart-product-title">
-            <h3>${item.title}</h3>
-            <p>Size: ${item.size}</p>
-            <button class="cart-remove-btn" data-index="${index}">Remove</button>
-          </div>
-        </td>
-        <td>
-          <span style="font-weight: 500;">$${item.price.toFixed(2)}</span>
-        </td>
-        <td>
-          <div class="quantity-selector" style="height: 40px; width: 120px;">
-            <button class="qty-btn" style="width: 35px; height: 38px;" data-index="${index}" data-action="minus">-</button>
-            <span style="flex:1; text-align:center; font-weight:600;">${item.quantity}</span>
-            <button class="qty-btn" style="width: 35px; height: 38px;" data-index="${index}" data-action="plus">+</button>
-          </div>
-        </td>
-        <td style="text-align: right;">
-          <span style="font-weight: 700; color: var(--color-primary); font-size:16px;">$${(item.price * item.quantity).toFixed(2)}</span>
-        </td>
-      `;
-      pageItemsContainer.appendChild(row);
+  // --- INTERCEPT ADD-TO-CART FORMS ---
+  document.querySelectorAll('form[action="/cart/add"]').forEach(form => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const variantId = form.querySelector('input[name="id"]').value;
+      const qtyField = document.getElementById('productQty');
+      const quantity = parseInt(qtyField ? qtyField.value : 1) || 1;
+      const submitBtn = form.querySelector('[type="submit"]');
+      if (submitBtn) { submitBtn.textContent = 'Adding...'; submitBtn.disabled = true; }
+      try {
+        await fetch('/cart/add.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ items: [{ id: variantId, quantity }] })
+        });
+        await updateCartBadges();
+        openCart();
+      } catch(e) { console.error('Add to cart error:', e); }
+      finally {
+        if (submitBtn) { submitBtn.textContent = 'Add to Cart'; submitBtn.disabled = false; }
+      }
     });
-    
-    if (pageSubtotalEl) pageSubtotalEl.textContent = `$${subtotal.toFixed(2)}`;
-    if (pageTotalEl) pageTotalEl.textContent = `$${subtotal.toFixed(2)}`;
-    
-    // Add Event Listeners
-    pageItemsContainer.querySelectorAll('.qty-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const idx = parseInt(e.target.dataset.index);
-        const action = e.target.dataset.action;
-        updateQuantity(idx, action === 'plus' ? 1 : -1);
-      });
-    });
-    
-    pageItemsContainer.querySelectorAll('.cart-remove-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const idx = parseInt(e.target.dataset.index);
-        removeCartItem(idx);
-      });
-    });
-  };
+  });
 
   // --- PRODUCT PAGE INTERACTIVITY ---
   
@@ -399,26 +297,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Add to Cart Button Logic
-  const addToCartBtn = document.getElementById('addToCartBtn');
-  if (addToCartBtn) {
-    addToCartBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const qty = parseInt(qtyInput ? qtyInput.value : 1) || 1;
-      
-      // Loading visual state transition
-      addToCartBtn.innerHTML = '<span class="loader" style="display:inline-block; width:20px; height:20px; border:2px solid #fff; border-top:2px solid transparent; border-radius:50%; animation: spin 1s linear infinite; vertical-align:middle; margin-right:8px;"></span>Adding...';
-      addToCartBtn.style.pointerEvents = 'none';
-      addToCartBtn.style.opacity = '0.8';
-      
-      setTimeout(() => {
-        addItemToCart(selectedSize, qty);
-        addToCartBtn.innerHTML = 'Add to Cart';
-        addToCartBtn.style.pointerEvents = '';
-        addToCartBtn.style.opacity = '';
-      }, 700);
-    });
-  }
 
   // --- STICKY ATC BAR ON SCROLL ---
   // Renders a small floating bar on mobile when scrolled past ATC section
@@ -462,8 +340,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const stickyAtcBtn = document.getElementById('stickyAtcBtn');
     if (stickyAtcBtn) {
       stickyAtcBtn.addEventListener('click', () => {
-        const qty = parseInt(qtyInput ? qtyInput.value : 1) || 1;
-        addItemToCart(selectedSize, qty);
+        const form = document.querySelector('form[action="/cart/add"]');
+        if (form) form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
       });
     }
   }
@@ -542,7 +420,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- LOAD RENDER CHECKS ---
   updateCartBadges();
-  renderCartPage();
 });
 
 // Helper Loader Keyframes added in JS dynamically
