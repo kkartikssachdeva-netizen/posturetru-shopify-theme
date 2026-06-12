@@ -1749,8 +1749,9 @@ textarea.form-control {
 
 .mobile-nav-link {
   font-family: var(--font-headings);
-  font-size: 20px;
-  font-weight: 600;
+  font-size: var(--fs-nav);
+  font-weight: 400;
+  letter-spacing: var(--ls-nav);
   color: var(--color-primary);
 }
 
