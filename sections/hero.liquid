@@ -157,9 +157,10 @@
 
 @media (max-width: 768px) {
   .hero-section {
-    padding-top: calc(var(--header-height, 80px) + 8px);
+    padding-top: 0;
     padding-bottom: 48px;
     min-height: auto;
+    align-items: flex-start;
   }
   .hero-grid {
     display: flex;
@@ -167,11 +168,16 @@
     text-align: center;
     gap: 24px;
   }
-  /* Pull image to top and break out of container padding */
+  /* Image flush below navbar, full-bleed */
   .hero-img-container {
     order: -1;
     width: 100vw;
     margin-left: calc(-50vw + 50%);
+    margin-top: var(--header-height, 80px);
+  }
+  /* Text content gets top padding so it breathes below the image */
+  .hero-content {
+    padding-top: 8px;
   }
   /* Remove the circular padded mockup styling on mobile */
   .hero-img-mockup {
