@@ -163,9 +163,29 @@
     min-height: auto;
   }
   .hero-grid {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     text-align: center;
-    gap: 32px;
+    gap: 24px;
+  }
+  /* Pull image to the top */
+  .hero-img-container {
+    order: -1;
+    width: 100%;
+  }
+  /* Remove the circular padded mockup styling on mobile */
+  .hero-img-mockup {
+    padding: 0;
+    background: none;
+    border-radius: 12px;
+  }
+  /* Override inline styles on the <img> for full-width cover */
+  .hero-img-mockup img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 260px !important;
+    object-fit: cover;
+    border-radius: 12px !important;
   }
   .hero-cta-row { justify-content: center; }
 }
