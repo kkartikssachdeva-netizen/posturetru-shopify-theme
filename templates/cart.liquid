@@ -13,7 +13,7 @@
         </svg>
         <h2>Your cart is currently empty.</h2>
         <p style="color:var(--color-text-secondary); margin-bottom:30px; margin-top:10px;">Add some products to your cart before checking out.</p>
-        <a href="/pages/shop" class="btn btn-primary">Continue Shopping</a>
+        <a href="/" class="btn btn-primary">Continue Shopping</a>
       </div>
     {% else %}
       <div class="cart-page-layout">
@@ -67,7 +67,7 @@
           <div class="summary-row summary-total"><span>Estimated Total</span><span>{{ cart.total_price | money }}</span></div>
           <p style="font-size:13px; color:var(--color-text-secondary); margin-bottom:24px; text-align:center;">Taxes and shipping calculated at checkout.</p>
           <a href="/checkout" class="btn btn-secondary btn-full" style="margin-bottom:12px; text-align:center; display:block;">Proceed to Checkout</a>
-          <a href="/pages/shop" class="btn btn-outline btn-full" style="text-align:center; display:block;">Continue Shopping</a>
+          <a href="/" class="btn btn-outline btn-full" style="text-align:center; display:block;">Continue Shopping</a>
         </div>
       </div>
     {% endif %}
