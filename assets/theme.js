@@ -99,6 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const renderCartDrawer = async () => {
     if (!cartItemsContainer) return;
+    const cartViewCartBtn = document.getElementById('cartViewCartBtn');
+    const cartCheckoutBtn = document.getElementById('cartCheckoutBtn');
     try {
       const shopifyCart = await fetchCart();
 
@@ -113,9 +115,13 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         `;
         if (cartSubtotalEl) cartSubtotalEl.textContent = '$0.00';
+        if (cartViewCartBtn) cartViewCartBtn.style.display = 'none';
+        if (cartCheckoutBtn) cartCheckoutBtn.style.display = 'none';
         return;
       }
 
+      if (cartViewCartBtn) cartViewCartBtn.style.display = '';
+      if (cartCheckoutBtn) cartCheckoutBtn.style.display = '';
       cartItemsContainer.innerHTML = '';
       shopifyCart.items.forEach(item => {
         const linePrice = (item.line_price / 100).toFixed(2);
