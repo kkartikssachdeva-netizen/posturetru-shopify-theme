@@ -23,19 +23,10 @@
     
     <!-- Info Column -->
     <div class="product-details">
-      <span class="badge badge-sale" style="align-self: flex-start; margin-bottom: 12px;">50% OFF TODAY</span>
+      <span class="badge badge-sale" style="align-self: flex-start; margin-bottom: 12px;">SAVE 50%</span>
       <h1 class="product-title">{{ product.title | default: 'PostureTru Smart Posture Corrector' }}</h1>
       
       <div class="product-meta-row">
-        <div class="reviews-badge" onclick="document.getElementById('ReviewsBlock').scrollIntoView({behavior:'smooth'})">
-          <div class="star-rating">
-            {% for i in (1..5) %}
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-            {% endfor %}
-          </div>
-          <span>4.9 (1,248 reviews)</span>
-        </div>
-        <span style="color: var(--color-border);">|</span>
         <span style="font-size: 14px; font-weight: 500; color: var(--color-text-secondary);">SKU: {{ product.variants.first.sku }}</span>
       </div>
       
