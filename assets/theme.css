@@ -1084,7 +1084,7 @@ footer {
 }
 
 .included-list li::before {
-  content: "âœ“";
+  content: “✓”;
   color: var(--color-secondary);
   font-weight: bold;
 }
