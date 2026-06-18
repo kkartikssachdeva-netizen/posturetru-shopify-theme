@@ -583,14 +583,14 @@ header {
 }
 
 .final-cta-btn {
-  background-color: var(--color-secondary);
-  color: var(--color-white);
-  border-color: var(--color-secondary);
+  background-color: var(--color-white);
+  color: var(--color-primary);
+  border-color: var(--color-white);
 }
 
 .final-cta-btn:hover {
-  background-color: var(--color-white);
-  color: var(--color-secondary);
+  background-color: transparent;
+  color: var(--color-white);
   border-color: var(--color-white);
 }
 
