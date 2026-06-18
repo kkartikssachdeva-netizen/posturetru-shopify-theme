@@ -9,7 +9,9 @@
 
       <div class="pillar-card">
         <div class="pillar-title-row">
-          <span class="pillar-emoji">{{ section.settings.pillar_1_emoji | default: '⚡' }}</span>
+          <span class="pillar-emoji">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="2 12 6 4 10 20 14 8 18 14 22 12"></polyline></svg>
+          </span>
           <h3>{{ section.settings.pillar_1_title | default: 'Gentle Vibration. Real Awareness.' }}</h3>
         </div>
         <p>{{ section.settings.pillar_1_text | default: 'The moment you begin to slouch, PostureTru delivers a gentle vibration reminder. No apps. No distractions. Just real time posture awareness.' }}</p>
@@ -17,7 +19,9 @@
 
       <div class="pillar-card">
         <div class="pillar-title-row">
-          <span class="pillar-emoji">{{ section.settings.pillar_2_emoji | default: '🧠' }}</span>
+          <span class="pillar-emoji">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20V4"></path><path d="M5 11l7-7 7 7"></path><path d="M5 18h14"></path></svg>
+          </span>
           <h3>{{ section.settings.pillar_2_title | default: 'Build Better Habits' }}</h3>
         </div>
         <p>{{ section.settings.pillar_2_text | default: 'Better posture starts with awareness. PostureTru provides immediate feedback when your posture begins to slip, helping you stay mindful throughout the day.' }}</p>
@@ -25,7 +29,9 @@
 
       <div class="pillar-card">
         <div class="pillar-title-row">
-          <span class="pillar-emoji">{{ section.settings.pillar_3_emoji | default: '🩹' }}</span>
+          <span class="pillar-emoji">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </span>
           <h3>{{ section.settings.pillar_3_title | default: 'Comfortable for Daily Wear' }}</h3>
         </div>
         <p>{{ section.settings.pillar_3_text | default: 'Lightweight and skin friendly, PostureTru sits comfortably against your upper back and can be worn discreetly under most clothing.' }}</p>
@@ -33,7 +39,9 @@
 
       <div class="pillar-card">
         <div class="pillar-title-row">
-          <span class="pillar-emoji">{{ section.settings.pillar_4_emoji | default: '🛡️' }}</span>
+          <span class="pillar-emoji">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </span>
           <h3>{{ section.settings.pillar_4_title | default: 'Try It Risk Free' }}</h3>
         </div>
         <p>{{ section.settings.pillar_4_text | default: "Backed by our 30 Day Satisfaction Guarantee. If PostureTru isn't the right fit for you, contact us and we'll work to make it right." }}</p>
@@ -51,9 +59,11 @@
   margin-bottom: 12px;
 }
 .pillar-title-row .pillar-emoji {
-  font-size: 24px;
   flex-shrink: 0;
   line-height: 1;
+  display: flex;
+  align-items: center;
+  color: var(--color-primary);
 }
 .pillar-title-row h3 {
   margin: 0;
