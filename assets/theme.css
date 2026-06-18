@@ -1793,6 +1793,11 @@ textarea.form-control {
     font-size: 4.5vw;
     white-space: nowrap;
   }
+
+  .final-cta-subtext {
+    font-size: 2.8vw;
+    white-space: nowrap;
+  }
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
   
   .menu-toggle { display: block; }
