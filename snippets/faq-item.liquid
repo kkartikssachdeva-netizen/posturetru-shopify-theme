@@ -1,11 +1,11 @@
 <div class="accordion-item">
-  <button class="accordion-header" aria-expanded="false" aria-controls="faq-{{ item.id }}">
-    {{ item.question }}
+  <button class="accordion-header" aria-expanded="false" aria-controls="faq-{{ id }}">
+    {{ question }}
     <span class="accordion-icon">+</span>
   </button>
-  <div id="faq-{{ item.id }}" class="accordion-content" role="region">
+  <div id="faq-{{ id }}" class="accordion-content" role="region">
     <div class="accordion-content-inner">
-      {{ item.answer }}
+      {{ answer }}
     </div>
   </div>
 </div>

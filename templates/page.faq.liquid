@@ -13,18 +13,15 @@
 
 <section class="section-padding">
   <div class="container">
-    {% capture faq_json %}{% render 'faq-data' %}{% endcapture %}
-    {% assign faq_items = faq_json | parse_json %}
+    {% include 'faq-data' %}
 
     <!-- About Category -->
     <div style="margin-bottom: 60px;">
       <h3 style="color: var(--color-primary); font-size: 24px; border-bottom: 2px solid var(--color-primary); padding-bottom: 10px; margin-bottom: 24px;">About PostureTru</h3>
       <div class="faq-accordion-container">
-        {% assign about_ids = "what-is,different,who" | split: "," %}
-        {% for id in about_ids %}
-          {% assign item = faq_items | where: "id", id | first %}
-          {% render 'faq-item', item: item %}
-        {% endfor %}
+        {% render 'faq-item', id: 'what-is', question: faq_q_what_is, answer: faq_a_what_is %}
+        {% render 'faq-item', id: 'different', question: faq_q_different, answer: faq_a_different %}
+        {% render 'faq-item', id: 'who', question: faq_q_who, answer: faq_a_who %}
       </div>
     </div>
 
@@ -32,11 +29,8 @@
     <div style="margin-bottom: 60px;">
       <h3 style="color: var(--color-primary); font-size: 24px; border-bottom: 2px solid var(--color-primary); padding-bottom: 10px; margin-bottom: 24px;">Results & How It Works</h3>
       <div class="faq-accordion-container">
-        {% assign works_ids = "results,vibration" | split: "," %}
-        {% for id in works_ids %}
-          {% assign item = faq_items | where: "id", id | first %}
-          {% render 'faq-item', item: item %}
-        {% endfor %}
+        {% render 'faq-item', id: 'results', question: faq_q_results, answer: faq_a_results %}
+        {% render 'faq-item', id: 'vibration', question: faq_q_vibration, answer: faq_a_vibration %}
       </div>
     </div>
 
@@ -44,11 +38,9 @@
     <div style="margin-bottom: 60px;">
       <h3 style="color: var(--color-primary); font-size: 24px; border-bottom: 2px solid var(--color-primary); padding-bottom: 10px; margin-bottom: 24px;">Comfort & Wearing</h3>
       <div class="faq-accordion-container">
-        {% assign wear_ids = "under-clothes,all-day-wear,care" | split: "," %}
-        {% for id in wear_ids %}
-          {% assign item = faq_items | where: "id", id | first %}
-          {% render 'faq-item', item: item %}
-        {% endfor %}
+        {% render 'faq-item', id: 'under-clothes', question: faq_q_under_clothes, answer: faq_a_under_clothes %}
+        {% render 'faq-item', id: 'all-day-wear', question: faq_q_all_day_wear, answer: faq_a_all_day_wear %}
+        {% render 'faq-item', id: 'care', question: faq_q_care, answer: faq_a_care %}
       </div>
     </div>
 
@@ -56,11 +48,9 @@
     <div>
       <h3 style="color: var(--color-primary); font-size: 24px; border-bottom: 2px solid var(--color-primary); padding-bottom: 10px; margin-bottom: 24px;">Shipping & Returns</h3>
       <div class="faq-accordion-container">
-        {% assign ship_ids = "shipping-time,international,returns" | split: "," %}
-        {% for id in ship_ids %}
-          {% assign item = faq_items | where: "id", id | first %}
-          {% render 'faq-item', item: item %}
-        {% endfor %}
+        {% render 'faq-item', id: 'shipping-time', question: faq_q_shipping_time, answer: faq_a_shipping_time %}
+        {% render 'faq-item', id: 'international', question: faq_q_international, answer: faq_a_international %}
+        {% render 'faq-item', id: 'returns', question: faq_q_returns, answer: faq_a_returns %}
       </div>
     </div>
 

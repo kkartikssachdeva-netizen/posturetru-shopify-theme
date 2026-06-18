@@ -6,13 +6,12 @@
     </div>
 
     <div class="faq-accordion-container">
-      {% capture faq_json %}{% render 'faq-data' %}{% endcapture %}
-      {% assign faq_items = faq_json | parse_json %}
-      {% assign accordion_ids = "results,under-clothes,all-day-wear,care,returns" | split: "," %}
-      {% for id in accordion_ids %}
-        {% assign item = faq_items | where: "id", id | first %}
-        {% render 'faq-item', item: item %}
-      {% endfor %}
+      {% include 'faq-data' %}
+      {% render 'faq-item', id: 'results', question: faq_q_results, answer: faq_a_results %}
+      {% render 'faq-item', id: 'under-clothes', question: faq_q_under_clothes, answer: faq_a_under_clothes %}
+      {% render 'faq-item', id: 'all-day-wear', question: faq_q_all_day_wear, answer: faq_a_all_day_wear %}
+      {% render 'faq-item', id: 'care', question: faq_q_care, answer: faq_a_care %}
+      {% render 'faq-item', id: 'returns', question: faq_q_returns, answer: faq_a_returns %}
     </div>
   </div>
 </section>
