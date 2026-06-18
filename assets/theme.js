@@ -209,6 +209,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Renders a small floating bar on mobile when scrolled past ATC section
   const atcSection = document.querySelector('.atc-section');
   if (atcSection) {
+    const productTitleEl = document.querySelector('.product-title');
+    const productPriceEl = document.querySelector('.price-current');
+    const productTitleText = productTitleEl ? productTitleEl.textContent.trim() : '';
+    const productPriceText = productPriceEl ? productPriceEl.textContent.trim() : '';
+
     const stickyBar = document.createElement('div');
     stickyBar.style.cssText = `
       position: fixed;
@@ -228,8 +233,8 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     stickyBar.innerHTML = `
       <div style="display:flex; align-items:center; gap:8px;">
-        <span style="font-weight:600; font-size:14px; font-family:var(--font-headings); color:var(--color-primary); display:block; max-width:140px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Smart Corrector Belt</span>
-        <span style="font-weight:700; color:var(--color-primary); font-size:16px;">$39.99</span>
+        <span style="font-weight:600; font-size:14px; font-family:var(--font-headings); color:var(--color-primary); display:block; max-width:140px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${productTitleText}</span>
+        <span style="font-weight:700; color:var(--color-primary); font-size:16px;">${productPriceText}</span>
       </div>
       <button id="stickyAtcBtn" class="btn btn-secondary" style="padding: 10px 20px; font-size: 14px; margin:0;">Buy Now</button>
     `;
