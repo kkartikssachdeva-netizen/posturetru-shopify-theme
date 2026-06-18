@@ -38,16 +38,12 @@
         "settings": {
           "title": "Built for Long Hours at the Desk",
           "subtitle": "Whether you're working, studying, coding, or gaming, PostureTru helps you stay aware of your posture throughout the day.",
-          "pillar_1_emoji": "⚡",
           "pillar_1_title": "Gentle Vibration. Real Awareness.",
           "pillar_1_text": "The moment you begin to slouch, PostureTru delivers a gentle vibration reminder. No apps. No distractions. Just real time posture awareness.",
-          "pillar_2_emoji": "🧠",
           "pillar_2_title": "Build Better Habits",
           "pillar_2_text": "Better posture starts with awareness. PostureTru provides immediate feedback when your posture begins to slip, helping you stay mindful throughout the day.",
-          "pillar_3_emoji": "🩹",
           "pillar_3_title": "Comfortable for Daily Wear",
           "pillar_3_text": "Lightweight and skin friendly, PostureTru sits comfortably against your upper back and can be worn discreetly under most clothing.",
-          "pillar_4_emoji": "🛡️",
           "pillar_4_title": "Try It Risk Free",
           "pillar_4_text": "Backed by our 30 Day Satisfaction Guarantee. If PostureTru isn't the right fit for you, contact us and we'll work to make it right."
         }
@@ -56,7 +52,7 @@
         "type": "product-preview",
         "settings": {
           "title": "The Smart Posture Corrector",
-          "description": "PostureTru isn't just a brace. It's your personal posture coach. Our smart magnetic posture belt combines the power of magnets with intelligent sensors to actively improve your body's muscle memory.",
+          "description": "PostureTru uses a precision gyroscope to detect when your posture begins to slip, then delivers a gentle vibration reminder. No straps, no restriction. Just consistent feedback that helps you build the habit of sitting upright on your own.",
           "cta_text": "Shop Now",
           "cta_link": "/products/posturetru"
         }
