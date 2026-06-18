@@ -1790,7 +1790,7 @@ textarea.form-control {
   .section-padding { padding: 60px 0; }
 
   .final-cta h2 {
-    font-size: 4vw;
+    font-size: 4.5vw;
     white-space: nowrap;
   }
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
