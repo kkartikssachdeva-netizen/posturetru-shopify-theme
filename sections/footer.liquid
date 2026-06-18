@@ -7,6 +7,14 @@
           Posture<span class="logo-accent">Tru</span>
         </a>
         <p>{{ section.settings.about_text | default: 'PostureTru is the smart posture corrector designed for remote workers. Stand straight. Feel better.' }}</p>
+        <div class="footer-social-links" style="display: flex; gap: 16px; margin-top: 20px;">
+          <a href="https://www.instagram.com/posture.tru" target="_blank" rel="noopener noreferrer" aria-label="PostureTru on Instagram, opens in a new tab" style="color: var(--color-white);">
+            {% render 'icon-instagram' %}
+          </a>
+          <a href="https://www.tiktok.com/@posture.tru" target="_blank" rel="noopener noreferrer" aria-label="PostureTru on TikTok, opens in a new tab" style="color: var(--color-white);">
+            {% render 'icon-tiktok' %}
+          </a>
+        </div>
       </div>
 
       <!-- Col 2: Navigation Links -->
