@@ -373,57 +373,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --- CONTACT FORM SUBMISSION ---
-  const contactForm = document.getElementById('contactForm');
-  const contactSuccess = document.getElementById('contactFormSuccess');
-  
-  if (contactForm && contactSuccess) {
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      
-      // Verify inputs
-      const name = contactForm.querySelector('input[type="text"]').value.trim();
-      const email = contactForm.querySelector('input[type="email"]').value.trim();
-      const message = contactForm.querySelector('textarea').value.trim();
-      
-      if (name === "" || email === "" || message === "") {
-        alert("Please fill in all fields.");
-        return;
-      }
-      
-      // Submit visual state
-      const submitBtn = contactForm.querySelector('button[type="submit"]');
-      const origText = submitBtn.textContent;
-      submitBtn.textContent = "Sending...";
-      submitBtn.style.pointerEvents = 'none';
-      submitBtn.style.opacity = '0.8';
-      
-      setTimeout(() => {
-        contactForm.reset();
-        submitBtn.textContent = origText;
-        submitBtn.style.pointerEvents = '';
-        submitBtn.style.opacity = '';
-        
-        contactForm.style.display = 'none';
-        contactSuccess.style.display = 'block';
-        contactSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }, 1000);
-    });
-  }
-
-  // --- FOOTER NEWSLETTER FORM ---
-  const newsletterForms = document.querySelectorAll('.newsletter-form');
-  newsletterForms.forEach(form => {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const input = form.querySelector('input');
-      if (input && input.value.trim() !== "") {
-        alert("Thank you for subscribing! Check your inbox for your 10% off code.");
-        input.value = "";
-      }
-    });
-  });
-
   // --- LOAD RENDER CHECKS ---
   updateCartBadges();
 });
