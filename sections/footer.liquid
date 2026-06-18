@@ -1,6 +1,6 @@
 <footer style="margin-top: auto;">
   <div class="footer-top">
-    <div class="container grid grid-3">
+    <div class="container grid grid-4">
       <!-- Col 1: About Brand -->
       <div class="footer-col">
         <a href="/" class="logo" style="color: var(--color-white); margin-bottom: 20px; display: inline-block;">
@@ -17,34 +17,35 @@
         </div>
       </div>
 
-      <!-- Col 2: Navigation Links -->
+      <!-- Col 2: Company -->
       <div class="footer-col">
-        <h4>Useful Links</h4>
+        <h4>Company</h4>
         <ul>
           <li><a href="/pages/about-us">About Us</a></li>
-          <li><a href="/pages/faq">FAQ</a></li>
+          <li><a href="/pages/about-us#mission">Our Mission</a></li>
           <li><a href="/pages/contact">Contact</a></li>
-          <li><a href="/policies/shipping-policy">Shipping Policy</a></li>
-          <li><a href="/policies/refund-policy">Refund Policy</a></li>
         </ul>
       </div>
 
-      <!-- Col 3: Contacts & Newsletter -->
+      <!-- Col 3: Support -->
       <div class="footer-col">
-        <h4>We're Here to Help</h4>
-        <p style="margin-bottom: 12px;"><strong>Email:</strong> support@posturetru.com</p>
-        <p><strong>Response Time:</strong> Within 24 hours</p>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="/pages/faq">FAQ</a></li>
+          <li><a href="/policies/shipping-policy">Shipping</a></li>
+          <li><a href="/policies/refund-policy">Returns</a></li>
+          <li><a href="/pages/track-order">Track Order</a></li>
+        </ul>
+      </div>
 
-        {% form 'customer', class: 'newsletter-form' %}
-          {% if form.posted_successfully? %}
-            <p style="color: var(--color-white); font-size: 13px;">Thanks for subscribing.</p>
-          {% else %}
-            <input type="hidden" name="contact[tags]" value="newsletter">
-            <input type="hidden" name="contact[accepts_marketing]" value="true">
-            <input type="email" name="contact[email]" class="newsletter-input" placeholder="Your email address" required aria-label="Newsletter email">
-            <button type="submit" class="newsletter-btn" aria-label="Subscribe to newsletter">Join</button>
-          {% endif %}
-        {% endform %}
+      <!-- Col 4: Legal -->
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="/policies/privacy-policy">Privacy Policy</a></li>
+          <li><a href="/policies/terms-of-service">Terms of Service</a></li>
+          <li><a href="/policies/refund-policy">Refund Policy</a></li>
+        </ul>
       </div>
     </div>
   </div>
