@@ -188,17 +188,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- PRODUCT PAGE INTERACTIVITY ---
   
-  // Sizing buttons Selection
-  let selectedSize = "Adjustable (One Size)";
-  const sizeBtns = document.querySelectorAll('.size-option-btn');
-  sizeBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      sizeBtns.forEach(b => b.classList.remove('active'));
-      e.target.classList.add('active');
-      selectedSize = e.target.dataset.size;
-    });
-  });
-
   // Quantity control buttons
   const qtyInput = document.getElementById('productQty');
   const qtyMinus = document.getElementById('qtyMinus');
@@ -215,94 +204,6 @@ document.addEventListener('DOMContentLoaded', () => {
       qtyInput.value = val + 1;
     });
   }
-
-  // Thumbnail selection carousel
-  const thumbBtns = document.querySelectorAll('.thumb-button');
-  const mainImageContainer = document.getElementById('mainImageContainer');
-  const gallerySVGMap = {
-    "main": `
-      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-        <rect width="100%" height="100%" fill="#F0F4F8"/>
-        <!-- Main Product Angle -->
-        <path d="M200,80 Q190,140 160,170 T150,260 L250,260 T240,170 Q210,140 200,80 Z" fill="#E8D8CD"/>
-        <circle cx="200" cy="80" r="30" fill="#E8D8CD"/>
-        <path d="M165,180 L235,180 L225,240 L175,240 Z" fill="#1B4965" stroke="#fff" stroke-width="2"/>
-        <path d="M165,180 Q145,150 170,140 T200,165" fill="none" stroke="#1B4965" stroke-width="8" stroke-linecap="round"/>
-        <path d="M235,180 Q255,150 230,140 T200,165" fill="none" stroke="#1B4965" stroke-width="8" stroke-linecap="round"/>
-        <rect x="185" y="195" width="30" height="35" rx="5" fill="#D4A574" stroke="#fff" stroke-width="1.5"/>
-        <circle cx="200" cy="212" r="5" fill="#5FB878"/>
-        <text x="200" y="320" font-family="Outfit" font-size="20" font-weight="bold" fill="#1B4965" text-anchor="middle">Front View</text>
-        <circle cx="178" cy="215" r="3" fill="#E74C3C"/><circle cx="178" cy="227" r="3" fill="#E74C3C"/><circle cx="222" cy="215" r="3" fill="#E74C3C"/><circle cx="222" cy="227" r="3" fill="#E74C3C"/>
-      </svg>
-    `,
-    "side": `
-      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-        <rect width="100%" height="100%" fill="#F0F4F8"/>
-        <!-- Side angle showing corrector profile -->
-        <path d="M180,80 Q205,150 175,260 L230,260 Q240,150 215,80 Z" fill="#E8D8CD"/>
-        <circle cx="198" cy="80" r="30" fill="#E8D8CD"/>
-        <!-- Side strap profile -->
-        <path d="M175,185 C190,185 205,190 200,210 C195,230 180,240 176,245" fill="none" stroke="#1B4965" stroke-width="8" stroke-linecap="round"/>
-        <!-- Smart sensor profile -->
-        <rect x="202" y="200" width="10" height="30" rx="3" fill="#D4A574" stroke="#fff" stroke-width="1"/>
-        <circle cx="207" cy="215" r="3" fill="#5FB878"/>
-        <text x="200" y="320" font-family="Outfit" font-size="20" font-weight="bold" fill="#1B4965" text-anchor="middle">Side Profile</text>
-      </svg>
-    `,
-    "onperson": `
-      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-        <rect width="100%" height="100%" fill="#F0F4F8"/>
-        <!-- Full-bodied silhouette showing alignment -->
-        <path d="M200,50 L200,350" stroke="#5FB878" stroke-width="2" stroke-dasharray="8,8" />
-        <circle cx="200" cy="90" r="25" fill="#E8D8CD"/>
-        <path d="M200,115 Q170,120 160,170 L240,170 Q230,120 200,115 Z" fill="#E8D8CD"/>
-        <path d="M160,170 Q150,230 165,300 L235,300 Q250,230 240,170 Z" fill="#E8D8CD"/>
-        <!-- Perfect alignment guide line -->
-        <path d="M165,180 L235,180 L225,245 L175,245 Z" fill="#1B4965" stroke="#5FB878" stroke-width="2"/>
-        <path d="M165,180 Q140,150 170,140 T200,165" fill="none" stroke="#1B4965" stroke-width="6"/>
-        <path d="M235,180 Q260,150 230,140 T200,165" fill="none" stroke="#1B4965" stroke-width="6"/>
-        <!-- Arrows indicating support -->
-        <path d="M130,180 L150,180 M145,175 L150,180 L145,185" stroke="#5FB878" stroke-width="3" fill="none"/>
-        <path d="M270,180 L250,180 M255,175 L250,180 L255,185" stroke="#5FB878" stroke-width="3" fill="none"/>
-        <text x="200" y="350" font-family="Outfit" font-size="18" font-weight="bold" fill="#1B4965" text-anchor="middle">Perfect Spinal Alignment</text>
-      </svg>
-    `,
-    "closeup": `
-      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-        <rect width="100%" height="100%" fill="#F0F4F8"/>
-        <!-- Zoomed section of back mesh + magnets -->
-        <rect x="50" y="50" width="300" height="300" rx="15" fill="#FFFFFF" stroke="#E8ECEB" stroke-width="4"/>
-        <!-- Breathable fabric pattern -->
-        <pattern id="meshPattern" width="10" height="10" patternUnits="userSpaceOnUse">
-          <circle cx="5" cy="5" r="1.5" fill="#E8ECEB"/>
-        </pattern>
-        <rect x="50" y="50" width="300" height="300" rx="15" fill="url(#meshPattern)"/>
-        <!-- Magnets in details -->
-        <circle cx="120" cy="120" r="15" fill="#C0392B" stroke="#fff" stroke-width="2"/>
-        <circle cx="120" cy="120" r="5" fill="#fff"/>
-        <circle cx="280" cy="120" r="15" fill="#C0392B" stroke="#fff" stroke-width="2"/>
-        <circle cx="280" cy="120" r="5" fill="#fff"/>
-        <circle cx="200" cy="200" r="25" fill="#1B4965" stroke="#fff" stroke-width="2"/>
-        <path d="M190,200 L210,200 M200,190 L200,210" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
-        <!-- Neoprene padding thickness illustration -->
-        <text x="200" y="310" font-family="Outfit" font-size="18" font-weight="bold" fill="#1B4965" text-anchor="middle">10x Therapeutic Nodes</text>
-      </svg>
-    `
-  };
-
-  thumbBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      const button = e.currentTarget;
-      thumbBtns.forEach(b => b.classList.remove('active'));
-      button.classList.add('active');
-      
-      const angle = button.dataset.angle;
-      if (mainImageContainer && gallerySVGMap[angle]) {
-        mainImageContainer.innerHTML = gallerySVGMap[angle];
-      }
-    });
-  });
-
 
   // --- STICKY ATC BAR ON SCROLL ---
   // Renders a small floating bar on mobile when scrolled past ATC section
