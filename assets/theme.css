@@ -1788,6 +1788,11 @@ textarea.form-control {
 
 @media (max-width: 768px) {
   .section-padding { padding: 60px 0; }
+
+  .final-cta h2 {
+    font-size: 4vw;
+    white-space: nowrap;
+  }
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
   
   .menu-toggle { display: block; }
