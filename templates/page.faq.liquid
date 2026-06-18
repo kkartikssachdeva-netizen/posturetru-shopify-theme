@@ -13,48 +13,18 @@
 
 <section class="section-padding">
   <div class="container">
+    {% capture faq_json %}{% render 'faq-data' %}{% endcapture %}
+    {% assign faq_items = faq_json | parse_json %}
 
     <!-- About Category -->
     <div style="margin-bottom: 60px;">
       <h3 style="color: var(--color-primary); font-size: 24px; border-bottom: 2px solid var(--color-primary); padding-bottom: 10px; margin-bottom: 24px;">About PostureTru</h3>
       <div class="faq-accordion-container">
-
-        <div class="accordion-item">
-          <button class="accordion-header" aria-expanded="false" aria-controls="faq-about-1">
-            What is PostureTru?
-            <span class="accordion-icon">+</span>
-          </button>
-          <div id="faq-about-1" class="accordion-content" role="region">
-            <div class="accordion-content-inner">
-              PostureTru is a posture awareness trainer designed for anyone who spends long hours at a desk. It uses a precision gyroscope to detect slouching in real time and delivers a gentle vibration reminder, helping you build the habit of noticing and adjusting your posture naturally.
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion-item">
-          <button class="accordion-header" aria-expanded="false" aria-controls="faq-about-2">
-            How is PostureTru different from other posture braces?
-            <span class="accordion-icon">+</span>
-          </button>
-          <div id="faq-about-2" class="accordion-content" role="region">
-            <div class="accordion-content-inner">
-              Most posture braces are uncomfortable and restrict movement. PostureTru is made from food grade silicone and uses a precision gyroscope with gentle vibration feedback that builds awareness instead of forcing your body into place.
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion-item">
-          <button class="accordion-header" aria-expanded="false" aria-controls="faq-about-3">
-            Who should use PostureTru?
-            <span class="accordion-icon">+</span>
-          </button>
-          <div id="faq-about-3" class="accordion-content" role="region">
-            <div class="accordion-content-inner">
-              Anyone who spends long hours sitting, including remote workers, students, programmers, and gamers. If you find yourself slouching without realizing it, PostureTru is for you.
-            </div>
-          </div>
-        </div>
-
+        {% assign about_ids = "what-is,different,who" | split: "," %}
+        {% for id in about_ids %}
+          {% assign item = faq_items | where: "id", id | first %}
+          {% render 'faq-item', item: item %}
+        {% endfor %}
       </div>
     </div>
 
@@ -62,31 +32,11 @@
     <div style="margin-bottom: 60px;">
       <h3 style="color: var(--color-primary); font-size: 24px; border-bottom: 2px solid var(--color-primary); padding-bottom: 10px; margin-bottom: 24px;">Results & How It Works</h3>
       <div class="faq-accordion-container">
-
-        <div class="accordion-item">
-          <button class="accordion-header" aria-expanded="false" aria-controls="faq-works-1">
-            How long before I see results?
-            <span class="accordion-icon">+</span>
-          </button>
-          <div id="faq-works-1" class="accordion-content" role="region">
-            <div class="accordion-content-inner">
-              Most people start noticing the reminders working within the first few days. Many find better posture becoming a more natural habit within 2 to 4 weeks of consistent use.
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion-item">
-          <button class="accordion-header" aria-expanded="false" aria-controls="faq-works-2">
-            How does the vibration feedback work?
-            <span class="accordion-icon">+</span>
-          </button>
-          <div id="faq-works-2" class="accordion-content" role="region">
-            <div class="accordion-content-inner">
-              Sensors detect when you start to slouch and send a gentle vibration alert. Over time, your body learns to associate slouching with the alert, creating new posture habits.
-            </div>
-          </div>
-        </div>
-
+        {% assign works_ids = "results,vibration" | split: "," %}
+        {% for id in works_ids %}
+          {% assign item = faq_items | where: "id", id | first %}
+          {% render 'faq-item', item: item %}
+        {% endfor %}
       </div>
     </div>
 
@@ -94,43 +44,11 @@
     <div style="margin-bottom: 60px;">
       <h3 style="color: var(--color-primary); font-size: 24px; border-bottom: 2px solid var(--color-primary); padding-bottom: 10px; margin-bottom: 24px;">Comfort & Wearing</h3>
       <div class="faq-accordion-container">
-
-        <div class="accordion-item">
-          <button class="accordion-header" aria-expanded="false" aria-controls="faq-wear-1">
-            Will it show under my clothes?
-            <span class="accordion-icon">+</span>
-          </button>
-          <div id="faq-wear-1" class="accordion-content" role="region">
-            <div class="accordion-content-inner">
-              No. PostureTru has a slim profile and is designed to fit comfortably under any shirt or sweater, sitting discreetly on your upper back.
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion-item">
-          <button class="accordion-header" aria-expanded="false" aria-controls="faq-wear-2">
-            Is it comfortable for all day wear?
-            <span class="accordion-icon">+</span>
-          </button>
-          <div id="faq-wear-2" class="accordion-content" role="region">
-            <div class="accordion-content-inner">
-              Yes. PostureTru is made from food grade silicone that is soft, skin friendly, and lightweight at just 70g. No straps, no restriction. Many people forget they are wearing it after the first few days.
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion-item">
-          <button class="accordion-header" aria-expanded="false" aria-controls="faq-wear-3">
-            How do I care for it?
-            <span class="accordion-icon">+</span>
-          </button>
-          <div id="faq-wear-3" class="accordion-content" role="region">
-            <div class="accordion-content-inner">
-              Hand wash gently with mild soap and let it air dry. Avoid machine washing.
-            </div>
-          </div>
-        </div>
-
+        {% assign wear_ids = "under-clothes,all-day-wear,care" | split: "," %}
+        {% for id in wear_ids %}
+          {% assign item = faq_items | where: "id", id | first %}
+          {% render 'faq-item', item: item %}
+        {% endfor %}
       </div>
     </div>
 
@@ -138,43 +56,11 @@
     <div>
       <h3 style="color: var(--color-primary); font-size: 24px; border-bottom: 2px solid var(--color-primary); padding-bottom: 10px; margin-bottom: 24px;">Shipping & Returns</h3>
       <div class="faq-accordion-container">
-
-        <div class="accordion-item">
-          <button class="accordion-header" aria-expanded="false" aria-controls="faq-ship-1">
-            How long does shipping take?
-            <span class="accordion-icon">+</span>
-          </button>
-          <div id="faq-ship-1" class="accordion-content" role="region">
-            <div class="accordion-content-inner">
-              We offer free shipping to Canada, Australia, the UK, and New Zealand. Delivery times are 8 to 14 business days for Canada, 7 to 14 for Australia, 6 to 11 for the UK, and 6 to 12 for New Zealand. Processing takes 1 to 2 business days before your order ships.
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion-item">
-          <button class="accordion-header" aria-expanded="false" aria-controls="faq-ship-2">
-            Do you ship internationally?
-            <span class="accordion-icon">+</span>
-          </button>
-          <div id="faq-ship-2" class="accordion-content" role="region">
-            <div class="accordion-content-inner">
-              We currently ship to Canada, Australia, the UK, and New Zealand. We do not ship to the United States at this time. Contact us for inquiries about other destinations.
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion-item">
-          <button class="accordion-header" aria-expanded="false" aria-controls="faq-ship-3">
-            What's your return policy?
-            <span class="accordion-icon">+</span>
-          </button>
-          <div id="faq-ship-3" class="accordion-content" role="region">
-            <div class="accordion-content-inner">
-              We offer a 30 day money back guarantee. If you're not satisfied, you can return it within 30 days for a full refund.
-            </div>
-          </div>
-        </div>
-
+        {% assign ship_ids = "shipping-time,international,returns" | split: "," %}
+        {% for id in ship_ids %}
+          {% assign item = faq_items | where: "id", id | first %}
+          {% render 'faq-item', item: item %}
+        {% endfor %}
       </div>
     </div>
 

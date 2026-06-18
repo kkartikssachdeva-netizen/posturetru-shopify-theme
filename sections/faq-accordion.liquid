@@ -6,70 +6,13 @@
     </div>
 
     <div class="faq-accordion-container">
-      <!-- Item 1 -->
-      <div class="accordion-item">
-        <button class="accordion-header" aria-expanded="false" aria-controls="faq-ans-1">
-          How long before I see results?
-          <span class="accordion-icon">+</span>
-        </button>
-        <div id="faq-ans-1" class="accordion-content" role="region">
-          <div class="accordion-content-inner">
-            Most people start noticing the reminders working within the first few days. Many find better posture becoming a more natural habit within 2 to 4 weeks of consistent use.
-          </div>
-        </div>
-      </div>
-
-      <!-- Item 2 -->
-      <div class="accordion-item">
-        <button class="accordion-header" aria-expanded="false" aria-controls="faq-ans-2">
-          Will it show under my clothes?
-          <span class="accordion-icon">+</span>
-        </button>
-        <div id="faq-ans-2" class="accordion-content" role="region">
-          <div class="accordion-content-inner">
-            No. PostureTru has a slim profile and is designed to fit comfortably under any shirt or sweater, sitting discreetly on your upper back.
-          </div>
-        </div>
-      </div>
-
-      <!-- Item 3 -->
-      <div class="accordion-item">
-        <button class="accordion-header" aria-expanded="false" aria-controls="faq-ans-3">
-          Is it comfortable for all day wear?
-          <span class="accordion-icon">+</span>
-        </button>
-        <div id="faq-ans-3" class="accordion-content" role="region">
-          <div class="accordion-content-inner">
-            Yes. PostureTru is made from food grade silicone that is soft, skin friendly, and lightweight at just 70g. No straps, no restriction. Many people forget they are wearing it after the first few days.
-          </div>
-        </div>
-      </div>
-
-      <!-- Item 4 -->
-      <div class="accordion-item">
-        <button class="accordion-header" aria-expanded="false" aria-controls="faq-ans-4">
-          How do I care for it?
-          <span class="accordion-icon">+</span>
-        </button>
-        <div id="faq-ans-4" class="accordion-content" role="region">
-          <div class="accordion-content-inner">
-            Hand wash gently with mild soap and let it air dry. Avoid machine washing.
-          </div>
-        </div>
-      </div>
-
-      <!-- Item 5 -->
-      <div class="accordion-item">
-        <button class="accordion-header" aria-expanded="false" aria-controls="faq-ans-5">
-          What's your return policy?
-          <span class="accordion-icon">+</span>
-        </button>
-        <div id="faq-ans-5" class="accordion-content" role="region">
-          <div class="accordion-content-inner">
-            We offer a 30 day money back guarantee. If you're not satisfied, you can return it within 30 days for a full refund.
-          </div>
-        </div>
-      </div>
+      {% capture faq_json %}{% render 'faq-data' %}{% endcapture %}
+      {% assign faq_items = faq_json | parse_json %}
+      {% assign accordion_ids = "results,under-clothes,all-day-wear,care,returns" | split: "," %}
+      {% for id in accordion_ids %}
+        {% assign item = faq_items | where: "id", id | first %}
+        {% render 'faq-item', item: item %}
+      {% endfor %}
     </div>
   </div>
 </section>
