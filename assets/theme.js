@@ -242,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     window.addEventListener('scroll', () => {
       const atcPos = atcSection.getBoundingClientRect().bottom;
-      if (atcPos < 0 && window.innerWidth < 768) {
+      if (atcPos < 0) {
         stickyBar.style.transform = 'translateY(0)';
       } else {
         stickyBar.style.transform = 'translateY(100%)';
