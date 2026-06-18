@@ -839,7 +839,7 @@ footer {
 .product-pricing {
   display: flex;
   align-items: baseline;
-  gap: 0;
+  gap: 6px;
   margin-bottom: 24px;
 }
 
