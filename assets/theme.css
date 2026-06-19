@@ -1898,6 +1898,20 @@ textarea.form-control {
   color: var(--color-text-primary) !important;
 }
 
+/* --- True line: section divider --- */
+.true-line-divider {
+  width: 1px;
+  height: 48px;
+  margin: 0 auto;
+  background-color: #C5BEB2;
+}
+
+@media (max-width: 768px) {
+  .true-line-divider {
+    display: none;
+  }
+}
+
 /* --- Scroll reveal motion (calm, restrained) --- */
 html {
   scroll-behavior: smooth;
