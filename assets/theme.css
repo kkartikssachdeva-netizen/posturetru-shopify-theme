@@ -240,7 +240,7 @@ header {
 }
 
 .logo-accent {
-  color: var(--color-secondary);
+  color: #3a7d52;
 }
 
 .nav-menu {
@@ -337,7 +337,7 @@ header {
 }
 
 .hero-tagline {
-  color: var(--color-secondary);
+  color: var(--color-primary);
   font-family: var(--font-headings);
   font-weight: var(--fw-eyebrow);
   font-size: var(--fs-eyebrow);
