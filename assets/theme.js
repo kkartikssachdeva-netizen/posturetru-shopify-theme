@@ -292,3 +292,58 @@ styleSheet.innerText = `
   }
 `;
 document.head.appendChild(styleSheet);
+
+// --- SCROLL REVEAL MOTION (calm, additive) ---
+(function () {
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion || !('IntersectionObserver' in window)) return;
+
+  function initReveal() {
+    var selectors = [
+      '.section-header',
+      '.product-preview-content',
+      '.product-preview-img-container',
+      '.pillar-card',
+      '.final-cta .container',
+      '.about-section',
+      '.specs-layout',
+      '.contact-layout',
+      '.features-list',
+      '.faq-accordion-container'
+    ];
+    var nodes = document.querySelectorAll(selectors.join(','));
+    if (!nodes.length) return;
+
+    var viewportH = window.innerHeight || document.documentElement.clientHeight;
+    var toObserve = [];
+    nodes.forEach(function (el) {
+      // Skip anything already in view on load so it never flashes
+      if (el.getBoundingClientRect().top < viewportH * 0.85) return;
+      el.classList.add('reveal-item');
+      toObserve.push(el);
+    });
+    if (!toObserve.length) return;
+
+    var observer = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        el.classList.add('is-visible');
+        obs.unobserve(el);
+        // Strip the reveal classes after the animation so hover transitions stay untouched
+        window.setTimeout(function () {
+          el.classList.remove('reveal-item');
+          el.classList.remove('is-visible');
+        }, 1100);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+    toObserve.forEach(function (el) { observer.observe(el); });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initReveal);
+  } else {
+    initReveal();
+  }
+})();
