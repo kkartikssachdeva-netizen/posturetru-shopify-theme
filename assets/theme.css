@@ -19,8 +19,8 @@
   --color-border: #E8ECEB;
   --color-white: #FFFFFF;
   
-  --font-headings: 'Inter', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  --font-headings: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   
   --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --border-radius-sm: 4px;
