@@ -574,11 +574,7 @@ header {
 
 /* Final CTA Section */
 .final-cta {
-  background:
-    radial-gradient(40% 60% at 12% 5%, rgba(205, 228, 255, 0.20) 0%, transparent 60%),
-    radial-gradient(42% 62% at 88% 12%, rgba(140, 165, 255, 0.16) 0%, transparent 60%),
-    radial-gradient(45% 55% at 82% 100%, rgba(110, 225, 215, 0.12) 0%, transparent 60%),
-    linear-gradient(135deg, var(--color-primary) 0%, #0F2D3F 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, #0F2D3F 100%);
   color: var(--color-white);
   text-align: center;
 }
