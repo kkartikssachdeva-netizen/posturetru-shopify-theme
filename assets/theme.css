@@ -33,8 +33,8 @@
   --max-width: 1200px;
 
   /* Typography Scale */
-  --fs-body: 16px;
-  --lh-body: 1.6;
+  --fs-body: 14px;
+  --lh-body: 1.7;
   --fs-nav: 13px;
   --ls-nav: 0.01em;
   --fs-eyebrow: 11px;
@@ -352,12 +352,12 @@ header {
 }
 
 .hero-title {
-  font-size: clamp(38px, 6vw, 84px);
+  font-size: clamp(24px, 2.5vw, 32px);
   margin-bottom: 24px;
 }
 
 .hero-subheading {
-  font-size: 17px;
+  font-size: 15px;
   color: var(--color-text-secondary);
   margin-bottom: 40px;
   line-height: 1.6;
