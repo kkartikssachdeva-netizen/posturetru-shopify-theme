@@ -171,7 +171,6 @@ ul {
   background-color: var(--color-white);
   color: var(--color-primary);
   border-color: var(--color-primary);
-  transform: translateY(-2px);
 }
 
 .btn-secondary {
@@ -183,7 +182,6 @@ ul {
   background-color: var(--color-white);
   color: var(--color-secondary);
   border-color: var(--color-secondary);
-  transform: translateY(-2px);
 }
 
 .btn-outline {
@@ -195,7 +193,6 @@ ul {
 .btn-outline:hover {
   background-color: var(--color-primary);
   color: var(--color-white);
-  transform: translateY(-2px);
 }
 
 .btn-full {
@@ -429,7 +426,6 @@ header {
 }
 
 .pillar-card:hover {
-  transform: translateY(-5px);
   box-shadow: var(--box-shadow-hover);
 }
 
