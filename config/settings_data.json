@@ -10,7 +10,7 @@
 {
   "current": {
     "color_primary": "#1B4965",
-    "color_secondary": "#1B4965",
+    "color_secondary": "#5FB878",
     "color_accent": "#D4A574",
     "color_bg": "#FFFFFF",
     "color_text_primary": "#2C3E50",
@@ -86,7 +86,7 @@
   "presets": {
     "Default": {
       "color_primary": "#1B4965",
-      "color_secondary": "#1B4965",
+      "color_secondary": "#5FB878",
       "color_accent": "#D4A574",
       "color_bg": "#FFFFFF",
       "color_text_primary": "#2C3E50",
