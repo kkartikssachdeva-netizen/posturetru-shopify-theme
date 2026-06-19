@@ -9,14 +9,14 @@
 :root {
   --color-primary: #1B4965;       /* Trust Blue */
   --color-primary-rgb: 27, 73, 101;
-  --color-secondary: #5FB878;     /* Wellness Green */
-  --color-secondary-rgb: 95, 184, 120;
+  --color-secondary: #1B4965;     /* folded into brand teal */
+  --color-secondary-rgb: 27, 73, 101;
   --color-accent: #D4A574;        /* Gold Accent */
   --color-bg: #FFFFFF;
   --color-text-primary: #2C3E50;  /* Dark Charcoal */
   --color-text-secondary: #7F8C8D;/* Light Gray */
-  --color-bg-light: #F8FAF9;
-  --color-border: #E8ECEB;
+  --color-bg-light: #F6F5F2;
+  --color-border: #E7E4DE;
   --color-white: #FFFFFF;
   
   --font-headings: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -215,7 +215,7 @@ ul {
 }
 
 .badge-success {
-  background-color: rgba(95, 184, 120, 0.1);
+  background-color: rgba(27, 73, 101, 0.08);
   color: var(--color-secondary);
 }
 
@@ -610,7 +610,7 @@ header {
 footer {
   background-color: var(--color-primary);
   color: var(--color-white);
-  border-top: 5px solid var(--color-accent);
+  border-top: 1px solid var(--color-accent);
 }
 
 .footer-top {
@@ -1043,7 +1043,7 @@ footer {
   font-family: var(--font-headings);
   font-size: 32px;
   font-weight: 800;
-  color: rgba(95, 184, 120, 0.2);
+  color: rgba(27, 73, 101, 0.16);
   margin-bottom: 16px;
 }
 
@@ -1203,13 +1203,13 @@ footer {
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  background-color: rgba(95, 184, 120, 0.08);
+  background-color: rgba(27, 73, 101, 0.07);
   color: var(--color-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 16px;
-  border: 1px dashed var(--color-secondary);
+  border: 1px solid var(--color-border);
 }
 
 .guarantee-item h4 {
@@ -1287,7 +1287,7 @@ footer {
 .reviewer-verified {
   color: var(--color-secondary);
   font-size: 12px;
-  background-color: rgba(95, 184, 120, 0.1);
+  background-color: rgba(27, 73, 101, 0.08);
   padding: 2px 8px;
   border-radius: 20px;
   font-weight: 500;
@@ -1467,7 +1467,7 @@ textarea.form-control {
 
 .form-success-msg {
   display: none;
-  background-color: rgba(95, 184, 120, 0.1);
+  background-color: rgba(27, 73, 101, 0.08);
   border: 1px solid var(--color-secondary);
   color: var(--color-secondary);
   padding: 16px;
