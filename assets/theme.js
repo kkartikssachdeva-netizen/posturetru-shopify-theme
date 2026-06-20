@@ -329,13 +329,12 @@ document.head.appendChild(styleSheet);
         var el = entry.target;
         el.classList.add('is-visible');
         obs.unobserve(el);
-        // Strip the reveal classes after the animation so hover transitions stay untouched
         window.setTimeout(function () {
           el.classList.remove('reveal-item');
           el.classList.remove('is-visible');
         }, 1100);
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    }, { threshold: 0.04, rootMargin: '0px 0px 0px 0px' });
 
     toObserve.forEach(function (el) { observer.observe(el); });
   }
