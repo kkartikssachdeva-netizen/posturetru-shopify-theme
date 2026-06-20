@@ -222,15 +222,18 @@ ul {
 
 /* Header & Navigation */
 header {
-  height: var(--header-height);
-  border-bottom: 1px solid var(--color-border);
   position: sticky;
   top: 0;
-  background-color: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
   z-index: 100;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(199, 192, 182, 0.45);
+  height: var(--header-height);
   display: flex;
   align-items: center;
+  transition: background 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .logo {
@@ -1869,17 +1872,29 @@ textarea.form-control {
 
 /* Hero merged header overrides */
 .hero-header {
-  position: absolute !important;
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 80px;
+  right: 0;
+  z-index: 100;
+  height: var(--header-height);
   display: flex;
   align-items: center;
-  z-index: 50;
-  background: transparent !important;
-  border-bottom: none !important;
-  box-shadow: none !important;
+  background: transparent;
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  border-bottom: 1px solid transparent;
+  transition: background 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              backdrop-filter 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              -webkit-backdrop-filter 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero-header.scrolled {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(199, 192, 182, 0.45);
 }
 
 .hero-header .logo {

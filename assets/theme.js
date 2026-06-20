@@ -281,6 +281,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- LOAD RENDER CHECKS ---
   updateCartBadges();
+
+  // --- HERO NAV FROSTED GLASS ON SCROLL ---
+  const heroHeader = document.querySelector('.hero-header');
+  if (heroHeader) {
+    const onScroll = () => {
+      if (window.scrollY > 12) {
+        heroHeader.classList.add('scrolled');
+      } else {
+        heroHeader.classList.remove('scrolled');
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
 });
 
 // Helper Loader Keyframes added in JS dynamically
