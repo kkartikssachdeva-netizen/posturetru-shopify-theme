@@ -215,22 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const productPriceText = productPriceEl ? productPriceEl.textContent.trim() : '';
 
     const stickyBar = document.createElement('div');
-    stickyBar.style.cssText = `
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: #fff;
-      padding: 12px 16px;
-      box-shadow: 0 -4px 15px rgba(0,0,0,0.08);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 99;
-      transform: translateY(100%);
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      border-top: 1px solid var(--color-border);
-    `;
+    stickyBar.className = 'sticky-atc-bar';
     stickyBar.innerHTML = `
       <div style="display:flex; align-items:center; gap:8px;">
         <span style="font-weight:600; font-size:14px; font-family:var(--font-headings); color:var(--color-primary); display:block; max-width:140px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${productTitleText}</span>
@@ -243,11 +228,11 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', () => {
       const atcPos = atcSection.getBoundingClientRect().bottom;
       if (atcPos < 0) {
-        stickyBar.style.transform = 'translateY(0)';
+        stickyBar.classList.add('visible');
       } else {
-        stickyBar.style.transform = 'translateY(100%)';
+        stickyBar.classList.remove('visible');
       }
-    });
+    }, { passive: true });
 
     const stickyAtcBtn = document.getElementById('stickyAtcBtn');
     if (stickyAtcBtn) {
