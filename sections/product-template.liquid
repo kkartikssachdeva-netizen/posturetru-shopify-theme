@@ -83,7 +83,6 @@
         </div>
         
         <div class="payment-buttons-wrap">
-          <div class="payment-divider"><span>or</span></div>
           {% form 'product', product, id: 'product-form-payment' %}
             <input type="hidden" name="id" value="{{ product.variants.first.id }}">
             <input type="hidden" name="quantity" value="1">
