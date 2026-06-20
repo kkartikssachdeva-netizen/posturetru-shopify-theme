@@ -1472,13 +1472,13 @@ footer {
   height: auto;
 }
 
-.contact-sub-break {
-  display: none;
+.contact-sub-line {
+  display: inline;
 }
 
 @media (max-width: 600px) {
-  .contact-sub-break {
-    display: inline;
+  .contact-sub-line {
+    display: block;
   }
 }
 
