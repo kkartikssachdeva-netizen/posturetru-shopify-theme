@@ -1982,6 +1982,24 @@ html {
 .reveal-item.pillar-card:nth-child(3) { transition-delay: 0.16s; }
 .reveal-item.pillar-card:nth-child(4) { transition-delay: 0.24s; }
 
+.reveal-item.feature-item:nth-child(2) { transition-delay: 0.08s; }
+.reveal-item.feature-item:nth-child(3) { transition-delay: 0.16s; }
+.reveal-item.feature-item:nth-child(4) { transition-delay: 0.24s; }
+.reveal-item.feature-item:nth-child(5) { transition-delay: 0.32s; }
+
+.reveal-item.benefit-card:nth-child(2) { transition-delay: 0.08s; }
+.reveal-item.benefit-card:nth-child(3) { transition-delay: 0.16s; }
+.reveal-item.benefit-card:nth-child(4) { transition-delay: 0.24s; }
+
+.reveal-item.guarantee-item:nth-child(2) { transition-delay: 0.08s; }
+.reveal-item.guarantee-item:nth-child(3) { transition-delay: 0.16s; }
+.reveal-item.guarantee-item:nth-child(4) { transition-delay: 0.24s; }
+
+.reveal-item.faq-item:nth-child(2) { transition-delay: 0.06s; }
+.reveal-item.faq-item:nth-child(3) { transition-delay: 0.12s; }
+.reveal-item.faq-item:nth-child(4) { transition-delay: 0.18s; }
+.reveal-item.faq-item:nth-child(5) { transition-delay: 0.24s; }
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

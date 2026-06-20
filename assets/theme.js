@@ -308,7 +308,11 @@ document.head.appendChild(styleSheet);
       '.specs-layout',
       '.contact-layout',
       '.features-list',
-      '.faq-accordion-container'
+      '.faq-accordion-container',
+      '.feature-item',
+      '.benefit-card',
+      '.guarantee-item',
+      '.faq-item'
     ];
     var nodes = document.querySelectorAll(selectors.join(','));
     if (!nodes.length) return;
