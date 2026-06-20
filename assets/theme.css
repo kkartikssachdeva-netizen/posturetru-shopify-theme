@@ -1114,9 +1114,27 @@ footer {
   border-bottom: none;
 }
 
+.specs-table tr:nth-child(even) {
+  background-color: var(--color-bg-light);
+}
+
 .specs-table td {
-  padding: 16px 0;
+  padding: 14px 12px;
   font-size: var(--fs-body);
+}
+
+.specs-table tr:nth-child(even) td:first-child {
+  border-radius: var(--border-radius-sm) 0 0 var(--border-radius-sm);
+}
+
+.specs-table tr:nth-child(even) td:last-child {
+  border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+}
+
+@media (max-width: 768px) {
+  .specs-table td {
+    padding: 12px 10px;
+  }
 }
 
 .specs-label {
