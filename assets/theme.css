@@ -1941,6 +1941,23 @@ textarea.form-control {
   height: 40px !important;
 }
 
+.payment-buttons-wrap .shopify-payment-button__more-options {
+  display: block;
+  margin-top: 14px;
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  text-align: center;
+  letter-spacing: 0.03em;
+  opacity: 0.75;
+  transition: opacity 0.3s ease;
+}
+
+.payment-buttons-wrap .shopify-payment-button__more-options:hover {
+  opacity: 1;
+  text-decoration: none;
+}
+
 .payment-divider {
   display: flex;
   align-items: center;
