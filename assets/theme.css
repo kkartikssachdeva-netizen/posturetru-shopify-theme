@@ -1915,6 +1915,32 @@ textarea.form-control {
   margin-top: 16px;
 }
 
+.payment-buttons-wrap .shopify-payment-button {
+  display: flex;
+  justify-content: center;
+}
+
+.payment-buttons-wrap .shopify-payment-button__button {
+  max-width: 280px !important;
+  min-width: unset !important;
+  width: auto !important;
+  padding: 10px 28px !important;
+  font-size: 13px !important;
+  border-radius: 6px !important;
+  min-height: unset !important;
+  height: 40px !important;
+  opacity: 0.9;
+}
+
+.payment-buttons-wrap .shopify-payment-button__button:hover {
+  opacity: 1;
+}
+
+.payment-buttons-wrap .shopify-payment-button__button--unbranded {
+  max-width: 280px !important;
+  height: 40px !important;
+}
+
 .payment-divider {
   display: flex;
   align-items: center;
