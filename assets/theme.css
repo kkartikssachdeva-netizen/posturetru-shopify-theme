@@ -1475,8 +1475,12 @@ footer {
 /* POLICY PAGES */
 .policy-hero {
   background-color: var(--color-bg-light);
-  padding: 80px 0;
+  padding: 80px 0 100px;
   text-align: center;
+}
+
+.policy-content {
+  padding-top: 40px;
 }
 
 .policy-hero h1 {
