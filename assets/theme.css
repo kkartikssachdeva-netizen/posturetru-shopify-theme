@@ -1472,6 +1472,16 @@ footer {
   height: auto;
 }
 
+.contact-sub-break {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .contact-sub-break {
+    display: inline;
+  }
+}
+
 /* POLICY SYSTEM PAGES (Shopify default layout) */
 .shopify-policy__title {
   margin-bottom: 23px !important;
