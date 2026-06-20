@@ -73,15 +73,24 @@
             <button id="qtyPlus" class="qty-btn" aria-label="Increase Quantity">+</button>
           </div>
           
-          <form action="/cart/add" method="post">
-  <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-  <input type="hidden" name="quantity" value="1">
-  <button type="submit" class="btn btn-secondary btn-full" style="flex: 1; margin:0;">
-    Add to Cart
-  </button>
-</form>
+          {% form 'product', product, id: 'product-form-main' %}
+            <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+            <input type="hidden" name="quantity" value="1">
+            <button type="submit" class="btn btn-secondary btn-full" style="flex: 1; margin:0;">
+              Add to Cart
+            </button>
+          {% endform %}
         </div>
         
+        <div class="payment-buttons-wrap">
+          <div class="payment-divider"><span>or</span></div>
+          {% form 'product', product, id: 'product-form-payment' %}
+            <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+            <input type="hidden" name="quantity" value="1">
+            {{ form | payment_button }}
+          {% endform %}
+        </div>
+
         <div class="shipping-promo-box">
           {% render 'icon-truck' %}
           <div class="shipping-promo-text">

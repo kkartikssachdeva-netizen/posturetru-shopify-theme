@@ -1913,6 +1913,34 @@ textarea.form-control {
   color: var(--color-text-primary) !important;
 }
 
+/* --- Accelerated payment buttons --- */
+.payment-buttons-wrap {
+  margin-top: 16px;
+}
+
+.payment-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  color: var(--color-text-secondary);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.payment-divider::before,
+.payment-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+.payment-divider span {
+  flex-shrink: 0;
+}
+
 /* --- Sticky ATC bar: frosted glass --- */
 .sticky-atc-bar {
   position: fixed;
