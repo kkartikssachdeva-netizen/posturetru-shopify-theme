@@ -1472,6 +1472,17 @@ footer {
   height: auto;
 }
 
+/* POLICY SYSTEM PAGES (Shopify default layout) */
+.shopify-policy__title {
+  margin-bottom: 50px !important;
+  padding-bottom: 30px;
+}
+
+.shopify-policy__body p {
+  margin-bottom: 24px !important;
+  line-height: 1.9;
+}
+
 /* POLICY PAGES */
 .policy-hero {
   background-color: var(--color-bg-light);
