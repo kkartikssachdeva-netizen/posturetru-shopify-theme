@@ -312,7 +312,10 @@ document.head.appendChild(styleSheet);
       '.feature-item',
       '.benefit-card',
       '.guarantee-item',
-      '.faq-item'
+      '.faq-item',
+      '.contact-method-item',
+      '.contact-form-card',
+      '.contact-info-block'
     ];
     var nodes = document.querySelectorAll(selectors.join(','));
     if (!nodes.length) return;
