@@ -356,10 +356,11 @@ header {
 }
 
 .hero-subheading {
-  font-size: 15px;
+  font-size: var(--fs-body);
   color: var(--color-text-secondary);
   margin-bottom: 40px;
   line-height: 1.6;
+  max-width: 480px;
 }
 
 .hero-img-container {
