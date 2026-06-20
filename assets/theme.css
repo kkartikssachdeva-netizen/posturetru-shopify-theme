@@ -244,7 +244,7 @@ header {
 }
 
 .logo-accent {
-  color: #3a7d52;
+  color: var(--color-primary);
 }
 
 .nav-menu {
