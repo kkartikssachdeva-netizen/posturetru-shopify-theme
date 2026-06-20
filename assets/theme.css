@@ -474,6 +474,12 @@ header {
   justify-content: center;
 }
 
+@media (max-width: 768px) {
+  .product-preview-content {
+    padding-top: 8px;
+  }
+}
+
 .product-preview-content h2 {
   margin-bottom: 20px;
 }
