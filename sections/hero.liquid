@@ -17,7 +17,6 @@
       </a>
 
       <nav class="nav-menu" aria-label="Main Navigation">
-        <a href="/" class="nav-link hero-nav-link {% if request.path == '/' %}active{% endif %}">Home</a>
         <a href="/products/posturetru" class="nav-link hero-nav-link">Shop</a>
         <a href="/pages/about-us" class="nav-link hero-nav-link {% if request.path contains '/about-us' %}active{% endif %}">About</a>
         <a href="/pages/faq" class="nav-link hero-nav-link {% if request.path contains '/faq' %}active{% endif %}">FAQ</a>
@@ -70,7 +69,6 @@
     <button id="closeMenuBtn" class="close-drawer-btn" aria-label="Close Navigation Menu">&times;</button>
   </div>
   <nav class="mobile-nav-links" aria-label="Mobile Navigation">
-    <a href="/" class="mobile-nav-link {% if request.path == '/' %}active{% endif %}">Home</a>
     <a href="/products/posturetru" class="mobile-nav-link">Shop</a>
     <a href="/pages/about-us" class="mobile-nav-link {% if request.path contains '/about-us' %}active{% endif %}">About</a>
     <a href="/pages/faq" class="mobile-nav-link {% if request.path contains '/faq' %}active{% endif %}">FAQ</a>
