@@ -1510,9 +1510,19 @@ footer {
 
 .policy-content p {
   font-size: 15px;
-  line-height: 1.8;
+  line-height: 1.9;
   color: var(--color-text-primary);
-  margin-bottom: 20px;
+  margin: 0 0 22px 0 !important;
+}
+
+.policy-content p:empty {
+  display: none;
+}
+
+.policy-content br {
+  display: block;
+  content: "";
+  margin-top: 14px;
 }
 
 .policy-content ul,
