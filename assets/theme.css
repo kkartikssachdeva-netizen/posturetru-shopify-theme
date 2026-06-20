@@ -599,11 +599,6 @@ header {
   border: 1.5px solid rgba(255, 255, 255, 0.5) !important;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  padding: 16px 48px;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
 }
 
 .final-cta-btn:hover {
