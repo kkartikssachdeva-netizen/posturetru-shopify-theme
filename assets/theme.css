@@ -594,22 +594,22 @@ header {
 }
 
 .final-cta-btn {
-  background-color: rgba(255, 255, 255, 0.18);
-  color: var(--color-white);
-  border: 1.5px solid rgba(255, 255, 255, 0.55);
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: var(--color-white) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.5) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   padding: 16px 48px;
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
 }
 
 .final-cta-btn:hover {
-  background-color: rgba(255, 255, 255, 0.28);
-  border-color: rgba(255, 255, 255, 0.8);
-  color: var(--color-white);
+  background-color: rgba(255, 255, 255, 0.28) !important;
+  border-color: rgba(255, 255, 255, 0.75) !important;
+  color: var(--color-white) !important;
 }
 
 .final-cta-subtext {
