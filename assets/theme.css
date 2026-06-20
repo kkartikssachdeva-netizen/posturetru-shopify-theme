@@ -345,7 +345,6 @@ header {
   font-family: var(--font-headings);
   font-weight: var(--fw-eyebrow);
   font-size: var(--fs-eyebrow);
-  text-transform: uppercase;
   letter-spacing: var(--ls-eyebrow);
   margin-bottom: 16px;
   display: block;
