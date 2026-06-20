@@ -5,7 +5,7 @@
       <p>{{ section.settings.subtitle | default: "Whether you're working, studying, coding, or gaming, PostureTru helps you stay aware of your posture throughout the day." }}</p>
     </div>
 
-    <div class="grid grid-4">
+    <div class="grid grid-4 pillars-grid">
 
       <div class="pillar-card">
         <div class="pillar-title-row">
@@ -52,25 +52,61 @@
 </section>
 
 <style>
+.pillars-grid {
+  align-items: stretch;
+}
+
+.pillar-card {
+  display: flex;
+  flex-direction: column;
+  padding: 32px 28px;
+}
+
 .pillar-title-row {
   display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 12px;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 14px;
 }
+
 .pillar-title-row .pillar-emoji {
   flex-shrink: 0;
   line-height: 1;
   display: flex;
   align-items: center;
+  padding-top: 2px;
   color: var(--color-primary);
 }
+
 .pillar-title-row h3 {
   margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--color-primary);
 }
+
+.pillar-card > p {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+  margin: 0;
+  flex: 1;
+}
+
 @media (max-width: 768px) {
   #PillarsSection .section-header h2 {
     font-size: clamp(24px, 3vw, 38px);
+  }
+  .pillar-card {
+    padding: 28px 24px;
+  }
+  .pillar-title-row h3 {
+    font-size: 15px;
+  }
+  .pillar-card > p {
+    font-size: 14px;
   }
 }
 </style>

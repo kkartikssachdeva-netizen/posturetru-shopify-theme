@@ -444,23 +444,6 @@ header {
   margin-bottom: 24px;
 }
 
-.pillar-card .pillar-title-row h3 {
-  margin-bottom: 0;
-  font-size: 13px;
-  line-height: 1.25;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-@media (max-width: 1024px) {
-  .pillar-card .pillar-title-row h3 {
-    font-size: 14px;
-    white-space: normal;
-    overflow: visible;
-    text-overflow: unset;
-  }
-}
 
 .pillar-card p {
   color: var(--color-text-secondary);
