@@ -1512,7 +1512,7 @@ footer {
   font-size: 15px;
   line-height: 1.9;
   color: var(--color-text-primary);
-  margin: 0 0 22px 0 !important;
+  margin: 0 0 32px 0 !important;
 }
 
 .policy-content p:empty {
@@ -1522,7 +1522,7 @@ footer {
 .policy-content br {
   display: block;
   content: "";
-  margin-top: 14px;
+  margin-top: 22px;
 }
 
 .policy-content ul,
