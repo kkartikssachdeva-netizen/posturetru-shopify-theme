@@ -446,16 +446,13 @@ header {
 
 .pillar-card h3 {
   margin-bottom: 16px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-size: 14px;
+  line-height: 1.25;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .pillar-card h3 {
-    white-space: normal;
-    overflow: visible;
-    text-overflow: unset;
+    font-size: var(--fs-h3);
   }
 }
 
