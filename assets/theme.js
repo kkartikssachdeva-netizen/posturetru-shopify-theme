@@ -315,7 +315,8 @@ document.head.appendChild(styleSheet);
       '.faq-item',
       '.contact-method-item',
       '.contact-form-card',
-      '.contact-info-block'
+      '.contact-info-block',
+      '.policy-content'
     ];
     var nodes = document.querySelectorAll(selectors.join(','));
     if (!nodes.length) return;
