@@ -1458,8 +1458,14 @@ footer {
 /* ABOUT PAGE TEMPLATE */
 .about-hero {
   background-color: var(--color-bg-light);
-  padding: 80px 0;
+  padding: 60px 0;
   text-align: center;
+}
+
+@media (max-width: 768px) {
+  .about-hero {
+    padding: 40px 0;
+  }
 }
 
 .about-story {
