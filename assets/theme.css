@@ -857,21 +857,6 @@ footer {
   display: flex;
   flex-direction: column;
   min-width: 0;
-  align-items: center;
-  text-align: center;
-}
-
-.mini-trust-row {
-  justify-content: center;
-}
-
-.quantity-row {
-  justify-content: center;
-}
-
-.shipping-promo-box {
-  justify-content: center;
-  text-align: left;
 }
 
 .product-title {
