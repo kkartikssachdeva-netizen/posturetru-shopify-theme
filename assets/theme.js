@@ -280,6 +280,20 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
   }
+
+  // --- STANDARD HEADER FROSTED GLASS ON SCROLL (non-homepage) ---
+  const siteHeader = document.querySelector('header');
+  if (siteHeader && !heroHeader) {
+    const onHeaderScroll = () => {
+      if (window.scrollY > 12) {
+        siteHeader.classList.add('scrolled');
+      } else {
+        siteHeader.classList.remove('scrolled');
+      }
+    };
+    window.addEventListener('scroll', onHeaderScroll, { passive: true });
+    onHeaderScroll();
+  }
 });
 
 // Helper Loader Keyframes added in JS dynamically
