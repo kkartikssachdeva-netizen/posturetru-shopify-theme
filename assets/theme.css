@@ -745,7 +745,7 @@ footer {
 .product-template-grid {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
-  gap: 50px;
+  gap: 33px;
   align-items: start;
 }
 
