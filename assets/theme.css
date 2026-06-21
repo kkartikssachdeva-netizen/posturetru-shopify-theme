@@ -1482,6 +1482,23 @@ footer {
   }
 }
 
+/* PAGE LOAD FADE */
+body {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+body.page-loaded {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    opacity: 1;
+    transition: none;
+  }
+}
+
 /* POLICY SYSTEM PAGES (Shopify default layout) */
 .shopify-policy__title {
   margin-bottom: 23px !important;

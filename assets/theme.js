@@ -294,6 +294,20 @@ document.head.appendChild(styleSheet);
 
 // --- SCROLL REVEAL MOTION (calm, additive) ---
 (function () {
+  // Page load fade in
+  function triggerPageFade() {
+    document.body.classList.add('page-loaded');
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', triggerPageFade);
+  } else {
+    triggerPageFade();
+  }
+  // Fallback so the page is never stuck invisible
+  window.setTimeout(triggerPageFade, 600);
+})();
+
+(function () {
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduceMotion || !('IntersectionObserver' in window)) return;
 
