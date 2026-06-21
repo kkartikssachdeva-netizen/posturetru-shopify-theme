@@ -744,8 +744,8 @@ footer {
 /* PRODUCT TEMPLATE & LAYOUT */
 .product-template-grid {
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 33px;
+  grid-template-columns: 440px 1fr;
+  gap: 48px;
   align-items: start;
 }
 
