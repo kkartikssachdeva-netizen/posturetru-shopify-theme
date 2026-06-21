@@ -768,6 +768,16 @@ footer {
   max-width: 400px;
 }
 
+@media (max-width: 1024px) {
+  .main-image-viewport {
+    max-width: 100%;
+  }
+
+  .thumbnail-strip {
+    max-width: 100%;
+  }
+}
+
 .main-image-viewport svg {
   max-height: 100%;
   width: auto;
