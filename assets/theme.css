@@ -829,9 +829,18 @@ footer {
   height: auto;
 }
 
-.thumb-button.active, .thumb-button:hover {
+.thumb-button:hover {
   border-color: var(--color-primary);
   background-color: var(--color-white);
+  opacity: 0.8;
+}
+
+.thumb-button.active {
+  border-color: var(--color-primary);
+  border-width: 3px;
+  background-color: var(--color-white);
+  box-shadow: 0 0 0 1px rgba(27, 73, 101, 0.15);
+  opacity: 1;
 }
 
 .product-details {
