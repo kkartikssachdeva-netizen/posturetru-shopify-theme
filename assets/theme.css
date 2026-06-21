@@ -225,15 +225,24 @@ header {
   position: sticky;
   top: 0;
   z-index: 100;
+  background: var(--color-white);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  border-bottom: 1px solid transparent;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  transition: background 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              backdrop-filter 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              -webkit-backdrop-filter 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+header.scrolled {
   background: rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   border-bottom: 1px solid rgba(199, 192, 182, 0.45);
-  height: var(--header-height);
-  display: flex;
-  align-items: center;
-  transition: background 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-              border-color 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .logo {
