@@ -857,8 +857,6 @@ footer {
   display: flex;
   flex-direction: column;
   min-width: 0;
-  max-width: 100%;
-  overflow-x: hidden;
 }
 
 .product-title {
