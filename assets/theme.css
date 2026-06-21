@@ -1557,6 +1557,12 @@ footer {
   }
 }
 
+/* Prevent horizontal overflow site-wide */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 /* PAGE LOAD FADE */
 body {
   opacity: 0;
