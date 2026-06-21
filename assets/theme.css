@@ -2087,7 +2087,6 @@ textarea.form-control {
   .product-template-grid {
     grid-template-columns: 1fr;
     gap: 40px;
-    padding: 0;
   }
   
   .main-image-viewport {
