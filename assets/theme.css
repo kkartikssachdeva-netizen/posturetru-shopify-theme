@@ -1606,6 +1606,20 @@ body.page-loaded {
   line-height: 1.9;
 }
 
+.shopify-policy__body p:has(+ ul) {
+  margin-bottom: 12px !important;
+}
+
+.shopify-policy__body ul {
+  margin: 0 0 32px 0;
+  padding-left: 20px;
+}
+
+.shopify-policy__body ul li {
+  margin-bottom: 6px;
+  line-height: 1.7;
+}
+
 /* POLICY PAGES */
 .policy-hero {
   background-color: var(--color-bg-light);
