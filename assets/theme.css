@@ -222,8 +222,10 @@ ul {
 
 /* Header & Navigation */
 header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
   background: var(--color-white);
   backdrop-filter: blur(0px);
@@ -243,6 +245,10 @@ header.scrolled {
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   border-bottom: 1px solid rgba(199, 192, 182, 0.45);
+}
+
+body:not(.template-index) main {
+  padding-top: var(--header-height);
 }
 
 .logo {
