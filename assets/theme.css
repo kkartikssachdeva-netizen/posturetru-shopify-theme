@@ -1691,10 +1691,11 @@ body.page-loaded {
 
 .form-group label {
   display: block;
-  font-weight: 600;
-  margin-bottom: 8px;
-  font-size: 14px;
-  color: var(--color-primary);
+  font-weight: 500;
+  margin-bottom: 10px;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.01em;
 }
 
 .form-control {
