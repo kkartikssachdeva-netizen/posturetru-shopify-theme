@@ -54,7 +54,7 @@
       {% section 'header' %}
     {% endunless %}
 
-    <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
+    <main id="MainContent" class="content-for-layout focus-none{% unless template == 'index' %} has-fixed-header{% endunless %}" role="main" tabindex="-1">
       {{ content_for_layout }}
     </main>
 
