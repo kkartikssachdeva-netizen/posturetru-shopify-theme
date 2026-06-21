@@ -789,9 +789,16 @@ footer {
   gap: 12px;
   overflow-x: auto;
   flex-wrap: nowrap;
+  width: 100%;
   max-width: 400px;
   padding-bottom: 8px;
   scrollbar-width: thin;
+}
+
+@media (max-width: 1024px) {
+  .thumbnail-strip {
+    max-width: 100%;
+  }
 }
 
 .thumb-button {
