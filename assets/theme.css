@@ -943,11 +943,16 @@ footer {
 
 @media (max-width: 480px) {
   .mini-trust-row {
-    gap: 8px;
+    gap: 6px;
   }
   .mini-trust-badge {
-    padding: 5px 10px;
-    font-size: 11px;
+    padding: 5px 8px;
+    font-size: 10px;
+    gap: 4px;
+  }
+  .mini-trust-badge svg {
+    width: 11px;
+    height: 11px;
   }
 }
 
