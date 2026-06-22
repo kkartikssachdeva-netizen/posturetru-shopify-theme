@@ -3,8 +3,15 @@
     <div class="container grid grid-3">
       <!-- Col 1: About Brand -->
       <div class="footer-col">
-        <a href="/" class="logo" style="color: var(--color-white); margin-bottom: 20px; display: inline-block;">
-          Posture<span class="logo-accent">Tru</span>
+        <a href="/" class="logo logo--image" aria-label="PostureTru home" style="margin-bottom: 20px; display: inline-flex;">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0839/9274/0080/files/posturetru_logo_png.png"
+            alt="PostureTru"
+            class="logo-img logo-img--footer"
+            width="180"
+            height="53"
+            loading="lazy"
+          >
         </a>
         <p>{{ section.settings.about_text | default: 'PostureTru creates small moments of awareness that lead to lasting habits. Thoughtfully designed for people who spend long hours at a desk.' }}</p>
         <div class="footer-social-links" style="display: flex; gap: 16px; margin-top: 20px;">

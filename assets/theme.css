@@ -2417,13 +2417,17 @@ html {
 
 .logo-img {
   display: block;
-  width: 160px;
+  width: 220px;
   height: auto;
   max-width: 100%;
 }
 
+.logo-img--footer {
+  filter: brightness(0) invert(1);
+}
+
 @media (max-width: 768px) {
   .logo-img {
-    width: 130px;
+    width: 160px;
   }
 }
