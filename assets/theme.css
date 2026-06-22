@@ -2407,3 +2407,23 @@ html {
     transition: none !important;
   }
 }
+
+/* Logo image */
+.logo--image {
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+.logo-img {
+  display: block;
+  width: 160px;
+  height: auto;
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .logo-img {
+    width: 130px;
+  }
+}
