@@ -2413,21 +2413,39 @@ html {
   display: flex;
   align-items: center;
   padding: 0;
+  line-height: 0;
 }
 
 .logo-img {
   display: block;
-  width: 220px;
+  width: 200px;
   height: auto;
   max-width: 100%;
 }
 
+/* Footer logo: constrain to column width and remove excess spacing */
 .logo-img--footer {
   filter: brightness(0) invert(1);
+  width: 160px;
+  max-width: 100%;
+  display: block;
+}
+
+/* Mobile nav drawer: logo must not overflow the 300px drawer */
+.mobile-nav-header .logo-img {
+  width: 140px;
+  max-width: 200px;
 }
 
 @media (max-width: 768px) {
   .logo-img {
-    width: 160px;
+    width: 170px;
+  }
+  /* Center the header logo on mobile between hamburger and cart */
+  .hero-header .logo--image,
+  header .logo--image {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
