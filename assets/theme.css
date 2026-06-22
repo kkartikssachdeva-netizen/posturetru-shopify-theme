@@ -2410,10 +2410,10 @@ html {
 
 /* Logo image */
 .logo--image {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   padding: 0;
-  line-height: 0;
+  line-height: 1;
 }
 
 .logo-img {
@@ -2423,29 +2423,22 @@ html {
   max-width: 100%;
 }
 
-/* Footer logo: constrain to column width and remove excess spacing */
+/* Footer: invert to white, match column width */
 .logo-img--footer {
   filter: brightness(0) invert(1);
   width: 160px;
-  max-width: 100%;
-  display: block;
+  height: auto;
 }
 
-/* Mobile nav drawer: logo must not overflow the 300px drawer */
-.mobile-nav-header .logo-img {
-  width: 140px;
-  max-width: 200px;
+/* Mobile drawer: fit inside 300px drawer with 48px padding each side */
+.logo-img--drawer {
+  width: 150px;
+  height: auto;
+  max-width: 150px;
 }
 
 @media (max-width: 768px) {
   .logo-img {
     width: 170px;
-  }
-  /* Center the header logo on mobile between hamburger and cart */
-  .hero-header .logo--image,
-  header .logo--image {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
   }
 }
