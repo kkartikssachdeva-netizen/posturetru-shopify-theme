@@ -641,6 +641,12 @@ footer {
   padding: 88px 0 56px;
 }
 
+@media (max-width: 768px) {
+  .footer-top {
+    padding: 40px 0 40px;
+  }
+}
+
 .footer-col h3, .footer-col h4 {
   color: var(--color-white);
   font-size: var(--fs-h3);
