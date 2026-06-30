@@ -45,10 +45,10 @@
     <div class="container hero-grid">
 
       <div class="hero-content">
-        <span class="hero-tagline">{{ section.settings.tagline | default: 'Stand Straight. Feel Better.' }}</span>
-        <h1 class="hero-title">{{ section.settings.title | default: 'Your Posture Shapes Your Life' }}</h1>
+        <span class="hero-tagline">{% assign hero_tagline_words = section.settings.tagline | default: 'Stand Straight. Feel Better.' | split: ' ' %}{% for word in hero_tagline_words %}<span class="intro-word">{{ word }}</span>{% unless forloop.last %} {% endunless %}{% endfor %}</span>
+        <h1 class="hero-title">{% assign hero_title_words = section.settings.title | default: 'Your Posture Shapes Your Life' | split: ' ' %}{% for word in hero_title_words %}<span class="intro-word">{{ word }}</span>{% unless forloop.last %} {% endunless %}{% endfor %}</h1>
         <p class="hero-subheading">{{ section.settings.subheading | default: 'Professional-grade posture correction for remote workers who refuse to compromise on health' }}</p>
-        <div class="hero-cta-row">
+        <div class="hero-cta-row" id="heroCtaRow">
           <a href="{{ section.settings.cta_link | default: '/products/posturetru' }}" class="btn btn-primary">
             {{ section.settings.cta_text | default: 'Shop Verta' }}
           </a>
@@ -163,6 +163,21 @@
   flex-wrap: wrap;
 }
 
+.intro-word {
+  display: inline-block;
+  opacity: 0;
+}
+
+.hero-subheading {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+#heroCtaRow {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
 .hero-img-mockup {
   position: relative;
   overflow: hidden;
@@ -223,6 +238,17 @@
     animation: none;
     display: none;
   }
+  .intro-word {
+    opacity: 1;
+  }
+  .hero-subheading {
+    opacity: 1;
+    transform: none;
+  }
+  #heroCtaRow {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 @media (max-width: 768px) {
@@ -269,6 +295,49 @@
   .hero-cta-row { justify-content: center; }
 }
 </style>
+
+<script>
+(function(){
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var words = document.querySelectorAll('#heroSection .intro-word');
+  var subheading = document.querySelector('#heroSection .hero-subheading');
+  var ctaRow = document.getElementById('heroCtaRow');
+  var staggerBudget = 300;
+  var stagger = words.length ? Math.min(32, staggerBudget / words.length) : 32;
+  var wordTransition = 560;
+
+  words.forEach(function(w){
+    var dx = (Math.random() * 90 - 45).toFixed(0);
+    var dy = (Math.random() * 70 - 35).toFixed(0);
+    var rot = (Math.random() * 18 - 9).toFixed(1);
+    w.style.transform = 'translate(' + dx + 'px,' + dy + 'px) rotate(' + rot + 'deg)';
+  });
+  void document.body.offsetHeight;
+  words.forEach(function(w, i){
+    var delay = i * stagger;
+    w.style.transition = 'transform ' + wordTransition + 'ms cubic-bezier(0.16,1,0.3,1) ' + delay + 'ms, opacity 420ms ease-out ' + delay + 'ms';
+    w.style.opacity = '1';
+    w.style.transform = 'translate(0,0) rotate(0deg)';
+  });
+
+  var wordsFinishAt = words.length ? (words.length - 1) * stagger + wordTransition : 0;
+  var ctaDelay = wordsFinishAt + 100;
+
+  if (subheading) {
+    var subDelay = wordsFinishAt + 80;
+    subheading.style.transition = 'opacity 480ms ease-out ' + subDelay + 'ms, transform 480ms cubic-bezier(0.16,1,0.3,1) ' + subDelay + 'ms';
+    subheading.style.opacity = '1';
+    subheading.style.transform = 'translateY(0)';
+    ctaDelay = subDelay + 480 + 60;
+  }
+
+  if (ctaRow) {
+    ctaRow.style.transition = 'opacity 480ms ease-out ' + ctaDelay + 'ms, transform 480ms cubic-bezier(0.16,1,0.3,1) ' + ctaDelay + 'ms';
+    ctaRow.style.opacity = '1';
+    ctaRow.style.transform = 'translateY(0)';
+  }
+})();
+</script>
 
 {% schema %}
 {
