@@ -52,6 +52,12 @@
           "pillar_4_text": "Backed by our 30 Day Satisfaction Guarantee. If Verta isn't the right fit for you, contact us and we'll work to make it right."
         }
       },
+      "brand-statement": {
+        "type": "brand-statement",
+        "settings": {
+          "statement": "PostureTru is committed to restoring the awareness that a busy day quietly erodes. Verta is where that starts, not where it ends."
+        }
+      },
       "product-preview": {
         "type": "product-preview",
         "settings": {
