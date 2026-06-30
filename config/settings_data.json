@@ -76,6 +76,41 @@
         "settings": {
           "about_text": "PostureTru is committed to restoring the awareness that a busy day quietly erodes. Thoughtfully designed for the moments that matter most."
         }
+      },
+      "product-template": {
+        "type": "product-template",
+        "settings": {
+          "short_description": "Verta is built around a simple idea: most slouching is not a posture problem, it is an attention problem. The moment your attention drifts and your posture follows, Verta meets you with a gentle vibration, a quiet nudge back to how you actually want to sit. Straighten up, and the vibration stops. No straps, no restriction, just real time feedback that helps awareness become habit."
+        }
+      },
+      "product-features": {
+        "type": "product-features",
+        "settings": {
+          "title": "Features & Technology",
+          "subtitle": "Designed with comfort and reliable feedback in mind."
+        }
+      },
+      "product-benefits": {
+        "type": "product-benefits",
+        "settings": {
+          "title": "Better Posture Begins With Awareness",
+          "subtitle": "Verta is not designed to force perfect posture. It helps you notice the moment you begin to slouch, making it easier to return to better posture throughout your day. Over time, those small moments of awareness become lasting habits."
+        }
+      },
+      "product-specs": {
+        "type": "product-specs",
+        "settings": {}
+      },
+      "faq-accordion": {
+        "type": "faq-accordion",
+        "settings": {
+          "title": "Frequently Asked Questions",
+          "subtitle": "Have questions? We have answers."
+        }
+      },
+      "guarantees": {
+        "type": "guarantees",
+        "settings": {}
       }
     },
     "content_for_index": []
