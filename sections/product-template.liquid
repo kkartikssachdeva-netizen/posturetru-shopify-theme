@@ -23,7 +23,7 @@
     
     <!-- Info Column -->
     <div class="product-details">
-<h1 class="product-title">{% assign pt_title_words = product.title | default: 'PostureTru™ Smart Posture Corrector' | split: ' ' %}{% for word in pt_title_words %}<span class="intro-word">{{ word }}</span>{% unless forloop.last %} {% endunless %}{% endfor %}</h1>
+<h1 class="product-title">{% assign pt_title_words = product.title | default: 'PostureTru™ Smart Posture Corrector' | split: ' ' %}{% for word in pt_title_words %}<span class="intro-word">{{ word }}</span>{% unless forloop.last %}&nbsp;{% endunless %}{% endfor %}</h1>
       
       
       <div class="product-pricing">

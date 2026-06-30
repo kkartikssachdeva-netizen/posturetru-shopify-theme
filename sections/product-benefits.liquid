@@ -1,7 +1,7 @@
 <section id="productBenefitsSection" class="section-padding" style="background-color: var(--color-bg);">
   <div class="container">
     <div class="section-header">
-      <h2 style="white-space: nowrap; font-size: clamp(12px, 4vw, 38px);">{% assign pb_words = section.settings.title | default: 'Better Posture Begins With Awareness' | split: ' ' %}{% for word in pb_words %}<span class="intro-word">{{ word }}</span>{% unless forloop.last %} {% endunless %}{% endfor %}</h2>
+      <h2 style="white-space: nowrap; font-size: clamp(12px, 4vw, 38px);">{% assign pb_words = section.settings.title | default: 'Better Posture Begins With Awareness' | split: ' ' %}{% for word in pb_words %}<span class="intro-word">{{ word }}</span>{% unless forloop.last %}&nbsp;{% endunless %}{% endfor %}</h2>
       <p class="entrance-fade">{{ section.settings.subtitle | default: "Verta is not designed to force perfect posture. It helps you notice the moment you begin to slouch, making it easier to return to better posture throughout your day. Over time, those small moments of awareness become lasting habits." }}</p>
     </div>
 

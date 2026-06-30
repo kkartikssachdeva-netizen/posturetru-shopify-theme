@@ -1,7 +1,7 @@
 <section id="PillarsSection" class="trust-pillars section-padding">
   <div class="container">
     <div class="section-header">
-      <h2>{% assign tp_words = section.settings.title | default: 'Built for the Moments That Matter Most' | split: ' ' %}{% for word in tp_words %}<span class="intro-word">{{ word }}</span>{% unless forloop.last %} {% endunless %}{% endfor %}</h2>
+      <h2>{% assign tp_words = section.settings.title | default: 'Built for the Moments That Matter Most' | split: ' ' %}{% for word in tp_words %}<span class="intro-word">{{ word }}</span>{% unless forloop.last %}&nbsp;{% endunless %}{% endfor %}</h2>
       <p class="entrance-fade">{{ section.settings.subtitle | default: "Whether you're working, studying, coding, or gaming, Verta helps you stay aware of your posture throughout the day." }}</p>
     </div>
 
