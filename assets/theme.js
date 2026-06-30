@@ -353,7 +353,7 @@ document.head.appendChild(styleSheet);
     var toObserve = [];
     nodes.forEach(function (el) {
       // Skip elements handled by the custom word entrance system below
-      if (el.matches('.product-preview-content, .product-preview-img-container, #PillarsSection .section-header')) return;
+      if (el.matches('.product-preview-content, .product-preview-img-container, #PillarsSection .section-header, #productFeaturesSection .section-header, #productBenefitsSection .section-header, #faqAccordionSection .section-header')) return;
       // Skip anything already in view on load so it never flashes
       if (el.getBoundingClientRect().top < viewportH * 0.85) return;
       el.classList.add('reveal-item');
@@ -431,7 +431,7 @@ document.head.appendChild(styleSheet);
   }
 
   function initWordEntrances() {
-    var sections = document.querySelectorAll('#productPreviewSection, #PillarsSection');
+    var sections = document.querySelectorAll('#productPreviewSection, #PillarsSection, #productFeaturesSection, #productBenefitsSection, #faqAccordionSection');
     if (!sections.length) return;
 
     var viewportH = window.innerHeight || document.documentElement.clientHeight;

@@ -1,8 +1,8 @@
-<section class="section-padding">
+<section id="faqAccordionSection" class="section-padding">
   <div class="container">
     <div class="section-header">
-      <h2>{{ section.settings.title | default: 'Frequently Asked Questions' }}</h2>
-      <p>{{ section.settings.subtitle | default: 'Have questions? We have answers.' }}</p>
+      <h2>{% assign faq_title_words = section.settings.title | default: 'Frequently Asked Questions' | split: ' ' %}{% for word in faq_title_words %}<span class="intro-word">{{ word }}</span>{% unless forloop.last %} {% endunless %}{% endfor %}</h2>
+      <p class="entrance-fade">{{ section.settings.subtitle | default: 'Have questions? We have answers.' }}</p>
     </div>
 
     <div class="faq-accordion-container">
