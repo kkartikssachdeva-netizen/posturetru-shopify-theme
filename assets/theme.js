@@ -352,6 +352,8 @@ document.head.appendChild(styleSheet);
     var viewportH = window.innerHeight || document.documentElement.clientHeight;
     var toObserve = [];
     nodes.forEach(function (el) {
+      // Skip elements handled by the custom word entrance system below
+      if (el.matches('.product-preview-content, .product-preview-img-container, #PillarsSection .section-header')) return;
       // Skip anything already in view on load so it never flashes
       if (el.getBoundingClientRect().top < viewportH * 0.85) return;
       el.classList.add('reveal-item');
@@ -379,5 +381,84 @@ document.head.appendChild(styleSheet);
     document.addEventListener('DOMContentLoaded', initReveal);
   } else {
     initReveal();
+  }
+})();
+
+// --- WORD ENTRANCE ON SCROLL (Meet Verta, Trust Pillars) ---
+(function () {
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion || !('IntersectionObserver' in window)) return;
+
+  function shatterIn(words, startDelay) {
+    var staggerBudget = 300;
+    var stagger = words.length ? Math.min(32, staggerBudget / words.length) : 32;
+    var wordTransition = 560;
+    words.forEach(function (w) {
+      var dx = (Math.random() * 90 - 45).toFixed(0);
+      var dy = (Math.random() * 70 - 35).toFixed(0);
+      var rot = (Math.random() * 18 - 9).toFixed(1);
+      w.style.transform = 'translate(' + dx + 'px,' + dy + 'px) rotate(' + rot + 'deg)';
+    });
+    void document.body.offsetHeight;
+    words.forEach(function (w, i) {
+      var delay = startDelay + i * stagger;
+      w.style.transition = 'transform ' + wordTransition + 'ms cubic-bezier(0.16,1,0.3,1) ' + delay + 'ms, opacity 420ms ease-out ' + delay + 'ms';
+      w.style.opacity = '1';
+      w.style.transform = 'translate(0,0) rotate(0deg)';
+    });
+    return words.length ? startDelay + (words.length - 1) * stagger + wordTransition : startDelay;
+  }
+
+  function fadeIn(el, delay) {
+    if (!el) return;
+    el.style.transition = 'opacity 480ms ease-out ' + delay + 'ms, transform 480ms cubic-bezier(0.16,1,0.3,1) ' + delay + 'ms';
+    el.style.opacity = '1';
+    el.style.transform = 'translateY(0)';
+  }
+
+  function playSection(root) {
+    var heading = Array.prototype.slice.call(root.querySelectorAll('.intro-word'));
+    var finishAt = shatterIn(heading, 0);
+
+    var step = finishAt + 80;
+    var fades = root.querySelectorAll('.entrance-fade');
+    fades.forEach(function (el, i) {
+      fadeIn(el, step + i * 90);
+    });
+
+    var img = root.querySelector('.entrance-fade-img');
+    if (img) fadeIn(img, 0);
+  }
+
+  function initWordEntrances() {
+    var sections = document.querySelectorAll('#productPreviewSection, #PillarsSection');
+    if (!sections.length) return;
+
+    var viewportH = window.innerHeight || document.documentElement.clientHeight;
+    var toObserve = [];
+    sections.forEach(function (section) {
+      if (section.getBoundingClientRect().top < viewportH * 0.85) {
+        playSection(section);
+        return;
+      }
+      toObserve.push(section);
+    });
+    if (!toObserve.length) return;
+
+    var observer = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        playSection(entry.target);
+        obs.unobserve(entry.target);
+      });
+    }, { threshold: 0.2 });
+
+    toObserve.forEach(function (section) { observer.observe(section); });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initWordEntrances);
+  } else {
+    initWordEntrances();
   }
 })();

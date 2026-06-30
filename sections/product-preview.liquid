@@ -2,7 +2,7 @@
   <div class="container grid grid-2" style="align-items: center;">
 
     <!-- Image Column: scroll-driven transition -->
-    <div class="product-preview-img-container" style="position:relative; border-radius:20px; overflow:hidden; box-shadow:0 20px 60px rgba(27,73,101,0.15); padding:0; overflow:hidden; min-height:400px;">
+    <div class="product-preview-img-container entrance-fade-img" style="position:relative; border-radius:20px; overflow:hidden; box-shadow:0 20px 60px rgba(27,73,101,0.15); padding:0; overflow:hidden; min-height:400px;">
 
       <img
         src="https://cdn.shopify.com/s/files/1/0839/9274/0080/files/Product_Preview.jpg?v=1781159941"
@@ -13,11 +13,11 @@
 
     <!-- Text Column (unchanged) -->
     <div class="product-preview-content">
-      <h2>Meet Verta</h2>
-      <p class="product-preview-text">A lightweight posture awareness trainer designed for everyday life. The moment you begin to slouch, Verta delivers a gentle vibration reminder to help you stay mindful of your posture throughout the day.</p>
-      <p class="product-preview-text" style="margin-top:-16px;">Using real time posture detection, it recognizes when your posture begins to slip and provides quiet, consistent feedback. No straps. No restriction. Just a smarter way to build better posture habits over time.</p>
+      <h2><span class="intro-word">Meet</span> <span class="intro-word">Verta</span></h2>
+      <p class="product-preview-text entrance-fade">A lightweight posture awareness trainer designed for everyday life. The moment you begin to slouch, Verta delivers a gentle vibration reminder to help you stay mindful of your posture throughout the day.</p>
+      <p class="product-preview-text entrance-fade" style="margin-top:-16px;">Using real time posture detection, it recognizes when your posture begins to slip and provides quiet, consistent feedback. No straps. No restriction. Just a smarter way to build better posture habits over time.</p>
 
-      <div style="margin-top: 24px;">
+      <div class="entrance-fade" style="margin-top: 24px;">
         <a href="{{ section.settings.cta_link | default: '/products/posturetru' }}" class="btn btn-primary">
           {{ section.settings.cta_text | default: 'Shop Now' }}
         </a>

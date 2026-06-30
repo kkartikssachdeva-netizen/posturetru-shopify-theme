@@ -2402,6 +2402,21 @@ html {
 .reveal-item.contact-method-item:nth-child(2) { transition-delay: 0.05s; }
 .reveal-item.contact-method-item:nth-child(3) { transition-delay: 0.10s; }
 
+.intro-word {
+  display: inline-block;
+  opacity: 0;
+}
+
+.entrance-fade {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.entrance-fade-img {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -2411,6 +2426,12 @@ html {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
+  }
+  .intro-word,
+  .entrance-fade,
+  .entrance-fade-img {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 
