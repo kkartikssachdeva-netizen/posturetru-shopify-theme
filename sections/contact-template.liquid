@@ -99,6 +99,36 @@
   </div>
 </section>
 
+<style>
+#contactHeroSection {
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+}
+
+#contactHeroSection::before {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  background-image: url('https://cdn.shopify.com/s/files/1/0839/9274/0080/files/Contact.jpg?v=1782911964');
+  background-size: cover;
+  background-position: center;
+  filter: blur(7px);
+}
+
+#contactHeroSection::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(240, 244, 248, 0.78);
+}
+
+#contactHeroSection .container {
+  position: relative;
+  z-index: 1;
+}
+</style>
+
 <script>
 (function(){
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
