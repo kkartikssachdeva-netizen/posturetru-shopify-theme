@@ -2386,6 +2386,11 @@ html {
 .reveal-item.feature-item:nth-child(4) { transition-delay: 0.15s; }
 .reveal-item.feature-item:nth-child(5) { transition-delay: 0.20s; }
 
+.reveal-item.feature-card:nth-child(2) { transition-delay: 0.05s; }
+.reveal-item.feature-card:nth-child(3) { transition-delay: 0.10s; }
+.reveal-item.feature-card:nth-child(4) { transition-delay: 0.15s; }
+.reveal-item.feature-card:nth-child(5) { transition-delay: 0.20s; }
+
 .reveal-item.benefit-card:nth-child(2) { transition-delay: 0.05s; }
 .reveal-item.benefit-card:nth-child(3) { transition-delay: 0.10s; }
 .reveal-item.benefit-card:nth-child(4) { transition-delay: 0.15s; }

@@ -338,6 +338,7 @@ document.head.appendChild(styleSheet);
       '.features-list',
       '.faq-accordion-container',
       '.feature-item',
+      '.feature-card',
       '.benefit-card',
       '.guarantee-item',
       '.faq-item',

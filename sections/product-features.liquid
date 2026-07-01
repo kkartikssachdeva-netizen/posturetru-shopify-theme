@@ -5,76 +5,131 @@
       <p class="entrance-fade">{{ section.settings.subtitle | default: 'Designed with comfort and reliable feedback in mind.' }}</p>
     </div>
 
-    <div class="features-list">
-      <!-- Feature 1 -->
-      <div class="feature-item">
-        <div class="feature-icon-wrapper">
-          <!-- Vibration Icon -->
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
-            <circle cx="12" cy="12" r="4"/>
-          </svg>
+    <div class="features-grid">
+
+      <div class="feature-card">
+        <div class="feature-card-img">
+          <img src="https://cdn.shopify.com/s/files/1/0839/9274/0080/files/Verta_front_896cdfaf-4346-4b05-a3ff-25f0e35e4ba8.jpg?v=1782892116" alt="Smart Vibration Technology" loading="lazy">
         </div>
-        <div>
+        <div class="feature-card-body">
           <h3>Smart Vibration Technology</h3>
           <p>Gentle vibration alerts the moment you start to slouch, helping you build awareness and better posture habits over time.</p>
         </div>
       </div>
 
-      <!-- Feature 2 -->
-      <div class="feature-item">
-        <div class="feature-icon-wrapper">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
-          </svg>
+      <div class="feature-card">
+        <div class="feature-card-img">
+          <img src="https://cdn.shopify.com/s/files/1/0839/9274/0080/files/Verta_angle_8c9d18c6-877a-4a7b-8f59-ba8340a0a5c7.jpg?v=1782890154" alt="Precision Gyroscope Chip" loading="lazy">
         </div>
-        <div>
+        <div class="feature-card-body">
           <h3>Precision Gyroscope Chip</h3>
           <p>More accurate and stable than ball chip alternatives. Monitors changes in body angle in real time, for reliable slouch detection every time.</p>
         </div>
       </div>
 
-      <!-- Feature 3 -->
-      <div class="feature-item">
-        <div class="feature-icon-wrapper">
-          <!-- Comfort Icon -->
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-          </svg>
+      <div class="feature-card">
+        <div class="feature-card-img">
+          <img src="https://cdn.shopify.com/s/files/1/0839/9274/0080/files/Verta_fabric_bee1a52e-9791-48fa-bc3d-23d7ee88e29c.jpg?v=1782890154" alt="All Day Comfort" loading="lazy">
         </div>
-        <div>
+        <div class="feature-card-body">
           <h3>All Day Comfort</h3>
           <p>Made from food grade silicone that is lightweight at just 70g, soft, skin friendly, and durable. Conforms naturally to your body for all day wear without chafing.</p>
         </div>
       </div>
 
-      <!-- Feature 4 -->
-      <div class="feature-item">
-        <div class="feature-icon-wrapper">
-          <!-- Straps Icon -->
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14h-2v-2h2zm0-4h-2V7h2z"/>
-          </svg>
+      <div class="feature-card">
+        <div class="feature-card-img">
+          <img src="https://cdn.shopify.com/s/files/1/0839/9274/0080/files/Verta_charger_93497025-d5fa-48a0-9edb-e41dee442f0d.jpg?v=1782890154" alt="USB Rechargeable" loading="lazy">
         </div>
-        <div>
+        <div class="feature-card-body">
+          <h3>USB Rechargeable</h3>
+          <p>Built-in 200mAh battery charges via USB and lasts up to 7 days based on 4 hours of daily use. Charge overnight, wear all day.</p>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-card-img">
+          <img src="https://cdn.shopify.com/s/files/1/0839/9274/0080/files/Verta_desk_4a3ddd39-de00-4e1f-91eb-8a3fce440bdf.jpg?v=1782890154" alt="Slim and Discreet" loading="lazy">
+        </div>
+        <div class="feature-card-body">
           <h3>Slim &amp; Discreet</h3>
           <p>Compact, lightweight form factor sits discreetly on your upper back, fitting invisibly under any clothing.</p>
         </div>
       </div>
 
-      <!-- Feature 5 -->
-      <div class="feature-item">
-        <div class="feature-icon-wrapper">
-          {% render 'icon-truck' %}
-        </div>
-        <div>
-          <h3>Fast & Free Shipping</h3>
-          <p>Ships free to Canada, Australia, UK & NZ with full tracking. Delivery in 6 to 14 business days depending on destination.</p>
-        </div>
-      </div>
     </div>
   </div>
 </section>
+
+<style>
+.features-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}
+
+.feature-card {
+  flex: 0 0 calc(33.333% - 16px);
+  max-width: calc(33.333% - 16px);
+  background: var(--color-white);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
+  transition: var(--transition-smooth);
+}
+
+.feature-card:hover {
+  box-shadow: var(--box-shadow-hover);
+  transform: translateY(-4px);
+}
+
+.feature-card-img {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.feature-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.feature-card:hover .feature-card-img img {
+  transform: scale(1.04);
+}
+
+.feature-card-body {
+  padding: 24px;
+}
+
+.feature-card-body h3 {
+  margin-bottom: 8px;
+}
+
+.feature-card-body p {
+  color: var(--color-text-secondary);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .feature-card {
+    flex: 0 0 calc(50% - 12px);
+    max-width: calc(50% - 12px);
+  }
+}
+
+@media (max-width: 768px) {
+  .feature-card {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+</style>
 
 {% schema %}
 {
