@@ -2134,6 +2134,9 @@ textarea.form-control {
   .main-image-viewport {
     aspect-ratio: 1 / 1;
     height: auto;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
   }
   
   .specs-layout {
