@@ -431,7 +431,7 @@ document.head.appendChild(styleSheet);
   }
 
   function initWordEntrances() {
-    var sections = document.querySelectorAll('#productPreviewSection, #PillarsSection, #productFeaturesSection, #productBenefitsSection, #faqAccordionSection');
+    var sections = document.querySelectorAll('#productPreviewSection, #PillarsSection, #productFeaturesSection, #productBenefitsSection, #faqAccordionSection, #aboutStorySection, #aboutMissionSection, #aboutFounderSection, #aboutWhySection');
     if (!sections.length) return;
 
     var viewportH = window.innerHeight || document.documentElement.clientHeight;

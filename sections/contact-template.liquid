@@ -1,7 +1,7 @@
-<section class="about-hero">
+<section class="about-hero" id="contactHeroSection">
   <div class="container">
-    <h1 style="font-size: clamp(28px, 6vw, 48px); margin-bottom: 16px;">Get in Touch</h1>
-    <p style="font-size: clamp(15px, 3.5vw, 18px); color: var(--color-text-secondary); max-width: 760px; margin: 0 auto;">
+    <h1 style="font-size: clamp(28px, 6vw, 48px); margin-bottom: 16px;"><span class="intro-word">Get</span>&nbsp;<span class="intro-word">in</span>&nbsp;<span class="intro-word">Touch</span></h1>
+    <p class="entrance-fade" style="font-size: clamp(15px, 3.5vw, 18px); color: var(--color-text-secondary); max-width: 760px; margin: 0 auto;">
       <span class="contact-sub-line">Questions, feedback, or just want to say hello?</span> <span class="contact-sub-line">We would love to hear from you.</span>
     </p>
   </div>
@@ -98,6 +98,39 @@
     </div>
   </div>
 </section>
+
+<script>
+(function(){
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var section = document.getElementById('contactHeroSection');
+  if (!section) return;
+  var words = section.querySelectorAll('.intro-word');
+  var fade = section.querySelector('.entrance-fade');
+  var staggerBudget = 300;
+  var stagger = words.length ? Math.min(32, staggerBudget / words.length) : 32;
+  var wordTransition = 560;
+  words.forEach(function(w){
+    var dx = (Math.random() * 90 - 45).toFixed(0);
+    var dy = (Math.random() * 70 - 35).toFixed(0);
+    var rot = (Math.random() * 18 - 9).toFixed(1);
+    w.style.transform = 'translate(' + dx + 'px,' + dy + 'px) rotate(' + rot + 'deg)';
+  });
+  void document.body.offsetHeight;
+  words.forEach(function(w, i){
+    var delay = i * stagger;
+    w.style.transition = 'transform ' + wordTransition + 'ms cubic-bezier(0.16,1,0.3,1) ' + delay + 'ms, opacity 420ms ease-out ' + delay + 'ms';
+    w.style.opacity = '1';
+    w.style.transform = 'translate(0,0) rotate(0deg)';
+  });
+  var finishAt = words.length ? (words.length - 1) * stagger + wordTransition : 0;
+  if (fade) {
+    var fadeDelay = finishAt + 80;
+    fade.style.transition = 'opacity 480ms ease-out ' + fadeDelay + 'ms, transform 480ms cubic-bezier(0.16,1,0.3,1) ' + fadeDelay + 'ms';
+    fade.style.opacity = '1';
+    fade.style.transform = 'translateY(0)';
+  }
+})();
+</script>
 
 {% schema %}
 {

@@ -1,17 +1,17 @@
-<section class="about-hero">
+<section class="about-hero" id="aboutHeroSection">
   <div class="container">
-    <h1 style="font-size: clamp(28px, 8vw, 48px); margin-bottom: 16px;">About PostureTru</h1>
-    <p style="font-size: clamp(15px, 3.5vw, 18px); color: var(--color-text-secondary); max-width: 600px; margin: 0 auto;">
+    <h1 style="font-size: clamp(28px, 8vw, 48px); margin-bottom: 16px;"><span class="intro-word">About</span>&nbsp;<span class="intro-word">PostureTru</span></h1>
+    <p class="entrance-fade" style="font-size: clamp(15px, 3.5vw, 18px); color: var(--color-text-secondary); max-width: 600px; margin: 0 auto;">
       A smarter approach to better posture.
     </p>
   </div>
 </section>
 
 <!-- Brand Story -->
-<section class="section-padding">
+<section class="section-padding" id="aboutStorySection">
   <div class="container about-story">
-    <h2>Where It Started</h2>
-    <p>PostureTru began with a simple realization.</p>
+    <h2><span class="intro-word">Where</span>&nbsp;<span class="intro-word">It</span>&nbsp;<span class="intro-word">Started</span></h2>
+    <p class="entrance-fade">PostureTru began with a simple realization.</p>
     <p>After years of working long hours at a desk, I noticed the same pattern almost every day. I would start the morning sitting upright, focused and energized. A few hours later, without realizing it, I would be leaning forward with rounded shoulders and a stiff neck.</p>
     <p>The problem was never knowing what good posture looked like. The problem was remembering it while I was busy working.</p>
     <p>When I looked at existing posture products, most relied on discomfort or restriction. They reminded you by forcing your body into position, but they did not help build lasting habits.</p>
@@ -21,10 +21,10 @@
 </section>
 
 <!-- Mission -->
-<section class="section-padding" style="background-color: var(--color-bg-light); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
+<section class="section-padding" id="aboutMissionSection" style="background-color: var(--color-bg-light); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
   <div class="container about-story">
-    <h2 id="mission">Our Mission</h2>
-    <p>We believe better posture begins with awareness.</p>
+    <h2 id="mission"><span class="intro-word">Our</span>&nbsp;<span class="intro-word">Mission</span></h2>
+    <p class="entrance-fade">We believe better posture begins with awareness.</p>
     <p>As more people work from home and spend their days in front of screens, maintaining healthy posture has become harder than ever. It is not that people do not care. It is that they are focused on their work.</p>
     <p>Our mission is to design thoughtful tools that fit naturally into modern life, helping people build healthier habits without adding friction to their day.</p>
     <p>Every decision we make is guided by three principles: design products people actually enjoy using, make premium wellness technology accessible, and build habits that last rather than temporary fixes.</p>
@@ -33,10 +33,10 @@
 </section>
 
 <!-- Founder -->
-<section class="section-padding">
+<section class="section-padding" id="aboutFounderSection">
   <div class="container about-founder">
-    <h2>From the Founder</h2>
-    <blockquote class="founder-quote">
+    <h2><span class="intro-word">From</span>&nbsp;<span class="intro-word">the</span>&nbsp;<span class="intro-word">Founder</span></h2>
+    <blockquote class="founder-quote entrance-fade">
       "I built PostureTru because I could not find a posture solution I actually wanted to wear. As someone who spends most of the day at a desk, I wanted something simple, comfortable, and effective enough to become part of my everyday routine. That is the standard we continue to build toward."
     </blockquote>
     <p class="founder-attribution">— Kartik Sachdeva, Founder</p>
@@ -44,11 +44,11 @@
 </section>
 
 <!-- Why Choose Us -->
-<section class="section-padding" style="background-color: var(--color-bg);">
+<section class="section-padding" id="aboutWhySection" style="background-color: var(--color-bg);">
   <div class="container">
     <div class="section-header">
-      <h2>Why Choose PostureTru</h2>
-      <p style="white-space: nowrap; font-size: clamp(12px, 3.2vw, 18px);">Awareness leads to change more naturally than correction.</p>
+      <h2><span class="intro-word">Why</span>&nbsp;<span class="intro-word">Choose</span>&nbsp;<span class="intro-word">PostureTru</span></h2>
+      <p class="entrance-fade" style="white-space: nowrap; font-size: clamp(12px, 3.2vw, 18px);">Awareness leads to change more naturally than correction.</p>
     </div>
 
     <div class="grid grid-3">
@@ -72,6 +72,39 @@
     </div>
   </div>
 </section>
+
+<script>
+(function(){
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var section = document.getElementById('aboutHeroSection');
+  if (!section) return;
+  var words = section.querySelectorAll('.intro-word');
+  var fade = section.querySelector('.entrance-fade');
+  var staggerBudget = 300;
+  var stagger = words.length ? Math.min(32, staggerBudget / words.length) : 32;
+  var wordTransition = 560;
+  words.forEach(function(w){
+    var dx = (Math.random() * 90 - 45).toFixed(0);
+    var dy = (Math.random() * 70 - 35).toFixed(0);
+    var rot = (Math.random() * 18 - 9).toFixed(1);
+    w.style.transform = 'translate(' + dx + 'px,' + dy + 'px) rotate(' + rot + 'deg)';
+  });
+  void document.body.offsetHeight;
+  words.forEach(function(w, i){
+    var delay = i * stagger;
+    w.style.transition = 'transform ' + wordTransition + 'ms cubic-bezier(0.16,1,0.3,1) ' + delay + 'ms, opacity 420ms ease-out ' + delay + 'ms';
+    w.style.opacity = '1';
+    w.style.transform = 'translate(0,0) rotate(0deg)';
+  });
+  var finishAt = words.length ? (words.length - 1) * stagger + wordTransition : 0;
+  if (fade) {
+    var fadeDelay = finishAt + 80;
+    fade.style.transition = 'opacity 480ms ease-out ' + fadeDelay + 'ms, transform 480ms cubic-bezier(0.16,1,0.3,1) ' + fadeDelay + 'ms';
+    fade.style.opacity = '1';
+    fade.style.transform = 'translateY(0)';
+  }
+})();
+</script>
 
 {% schema %}
 {

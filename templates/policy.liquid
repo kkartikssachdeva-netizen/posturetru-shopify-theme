@@ -1,9 +1,42 @@
-<section class="policy-hero">
+<section class="policy-hero" id="policyHeroSection">
   <div class="container">
-    <h1>{{ page.title }}</h1>
-    <p>Clear, simple, and written with you in mind.</p>
+    <h1>{% assign policy_title_words = page.title | split: ' ' %}{% for word in policy_title_words %}<span class="intro-word">{{ word }}</span>{% unless forloop.last %}&nbsp;{% endunless %}{% endfor %}</h1>
+    <p class="entrance-fade">Clear, simple, and written with you in mind.</p>
   </div>
 </section>
+
+<script>
+(function(){
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var section = document.getElementById('policyHeroSection');
+  if (!section) return;
+  var words = section.querySelectorAll('.intro-word');
+  var fade = section.querySelector('.entrance-fade');
+  var staggerBudget = 300;
+  var stagger = words.length ? Math.min(32, staggerBudget / words.length) : 32;
+  var wordTransition = 560;
+  words.forEach(function(w){
+    var dx = (Math.random() * 90 - 45).toFixed(0);
+    var dy = (Math.random() * 70 - 35).toFixed(0);
+    var rot = (Math.random() * 18 - 9).toFixed(1);
+    w.style.transform = 'translate(' + dx + 'px,' + dy + 'px) rotate(' + rot + 'deg)';
+  });
+  void document.body.offsetHeight;
+  words.forEach(function(w, i){
+    var delay = i * stagger;
+    w.style.transition = 'transform ' + wordTransition + 'ms cubic-bezier(0.16,1,0.3,1) ' + delay + 'ms, opacity 420ms ease-out ' + delay + 'ms';
+    w.style.opacity = '1';
+    w.style.transform = 'translate(0,0) rotate(0deg)';
+  });
+  var finishAt = words.length ? (words.length - 1) * stagger + wordTransition : 0;
+  if (fade) {
+    var fadeDelay = finishAt + 80;
+    fade.style.transition = 'opacity 480ms ease-out ' + fadeDelay + 'ms, transform 480ms cubic-bezier(0.16,1,0.3,1) ' + fadeDelay + 'ms';
+    fade.style.opacity = '1';
+    fade.style.transform = 'translateY(0)';
+  }
+})();
+</script>
 
 <section class="section-padding">
   <div class="container policy-content">
