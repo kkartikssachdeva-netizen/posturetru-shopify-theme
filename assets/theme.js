@@ -452,7 +452,7 @@ document.head.appendChild(styleSheet);
         playSection(entry.target);
         obs.unobserve(entry.target);
       });
-    }, { threshold: 0.2 });
+    }, { threshold: 0.05 });
 
     toObserve.forEach(function (section) { observer.observe(section); });
   }
