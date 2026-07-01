@@ -1469,36 +1469,62 @@ footer {
   text-align: center;
 }
 
-.hero-top-img-wrap {
+.page-hero-fullbleed {
   position: relative;
-  width: 100%;
-  height: 300px;
+  min-height: 420px;
+  display: flex;
+  align-items: flex-end;
+  padding: 0;
+  background-color: var(--color-primary);
   overflow: hidden;
-  margin-bottom: 40px;
 }
 
-.hero-top-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-}
-
-.hero-top-frost {
+.page-hero-fullbleed::before {
+  content: '';
   position: absolute;
   inset: 0;
-  background: rgba(240, 244, 248, 0.18);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-.hero-with-top-img {
-  padding-top: 0;
+.page-hero-fullbleed::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(27, 73, 101, 0.15) 0%,
+    rgba(27, 73, 101, 0.72) 100%
+  );
+}
+
+.page-hero-fullbleed .container {
+  position: relative;
+  z-index: 1;
+  padding-bottom: 52px;
+  padding-top: 52px;
+}
+
+.page-hero-fullbleed h1 {
+  color: #ffffff;
+}
+
+.page-hero-fullbleed p {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+#contactHeroSection.page-hero-fullbleed::before {
+  background-image: url('https://cdn.shopify.com/s/files/1/0839/9274/0080/files/Contact.jpg?v=1782911964');
+}
+
+#faqPageHeroSection.page-hero-fullbleed::before {
+  background-image: url('https://cdn.shopify.com/s/files/1/0839/9274/0080/files/FAQ.jpg?v=1782911964');
 }
 
 @media (max-width: 768px) {
-  .hero-top-img-wrap {
-    height: 220px;
-    margin-bottom: 28px;
+  .page-hero-fullbleed {
+    min-height: 300px;
   }
 }
 
