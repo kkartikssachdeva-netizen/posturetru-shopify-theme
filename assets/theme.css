@@ -1204,7 +1204,7 @@ footer {
 }
 
 .specs-table tr:nth-child(even) {
-  background-color: var(--color-bg-light);
+  background-color: transparent;
 }
 
 .specs-table td {
