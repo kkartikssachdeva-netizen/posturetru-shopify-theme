@@ -40,6 +40,13 @@
 
 .email-breather .eb-heading {
   margin-bottom: 16px;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .email-breather .eb-heading {
+    font-size: clamp(17px, 5.4vw, 26px);
+  }
 }
 
 .email-breather .eb-word {
