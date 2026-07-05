@@ -1,0 +1,209 @@
+<section class="email-breather section-padding" id="emailBreatherSection" style="background: var(--color-bg);">
+  <div class="container" id="contact_form">
+    <div class="eb-inner">
+      <h2 class="eb-heading">{% assign eb_words = section.settings.title | default: 'You just sat up a little straighter' | split: ' ' %}{% for word in eb_words %}<span class="eb-word">{{ word }}</span>{% unless forloop.last %}&nbsp;{% endunless %}{% endfor %}</h2>
+      <p class="eb-sub eb-fade">{{ section.settings.subtitle | default: 'That is what a small reminder can do. PostureTru is built on one idea: attention beats correction. Leave your email and follow where we take it.' }}</p>
+
+      <div class="eb-fade">
+        {% form 'customer', id: 'emailBreatherForm', class: 'eb-form' %}
+          {% if form.posted_successfully? %}
+            <p class="eb-success">{{ section.settings.success_text | default: 'You are in. Thank you for paying attention.' }}</p>
+          {% else %}
+            <input type="hidden" name="contact[tags]" value="newsletter, homepage breather">
+            <div class="eb-row">
+              <input type="email"
+                     name="contact[email]"
+                     class="eb-input"
+                     placeholder="{{ section.settings.placeholder | default: 'Enter your email' }}"
+                     autocomplete="email"
+                     aria-label="Email address"
+                     required>
+              <button type="submit" class="eb-btn">{{ section.settings.button_text | default: 'Count me in' }}</button>
+            </div>
+            <p class="eb-fine">{{ section.settings.fine_print | default: 'No spam. Unsubscribe anytime.' }}</p>
+          {% endif %}
+          {% if form.errors %}
+            <p class="eb-error">{{ form.errors | default_errors }}</p>
+          {% endif %}
+        {% endform %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.email-breather .eb-inner {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.email-breather .eb-heading {
+  margin-bottom: 16px;
+}
+
+.email-breather .eb-word {
+  display: inline-block;
+  opacity: 0;
+}
+
+.email-breather .eb-fade {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.email-breather .eb-sub {
+  color: var(--color-text-secondary);
+  font-size: var(--fs-body);
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.email-breather .eb-row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.email-breather .eb-input {
+  flex: 1;
+  min-width: 220px;
+  max-width: 340px;
+  padding: 13px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-sm);
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--color-primary);
+  background: var(--color-white);
+}
+
+.email-breather .eb-input::placeholder {
+  color: var(--color-text-secondary);
+}
+
+.email-breather .eb-btn {
+  background: var(--color-primary);
+  color: #FFFFFF;
+  border: 1.5px solid var(--color-primary);
+  border-radius: var(--border-radius-sm);
+  padding: 13px 26px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.email-breather .eb-btn:hover {
+  background: #12384E;
+  border-color: #12384E;
+}
+
+.email-breather .eb-fine {
+  color: var(--color-text-secondary);
+  font-size: 13px;
+  margin-top: 14px;
+}
+
+.email-breather .eb-success {
+  color: var(--color-secondary);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.email-breather .eb-error {
+  color: #E74C3C;
+  font-size: 14px;
+  margin-top: 12px;
+}
+
+@media (max-width: 600px) {
+  .email-breather .eb-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .email-breather .eb-input {
+    max-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .email-breather .eb-word,
+  .email-breather .eb-fade {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+</style>
+
+<noscript>
+  <style>
+    .email-breather .eb-word,
+    .email-breather .eb-fade {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  </style>
+</noscript>
+
+<script>
+(function(){
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var section = document.getElementById('emailBreatherSection');
+  if (!section) return;
+  var played = false;
+
+  function play() {
+    if (played) return;
+    played = true;
+    var words = section.querySelectorAll('.eb-word');
+    var fades = section.querySelectorAll('.eb-fade');
+    var stagger = words.length ? Math.min(40, 300 / words.length) : 40;
+
+    words.forEach(function(w, i){
+      var delay = i * stagger;
+      w.style.transition = 'opacity 420ms ease-out ' + delay + 'ms, transform 560ms cubic-bezier(0.16,1,0.3,1) ' + delay + 'ms';
+      w.style.opacity = '1';
+    });
+
+    var wordsFinishAt = words.length ? (words.length - 1) * stagger + 420 : 0;
+    fades.forEach(function(f, i){
+      var delay = wordsFinishAt + 80 + i * 120;
+      f.style.transition = 'opacity 480ms ease-out ' + delay + 'ms, transform 480ms cubic-bezier(0.16,1,0.3,1) ' + delay + 'ms';
+      f.style.opacity = '1';
+      f.style.transform = 'translateY(0)';
+    });
+  }
+
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          play();
+          obs.disconnect();
+        }
+      });
+    }, { threshold: 0.25 });
+    obs.observe(section);
+  } else {
+    play();
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Email Breather",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Heading", "default": "You just sat up a little straighter" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "That is what a small reminder can do. PostureTru is built on one idea: attention beats correction. Leave your email and follow where we take it." },
+    { "type": "text", "id": "placeholder", "label": "Email placeholder", "default": "Enter your email" },
+    { "type": "text", "id": "button_text", "label": "Button text", "default": "Count me in" },
+    { "type": "text", "id": "success_text", "label": "Success message", "default": "You are in. Thank you for paying attention." },
+    { "type": "text", "id": "fine_print", "label": "Fine print", "default": "No spam. Unsubscribe anytime." }
+  ],
+  "presets": [{ "name": "Email Breather", "category": "Marketing" }]
+}
+{% endschema %}
