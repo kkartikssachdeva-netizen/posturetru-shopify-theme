@@ -1792,7 +1792,7 @@ body.page-loaded {
 }
 
 .contact-info-block {
-  background: linear-gradient(180deg, #F2F4F3 0%, #C7D4DC 100%);
+  background-color: var(--color-bg-light);
   padding: 50px 40px;
   border-radius: var(--border-radius-md);
   border: 1px solid var(--color-border);
