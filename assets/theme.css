@@ -2466,17 +2466,6 @@ html {
 
 .reveal-item.contact-method-item:nth-child(2) { transition-delay: 0.05s; }
 .reveal-item.contact-method-item:nth-child(3) { transition-delay: 0.10s; }
-.specs-table tr.reveal-item:nth-child(2) { transition-delay: 0.04s; }
-.specs-table tr.reveal-item:nth-child(3) { transition-delay: 0.08s; }
-.specs-table tr.reveal-item:nth-child(4) { transition-delay: 0.12s; }
-.specs-table tr.reveal-item:nth-child(5) { transition-delay: 0.16s; }
-.specs-table tr.reveal-item:nth-child(6) { transition-delay: 0.20s; }
-.specs-table tr.reveal-item:nth-child(7) { transition-delay: 0.24s; }
-.specs-table tr.reveal-item:nth-child(8) { transition-delay: 0.28s; }
-.specs-table tr.reveal-item:nth-child(9) { transition-delay: 0.32s; }
-.specs-table tr.reveal-item:nth-child(10) { transition-delay: 0.36s; }
-.specs-table tr.reveal-item:nth-child(11) { transition-delay: 0.40s; }
-
 .intro-word {
   display: inline-block;
   opacity: 0;
