@@ -1,4 +1,5 @@
-<section id="PillarsSection" class="trust-pillars section-padding">
+<section id="PillarsSection" class="trust-pillars section-padding" style="background: linear-gradient(180deg, #F2F4F3 0%, #C7D4DC 100%);">
+
   <div class="container">
     <div class="section-header">
       <h2>{% assign tp_words = section.settings.title | default: 'Built for the Moments That Matter Most' | split: ' ' %}{% for word in tp_words %}<span class="intro-word">{{ word }}</span>{% unless forloop.last %}&nbsp;{% endunless %}{% endfor %}</h2>
