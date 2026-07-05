@@ -1078,7 +1078,7 @@ footer {
 
 /* Features List */
 .product-features-section {
-  background-color: var(--color-bg-light);
+  background: linear-gradient(180deg, #F2F4F3 0%, #C7D4DC 100%);
 }
 
 .features-list {
