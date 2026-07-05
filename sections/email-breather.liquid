@@ -20,7 +20,6 @@
                      required>
               <button type="submit" class="eb-btn">{{ section.settings.button_text | default: 'Count me in' }}</button>
             </div>
-            <p class="eb-fine">{{ section.settings.fine_print | default: 'No spam. Unsubscribe anytime.' }}</p>
           {% endif %}
           {% if form.errors %}
             <p class="eb-error">{{ form.errors | default_errors }}</p>
@@ -108,11 +107,6 @@
   border-color: #12384E;
 }
 
-.email-breather .eb-fine {
-  color: var(--color-text-secondary);
-  font-size: 13px;
-  margin-top: 14px;
-}
 
 .email-breather .eb-success {
   color: var(--color-secondary);
@@ -208,8 +202,7 @@
     { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "That is what a small reminder can do. PostureTru is built on one idea: attention beats correction. Leave your email and follow where we take it." },
     { "type": "text", "id": "placeholder", "label": "Email placeholder", "default": "Enter your email" },
     { "type": "text", "id": "button_text", "label": "Button text", "default": "Count me in" },
-    { "type": "text", "id": "success_text", "label": "Success message", "default": "You are in. Thank you for paying attention." },
-    { "type": "text", "id": "fine_print", "label": "Fine print", "default": "No spam. Unsubscribe anytime." }
+    { "type": "text", "id": "success_text", "label": "Success message", "default": "You are in. Thank you for paying attention." }
   ],
   "presets": [{ "name": "Email Breather", "category": "Marketing" }]
 }
