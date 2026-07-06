@@ -129,6 +129,12 @@
   var words = document.querySelectorAll('.product-title .intro-word');
   var shortDesc = document.querySelector('.product-short-description');
   var img = document.getElementById('mainImageContainer');
+  var trigger = document.querySelector('.product-details') || shortDesc;
+  var played = false;
+
+  function run(){
+    if (played) return;
+    played = true;
   var staggerBudget = 300;
   var stagger = words.length ? Math.min(32, staggerBudget / words.length) : 32;
   var wordTransition = 560;
@@ -160,6 +166,22 @@
     img.style.transition = 'opacity 600ms ease-out 80ms, transform 600ms cubic-bezier(0.16,1,0.3,1) 80ms';
     img.style.opacity = '1';
     img.style.transform = 'translateY(0)';
+  }
+  }
+
+  function inView(el){
+    var r = el.getBoundingClientRect();
+    return r.top < (window.innerHeight || document.documentElement.clientHeight) * 0.85 && r.bottom > 0;
+  }
+
+  if (trigger && inView(trigger)) { run(); }
+  if (trigger && 'IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) { run(); obs.disconnect(); } });
+    }, { threshold: 0.2 });
+    obs.observe(trigger);
+  } else {
+    run();
   }
 })();
 </script>
