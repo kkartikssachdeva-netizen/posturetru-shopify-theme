@@ -432,7 +432,7 @@ document.head.appendChild(styleSheet);
   }
 
   function initWordEntrances() {
-    var sections = document.querySelectorAll('#productPreviewSection, #PillarsSection, #productFeaturesSection, #productBenefitsSection, #faqAccordionSection, #aboutStorySection, #aboutMissionSection, #aboutFounderSection, #aboutWhySection');
+    var sections = document.querySelectorAll('#productPreviewSection, #PillarsSection, #productFeaturesSection, #productBenefitsSection, #faqAccordionSection, #aboutStorySection, #aboutMissionSection, #aboutFounderSection, #aboutWhySection, #finalCtaSection');
     if (!sections.length) return;
 
     var viewportH = window.innerHeight || document.documentElement.clientHeight;
