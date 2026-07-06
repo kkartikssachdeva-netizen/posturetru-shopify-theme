@@ -421,10 +421,11 @@ document.head.appendChild(styleSheet);
     var heading = Array.prototype.slice.call(root.querySelectorAll('.intro-word'));
     var finishAt = shatterIn(heading, 0);
 
-    var step = finishAt + 80;
+    var step = finishAt - 180;
+    if (step < 0) step = 0;
     var fades = root.querySelectorAll('.entrance-fade');
     fades.forEach(function (el, i) {
-      fadeIn(el, step + i * 90);
+      fadeIn(el, step + i * 60);
     });
 
     var img = root.querySelector('.entrance-fade-img');
