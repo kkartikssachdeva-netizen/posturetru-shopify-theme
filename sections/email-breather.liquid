@@ -151,46 +151,61 @@
 
 <script>
 (function(){
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var section = document.getElementById('emailBreatherSection');
   if (!section) return;
   var played = false;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function clearForeign(el){
+    if (el.getAnimations) {
+      el.getAnimations().forEach(function(a){ a.cancel(); });
+    }
+  }
 
   function play() {
     if (played) return;
     played = true;
     var words = section.querySelectorAll('.eb-word');
     var fades = section.querySelectorAll('.eb-fade');
-    var stagger = words.length ? Math.min(40, 300 / words.length) : 40;
+    var all = [].slice.call(words).concat([].slice.call(fades));
+    all.forEach(clearForeign);
 
+    if (reduce) {
+      all.forEach(function(el){ el.style.opacity = '1'; el.style.transform = 'none'; });
+      return;
+    }
+
+    var stagger = words.length ? Math.min(40, 300 / words.length) : 40;
     words.forEach(function(w, i){
-      var delay = i * stagger;
-      w.style.transition = 'opacity 420ms ease-out ' + delay + 'ms, transform 560ms cubic-bezier(0.16,1,0.3,1) ' + delay + 'ms';
+      var d = i * stagger;
+      w.style.transition = 'opacity 420ms ease-out ' + d + 'ms';
       w.style.opacity = '1';
     });
 
-    var wordsFinishAt = words.length ? (words.length - 1) * stagger + 420 : 0;
+    var doneAt = words.length ? (words.length - 1) * stagger + 420 : 0;
     fades.forEach(function(f, i){
-      var delay = wordsFinishAt + 80 + i * 120;
-      f.style.transition = 'opacity 480ms ease-out ' + delay + 'ms, transform 480ms cubic-bezier(0.16,1,0.3,1) ' + delay + 'ms';
+      var d = doneAt + 80 + i * 120;
+      f.style.transition = 'opacity 480ms ease-out ' + d + 'ms, transform 480ms cubic-bezier(0.16,1,0.3,1) ' + d + 'ms';
       f.style.opacity = '1';
       f.style.transform = 'translateY(0)';
     });
   }
 
-  if ('IntersectionObserver' in window) {
-    var obs = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if (entry.isIntersecting) {
-          play();
-          obs.disconnect();
-        }
-      });
-    }, { threshold: 0.25 });
-    obs.observe(section);
-  } else {
-    play();
+  function inView(){
+    var r = section.getBoundingClientRect();
+    return r.top < window.innerHeight * 0.8 && r.bottom > 0;
   }
+
+  if (inView()) { play(); }
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if (e.isIntersecting) { play(); obs.disconnect(); } });
+    }, { threshold: 0.15 });
+    obs.observe(section);
+  }
+  window.addEventListener('scroll', function onScroll(){
+    if (inView()) { play(); window.removeEventListener('scroll', onScroll); }
+  }, { passive: true });
 })();
 </script>
 
