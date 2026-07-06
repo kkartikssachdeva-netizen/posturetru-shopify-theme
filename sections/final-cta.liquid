@@ -1,15 +1,109 @@
-<section class="final-cta section-padding">
+<section class="final-cta section-padding" id="finalCtaSection">
   <div class="container">
-    <h2>{{ section.settings.title | default: 'Better Posture Starts With Awareness' }}</h2>
-    <p>{{ section.settings.copy | default: 'Verta is designed to help you build better posture habits over time, one gentle reminder at a time. Try it for yourself and notice the difference awareness can make.' }}</p>
-    <div>
+    <h2>{% assign fc_words = section.settings.title | default: 'Better Posture Starts With Awareness' | split: ' ' %}{% for word in fc_words %}<span class="fc-word">{{ word }}</span>{% unless forloop.last %}&nbsp;{% endunless %}{% endfor %}</h2>
+    <p class="fc-fade">{{ section.settings.copy | default: 'Verta is designed to help you build better posture habits over time, one gentle reminder at a time. Try it for yourself and notice the difference awareness can make.' }}</p>
+    <div class="fc-fade">
       <a href="{{ section.settings.cta_link | default: '/products/posturetru' }}" class="btn final-cta-btn">
         {{ section.settings.cta_text | default: 'Get Verta Today' }}
       </a>
     </div>
-    <span class="final-cta-subtext">{{ section.settings.sub_text | default: '30 day money back guarantee. Free shipping on all orders.' }}</span>
+    <span class="final-cta-subtext fc-fade">{{ section.settings.sub_text | default: '30 day money back guarantee. Free shipping on all orders.' }}</span>
   </div>
 </section>
+
+<style>
+.final-cta .fc-word {
+  display: inline-block;
+  opacity: 0;
+}
+
+.final-cta .fc-fade {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.final-cta .final-cta-subtext.fc-fade {
+  display: inline-block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .final-cta .fc-word,
+  .final-cta .fc-fade {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+</style>
+
+<noscript>
+  <style>
+    #finalCtaSection .fc-word,
+    #finalCtaSection .fc-fade {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  </style>
+</noscript>
+
+<script>
+(function(){
+  var section = document.getElementById('finalCtaSection');
+  if (!section) return;
+  var played = false;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function clearForeign(el){
+    if (el.getAnimations) {
+      el.getAnimations().forEach(function(a){ a.cancel(); });
+    }
+  }
+
+  function play() {
+    if (played) return;
+    played = true;
+    var words = section.querySelectorAll('.fc-word');
+    var fades = section.querySelectorAll('.fc-fade');
+    var all = [].slice.call(words).concat([].slice.call(fades));
+    all.forEach(clearForeign);
+
+    if (reduce) {
+      all.forEach(function(el){ el.style.opacity = '1'; el.style.transform = 'none'; });
+      return;
+    }
+
+    var stagger = words.length ? Math.min(40, 300 / words.length) : 40;
+    words.forEach(function(w, i){
+      var d = i * stagger;
+      w.style.transition = 'opacity 420ms ease-out ' + d + 'ms';
+      w.style.opacity = '1';
+    });
+
+    var doneAt = words.length ? (words.length - 1) * stagger + 420 : 0;
+    fades.forEach(function(f, i){
+      var d = doneAt + 80 + i * 120;
+      f.style.transition = 'opacity 480ms ease-out ' + d + 'ms, transform 480ms cubic-bezier(0.16,1,0.3,1) ' + d + 'ms';
+      f.style.opacity = '1';
+      f.style.transform = 'translateY(0)';
+    });
+  }
+
+  function inView(){
+    var r = section.getBoundingClientRect();
+    return r.top < window.innerHeight * 0.8 && r.bottom > 0;
+  }
+
+  if (inView()) { play(); }
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if (e.isIntersecting) { play(); obs.disconnect(); } });
+    }, { threshold: 0.15 });
+    obs.observe(section);
+  }
+  window.addEventListener('scroll', function onScroll(){
+    if (inView()) { play(); window.removeEventListener('scroll', onScroll); }
+  }, { passive: true });
+})();
+</script>
 
 {% schema %}
 {
