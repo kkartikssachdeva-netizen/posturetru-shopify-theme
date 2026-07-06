@@ -2534,10 +2534,6 @@ html {
   }
 }
 
-/* Fail-safe: if JS does not run, CTA content must still be visible */
-.no-js .final-cta .intro-word,
-.no-js .final-cta .entrance-fade { opacity: 1 !important; transform: none !important; }
-
 @media (prefers-reduced-motion: reduce) {
   .final-cta .intro-word,
   .final-cta .entrance-fade { opacity: 1 !important; transform: none !important; }
