@@ -64,8 +64,8 @@
           <h3>Order Summary</h3>
           <div class="summary-row"><span>Subtotal</span><span>{{ cart.total_price | money }}</span></div>
           <div class="summary-row"><span>Shipping</span><span style="color:var(--color-secondary); font-weight:600;">FREE</span></div>
-          <div class="summary-row summary-total"><span>Estimated Total</span><span>{{ cart.total_price | money }}</span></div>
-          <p style="font-size:13px; color:var(--color-text-secondary); margin-bottom:24px; text-align:center;">Taxes and shipping calculated at checkout.</p>
+          <div class="summary-row summary-total"><span>Total</span><span>{{ cart.total_price | money }}</span></div>
+          <p style="font-size:13px; color:var(--color-text-secondary); margin-bottom:24px; text-align:center;">Price shown is the final price.</p>
           <a href="/checkout" class="btn btn-secondary btn-full" style="margin-bottom:12px; text-align:center; display:block;">Proceed to Checkout</a>
           <a href="/" class="btn btn-outline btn-full" style="text-align:center; display:block;">Continue Shopping</a>
         </div>
