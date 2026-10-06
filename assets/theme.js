@@ -7,6 +7,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- SHOPIFY CART API ---
   const fetchCart = () => fetch('/cart.js').then(r => r.json());
 
+  const formatMoney = (cents, currency) => {
+    let s;
+    try {
+      s = new Intl.NumberFormat('en', { style: 'currency', currency: currency, currencyDisplay: 'narrowSymbol' }).format(cents / 100);
+    } catch (e) {
+      s = '$' + (cents / 100).toFixed(2);
+    }
+    return s.indexOf(currency) !== -1 ? s : s + ' ' + currency;
+  };
+
   // --- SELECTORS ---
   const menuBtn = document.getElementById('menuToggleBtn');
   const closeMenuBtn = document.getElementById('closeMenuBtn');
@@ -114,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <a href="/products/posturetru" class="btn btn-primary btn-sm" style="margin-top: 15px; padding: 10px 20px;">Shop Product</a>
           </div>
         `;
-        if (cartSubtotalEl) cartSubtotalEl.textContent = '$0.00';
+        if (cartSubtotalEl) cartSubtotalEl.textContent = formatMoney(0, shopifyCart.currency);
         if (cartViewCartBtn) cartViewCartBtn.style.display = 'none';
         if (cartCheckoutBtn) cartCheckoutBtn.style.display = 'none';
         return;
@@ -141,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
           </div>
           <div style="text-align:right;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-end;">
-            <span style="font-weight:600;color:var(--color-primary);font-size:15px;">$${linePrice}</span>
+            <span style="font-weight:600;color:var(--color-primary);font-size:15px;">${formatMoney(item.line_price, shopifyCart.currency)}</span>
             <button class="cart-remove-btn" style="margin-top:15px;padding:0;background:none;border:none;cursor:pointer;" data-key="${item.key}">Remove</button>
           </div>
         `;
@@ -149,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       const subtotal = (shopifyCart.total_price / 100).toFixed(2);
-      if (cartSubtotalEl) cartSubtotalEl.textContent = `$${subtotal}`;
+      if (cartSubtotalEl) cartSubtotalEl.textContent = formatMoney(shopifyCart.total_price, shopifyCart.currency);
 
       cartItemsContainer.querySelectorAll('.qty-btn').forEach(btn => {
         btn.addEventListener('click', e => {

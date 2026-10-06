@@ -31,12 +31,12 @@
       <div class="product-pricing">
         {% assign _fv = product.selected_or_first_available_variant %}
         {% if _fv.compare_at_price > _fv.price %}
-        <span id="priceCompare" class="price-compare" style="font-size:22px;color:#999;text-decoration:line-through;text-decoration-color:#E74C3C;text-decoration-thickness:2px;margin-right:0;">{{ _fv.compare_at_price | money }}</span>
+        <span id="priceCompare" class="price-compare" style="font-size:22px;color:#999;text-decoration:line-through;text-decoration-color:#E74C3C;text-decoration-thickness:2px;margin-right:0;">{{ _fv.compare_at_price | money_with_currency }}</span>
         {% else %}
         <span id="priceCompare" class="price-compare" style="font-size:22px;color:#999;text-decoration:line-through;text-decoration-color:#E74C3C;text-decoration-thickness:2px;margin-right:0;display:none;"></span>
         {% endif %}
 
-        <span id="priceCurrent" class="price-current" style="font-size:28px;font-weight:800;color:#1B4965;letter-spacing:-1px;">{{ _fv.price | money }}</span>
+        <span id="priceCurrent" class="price-current" style="font-size:28px;font-weight:800;color:#1B4965;letter-spacing:-1px;">{{ _fv.price | money_with_currency }}</span>
 
         {% if _fv.compare_at_price > _fv.price %}
         {% assign _save_pct = _fv.compare_at_price | minus: _fv.price | times: 100 | divided_by: _fv.compare_at_price %}
@@ -87,6 +87,8 @@
                       data-color="{{ variant.option1 }}"
                       data-price="{{ variant.price }}"
                       data-compare="{{ variant.compare_at_price | default: 0 }}"
+                      data-price-formatted="{{ variant.price | money_with_currency | escape }}"
+                      data-compare-formatted="{{ variant.compare_at_price | money_with_currency | escape }}"
                       data-available="{{ variant.available }}"
                       aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}">
                 <span class="swatch-dot" style="background:{{ swatch_hex }};"></span>
@@ -178,10 +180,10 @@
 
       formIds.forEach(function(inp) { inp.value = vid; });
       if (nameEl)  nameEl.textContent = color;
-      if (priceEl) priceEl.textContent = fmt(price);
+      if (priceEl) priceEl.textContent = pill.dataset.priceFormatted;
 
       if (compare > price) {
-        if (cmpEl)  { cmpEl.textContent = fmt(compare); cmpEl.style.display = ''; }
+        if (cmpEl)  { cmpEl.textContent = pill.dataset.compareFormatted; cmpEl.style.display = ''; }
         if (saveEl) {
           var pct = Math.round((compare - price) * 100 / compare);
           saveEl.innerHTML = '<span style="background:#E74C3C;color:white;font-size:13px;font-weight:700;padding:4px 10px;border-radius:20px;letter-spacing:0.05em;">SAVE ' + pct + '%</span>';
