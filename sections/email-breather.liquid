@@ -2,7 +2,7 @@
   <div class="container" id="contact_form">
     <div class="eb-inner">
       <h2 class="eb-heading">{% assign eb_words = section.settings.title | default: 'You Just Sat Up a Little Straighter' | split: ' ' %}{% for word in eb_words %}<span class="eb-word">{{ word }}</span>{% unless forloop.last %}&nbsp;{% endunless %}{% endfor %}</h2>
-      <p class="eb-sub eb-fade">{{ section.settings.subtitle | default: 'That is what a small reminder can do. PostureTru is built on one idea: attention beats correction. Leave your email and follow where we take it.' }}</p>
+      <p class="eb-sub eb-fade">{{ section.settings.subtitle | default: 'That is what a small reminder can do. PostureTru is built on one idea: attention beats correction.<br>Leave your email and follow where we take it.' }}</p>
 
       <div class="eb-fade">
         {% form 'customer', id: 'emailBreatherForm', class: 'eb-form' %}
@@ -214,7 +214,7 @@
   "name": "Email Breather",
   "settings": [
     { "type": "text", "id": "title", "label": "Heading", "default": "You Just Sat Up a Little Straighter" },
-    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "That is what a small reminder can do. PostureTru is built on one idea: attention beats correction. Leave your email and follow where we take it." },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "That is what a small reminder can do. PostureTru is built on one idea: attention beats correction.<br>Leave your email and follow where we take it." },
     { "type": "text", "id": "placeholder", "label": "Email placeholder", "default": "Enter your email" },
     { "type": "text", "id": "button_text", "label": "Button text", "default": "Count me in" },
     { "type": "text", "id": "success_text", "label": "Success message", "default": "You are in. Thank you for paying attention." }
