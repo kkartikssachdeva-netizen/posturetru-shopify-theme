@@ -164,34 +164,37 @@ document.addEventListener('DOMContentLoaded', () => {
         cartItemsContainer.appendChild(itemEl);
       });
 
-      if (shopifyCart.item_count === 1) {
-        const swatchHex = { Black: '#1C1C1C', Pink: '#E8A0B4', Blue: '#5B9BD5' };
-        const nudgeEl = document.createElement('div');
-        nudgeEl.className = 'cart-multi-nudge';
-        nudgeEl.style.cssText = 'margin:12px 0 4px;padding:10px 12px;border-radius:8px;background:rgba(95,184,120,0.08);font-size:13px;color:var(--color-text-primary);';
-        nudgeEl.innerHTML = `<p style="margin:0 0 8px;">Buy two or more to unlock the Multi Unit Discount.</p><div class="cart-multi-colors" style="display:flex;flex-wrap:wrap;align-items:center;gap:6px;"><span style="font-size:12px;color:var(--color-text-secondary);margin-right:2px;">Add:</span></div>`;
-        cartItemsContainer.appendChild(nudgeEl);
+      if (shopifyCart.item_count >= 1) {
         try {
+          const swatchHex = { Black: '#1C1C1C', Pink: '#E8A0B4', Blue: '#5B9BD5' };
           const product = await fetch('/products/posturetru.js').then(r => r.json());
-          const colorsEl = nudgeEl.querySelector('.cart-multi-colors');
-          product.variants.filter(v => v.available).forEach(v => {
-            const btn = document.createElement('button');
-            btn.type = 'button';
-            btn.className = 'cart-multi-add';
-            btn.style.cssText = 'display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border:1.5px solid #CBD5DC;border-radius:16px;background:#fff;font-family:inherit;font-size:12px;font-weight:500;color:var(--color-primary);cursor:pointer;';
-            btn.innerHTML = `<span style="width:10px;height:10px;border-radius:50%;border:1px solid rgba(0,0,0,0.12);background:${swatchHex[v.option1] || '#CCCCCC'};"></span>${v.option1}`;
-            btn.addEventListener('click', async () => {
-              btn.disabled = true;
-              await fetch('/cart/add.js', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ items: [{ id: v.id, quantity: 1 }] })
+          const addable = product.variants.filter(v => v.available);
+          if (addable.length) {
+            const nudgeEl = document.createElement('div');
+            nudgeEl.className = 'cart-multi-nudge';
+            nudgeEl.style.cssText = 'margin:12px 0 4px;padding:10px 12px;border-radius:8px;background:rgba(95,184,120,0.08);font-size:13px;color:var(--color-text-primary);';
+            nudgeEl.innerHTML = `<p style="margin:0 0 8px;">Buy two or more to unlock the Multi Unit Discount.</p><div class="cart-multi-colors" style="display:flex;flex-wrap:wrap;align-items:center;gap:6px;"><span style="font-size:12px;color:var(--color-text-secondary);margin-right:2px;">Add:</span></div>`;
+            cartItemsContainer.appendChild(nudgeEl);
+            const colorsEl = nudgeEl.querySelector('.cart-multi-colors');
+            addable.forEach(v => {
+              const btn = document.createElement('button');
+              btn.type = 'button';
+              btn.className = 'cart-multi-add';
+              btn.style.cssText = 'display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border:1.5px solid #CBD5DC;border-radius:16px;background:#fff;font-family:inherit;font-size:12px;font-weight:500;color:var(--color-primary);cursor:pointer;';
+              btn.innerHTML = `<span style="width:10px;height:10px;border-radius:50%;border:1px solid rgba(0,0,0,0.12);background:${swatchHex[v.option1] || '#CCCCCC'};"></span>${v.option1}`;
+              btn.addEventListener('click', async () => {
+                btn.disabled = true;
+                await fetch('/cart/add.js', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ items: [{ id: v.id, quantity: 1 }] })
+                });
+                renderCartDrawer();
+                updateCartBadges();
               });
-              renderCartDrawer();
-              updateCartBadges();
+              colorsEl.appendChild(btn);
             });
-            colorsEl.appendChild(btn);
-          });
+          }
         } catch (e) { console.error('Multi unit nudge error:', e); }
       }
 
