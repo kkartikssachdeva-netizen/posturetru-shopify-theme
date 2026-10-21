@@ -164,6 +164,15 @@ document.addEventListener('DOMContentLoaded', () => {
         cartItemsContainer.appendChild(itemEl);
       });
 
+      if (shopifyCart.item_count === 1) {
+        const nudgeEl = document.createElement('div');
+        nudgeEl.className = 'cart-multi-nudge';
+        nudgeEl.style.cssText = 'margin:12px 0 4px;padding:10px 12px;border-radius:8px;background:rgba(95,184,120,0.08);font-size:13px;color:var(--color-text-primary);display:flex;justify-content:space-between;align-items:center;gap:10px;';
+        nudgeEl.innerHTML = `<span>Buy two or more to unlock the Multi Unit Discount.</span><button type="button" class="cart-multi-add" style="background:none;border:none;padding:0;cursor:pointer;font-size:13px;font-weight:600;color:var(--color-primary);text-decoration:underline;white-space:nowrap;">Add another</button>`;
+        cartItemsContainer.appendChild(nudgeEl);
+        nudgeEl.querySelector('.cart-multi-add').addEventListener('click', () => updateQuantity(shopifyCart.items[0].key, 2));
+      }
+
       const subtotal = (shopifyCart.total_price / 100).toFixed(2);
       if (cartSubtotalEl) cartSubtotalEl.textContent = formatMoney(shopifyCart.total_price, shopifyCart.currency);
 
