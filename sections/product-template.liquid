@@ -85,6 +85,7 @@
                       class="color-pill{% if forloop.first %} active{% endif %}"
                       data-variant-id="{{ variant.id }}"
                       data-color="{{ variant.option1 }}"
+                      data-sku="{{ variant.sku }}"
                       data-price="{{ variant.price }}"
                       data-compare="{{ variant.compare_at_price | default: 0 }}"
                       data-price-formatted="{{ variant.price | money_with_currency | escape }}"
@@ -180,6 +181,10 @@
 
       formIds.forEach(function(inp) { inp.value = vid; });
       if (nameEl)  nameEl.textContent = color;
+      var specColorEl = document.getElementById('specColor');
+      var specSkuEl = document.getElementById('specSku');
+      if (specColorEl) specColorEl.textContent = color;
+      if (specSkuEl && pill.dataset.sku) specSkuEl.textContent = pill.dataset.sku;
       if (priceEl) priceEl.textContent = pill.dataset.priceFormatted;
 
       if (compare > price) {

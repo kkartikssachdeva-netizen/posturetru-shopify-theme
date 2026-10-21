@@ -17,7 +17,7 @@
         <tbody>
           <tr>
             <td class="specs-label">SKU</td>
-            <td class="specs-val">{{ product.variants.first.sku }}</td>
+            <td class="specs-val" id="specSku">{{ product.selected_or_first_available_variant.sku }}</td>
           </tr>
           <tr>
             <td class="specs-label">Material</td>
@@ -25,7 +25,7 @@
           </tr>
           <tr>
             <td class="specs-label">Color</td>
-            <td class="specs-val">Black</td>
+            <td class="specs-val" id="specColor">{{ product.selected_or_first_available_variant.option1 }}</td>
           </tr>
           <tr>
             <td class="specs-label">Dimensions</td>
