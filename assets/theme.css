@@ -2548,3 +2548,23 @@ html {
 .cart-table td:nth-child(4) {
   white-space: nowrap;
 }
+
+/* Cart page: stacked layout on phones */
+@media (max-width: 768px) {
+  .cart-table thead { display: none; }
+  .cart-table,
+  .cart-table tbody { display: block; width: 100%; }
+  .cart-table tr {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 12px 16px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .cart-table td { display: block; padding: 0; border: 0; }
+  .cart-table td:first-child { grid-column: 1 / -1; }
+  .cart-table td:nth-child(2) { display: none; }
+  .cart-table td:nth-child(4) { text-align: right; }
+  .cart-product-img { width: 72px; height: 72px; }
+}
