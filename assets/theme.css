@@ -2274,7 +2274,8 @@ textarea.form-control {
   }
   
   .cart-drawer-item {
-    grid-template-columns: 60px 1fr;
+    grid-template-columns: 60px 1fr auto;
+    gap: 12px;
   }
   
   .cart-drawer-item .qty-selector {
@@ -2537,4 +2538,13 @@ html {
 @media (prefers-reduced-motion: reduce) {
   .final-cta .intro-word,
   .final-cta .entrance-fade { opacity: 1 !important; transform: none !important; }
+}
+
+/* Keep cart prices and currency on one line */
+.cart-drawer-item > div:last-child span {
+  white-space: nowrap;
+}
+.cart-table td:nth-child(2),
+.cart-table td:nth-child(4) {
+  white-space: nowrap;
 }
