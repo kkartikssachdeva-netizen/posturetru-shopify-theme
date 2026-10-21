@@ -60,6 +60,37 @@
 
     {% section 'footer' %}
     
+    {%- if localization.available_countries.size > 1 -%}
+      <div style="display:none;" aria-hidden="true">
+        {%- form 'localization', id: 'pt-geo-localization' -%}
+          <input type="hidden" name="country_code" value="{{ localization.country.iso_code }}">
+        {%- endform -%}
+      </div>
+      <script>
+        (function () {
+          try {
+            if (localStorage.getItem('pt_geo_checked')) return;
+            localStorage.setItem('pt_geo_checked', '1');
+          } catch (e) { return; }
+          if (/bot|crawl|spider|slurp|lighthouse/i.test(navigator.userAgent)) return;
+          var current = {{ localization.country.iso_code | json }};
+          var enabled = {{ localization.available_countries | map: 'iso_code' | json }};
+          var root = (window.Shopify && window.Shopify.routes && window.Shopify.routes.root) || '/';
+          fetch(root + 'browsing_context_suggestions.json?country[enabled]=true&country[exclude]=' + encodeURIComponent(current))
+            .then(function (r) { return r.json(); })
+            .then(function (data) {
+              var detected = data && data.detected_values && data.detected_values.country && data.detected_values.country.handle;
+              if (!detected || detected === current || enabled.indexOf(detected) === -1) return;
+              var form = document.getElementById('pt-geo-localization');
+              if (!form) return;
+              form.querySelector('input[name="country_code"]').value = detected;
+              form.submit();
+            })
+            .catch(function () {});
+        })();
+      </script>
+    {%- endif -%}
+
     <script>
       window.shopUrl = '{{ request.origin }}';
       window.routes = {
