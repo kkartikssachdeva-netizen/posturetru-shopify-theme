@@ -134,7 +134,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (cartCheckoutBtn) cartCheckoutBtn.style.display = '';
       cartItemsContainer.innerHTML = '';
       shopifyCart.items.forEach(item => {
-        const linePrice = (item.line_price / 100).toFixed(2);
+        const linePrice = (item.final_line_price / 100).toFixed(2);
+        const hasDiscount = item.final_line_price < item.original_line_price;
+        const unitSaving = hasDiscount ? Math.round((item.original_line_price - item.final_line_price) / item.quantity) : 0;
         const itemEl = document.createElement('div');
         itemEl.className = 'cart-drawer-item';
         itemEl.innerHTML = `
@@ -144,6 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="cart-item-info">
             <h4>${item.product_title}</h4>
             ${item.variant_title !== 'Default Title' ? `<p>${item.variant_title}</p>` : ''}
+            ${hasDiscount ? `<p class="cart-item-saving" style="font-size:12px;color:var(--color-secondary);font-weight:600;margin:2px 0 6px;">${formatMoney(unitSaving, shopifyCart.currency)} off each</p>` : ''}
             <div class="quantity-selector" style="height:35px;width:100px;">
               <button class="qty-btn" style="width:30px;height:33px;" data-key="${item.key}" data-qty="${item.quantity - 1}">-</button>
               <span style="flex:1;text-align:center;font-size:14px;font-weight:600;">${item.quantity}</span>
@@ -151,7 +154,10 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
           </div>
           <div style="text-align:right;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-end;">
-            <span style="font-weight:600;color:var(--color-primary);font-size:15px;">${formatMoney(item.line_price, shopifyCart.currency)}</span>
+            <div style="display:flex;flex-direction:column;align-items:flex-end;">
+              ${hasDiscount ? `<span style="font-size:12px;color:#999;text-decoration:line-through;">${formatMoney(item.original_line_price, shopifyCart.currency)}</span>` : ''}
+              <span style="font-weight:600;color:var(--color-primary);font-size:15px;">${formatMoney(item.final_line_price, shopifyCart.currency)}</span>
+            </div>
             <button class="cart-remove-btn" style="margin-top:15px;padding:0;background:none;border:none;cursor:pointer;" data-key="${item.key}">Remove</button>
           </div>
         `;
